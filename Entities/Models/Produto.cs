@@ -15,6 +15,9 @@ namespace Entities.Models
         public virtual Categoria Categoria { get; set; }
         public int CidadeId { get; set; }
         public Cidade Cidade { get; set; }
+        public int VendedorId { get; set; }
+        public Vendedor Vendedor { get; set; }
+
 
 
     }
