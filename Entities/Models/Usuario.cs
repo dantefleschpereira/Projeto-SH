@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
-
 
 namespace Entities.Models
 {
-    public class Comprador 
+    class Usuario
     {
-        public int CompradorId { get; set; }
+        public int UsuarioId { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public int Senha { get; set; }
@@ -14,3 +14,4 @@ namespace Entities.Models
         public Endereco Endereco { get; set; }
     }
 }
+
