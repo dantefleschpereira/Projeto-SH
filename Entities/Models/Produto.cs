@@ -17,6 +17,7 @@ namespace Entities.Models
         public Cidade Cidade { get; set; }
         public int CompradorId { get; set; }
         public int VendedorId { get; set; }
+        public virtual Usuario Usuario { get; set; }
    
         
 

@@ -12,14 +12,13 @@ namespace PL
         {
         }
 
-        public DbSet<Grupo> Grupo { get; set; }
+        public DbSet<Grupo> Grupos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Cidade> Cidades { get; set; }
-        public DbSet<Comprador> Compradores { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Questionamento> Questionamentos { get; set; }
-        public DbSet<Vendedor> Vendedores { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

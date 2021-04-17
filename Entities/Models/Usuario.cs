@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    class Usuario
+    public class Usuario
     {
         public int UsuarioId { get; set; }
         public string Nome { get; set; }
@@ -12,6 +12,10 @@ namespace Entities.Models
         public int Senha { get; set; }
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
+        public int TipoUsuarioId { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
+
+
     }
 }
 
