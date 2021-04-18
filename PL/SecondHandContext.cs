@@ -12,7 +12,7 @@ namespace PL
         {
         }
 
-        public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Grupo> Grupo { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Cidade> Cidades { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }

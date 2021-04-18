@@ -49,32 +49,6 @@ namespace PL.Migrations
                     b.ToTable("Cidades");
                 });
 
-            modelBuilder.Entity("Entities.Models.Comprador", b =>
-                {
-                    b.Property<int>("CompradorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Senha")
-                        .HasColumnType("int");
-
-                    b.HasKey("CompradorId");
-
-                    b.HasIndex("EnderecoId");
-
-                    b.ToTable("Compradores");
-                });
-
             modelBuilder.Entity("Entities.Models.Endereco", b =>
                 {
                     b.Property<int>("EnderecoId")
@@ -141,10 +115,13 @@ namespace PL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoriaID")
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<int>("CidadeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CompradorId")
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
@@ -159,16 +136,19 @@ namespace PL.Migrations
                     b.Property<int>("StatusVenda")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VendedorId")
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VendedorId")
                         .HasColumnType("int");
 
                     b.HasKey("ProdutoId");
 
-                    b.HasIndex("CategoriaID");
+                    b.HasIndex("CategoriaId");
 
                     b.HasIndex("CidadeId");
 
-                    b.HasIndex("VendedorId");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Produtos");
                 });
@@ -188,9 +168,9 @@ namespace PL.Migrations
                     b.ToTable("Questionamentos");
                 });
 
-            modelBuilder.Entity("Entities.Models.Vendedor", b =>
+            modelBuilder.Entity("Entities.Models.Usuario", b =>
                 {
-                    b.Property<int>("VendedorId")
+                    b.Property<int>("UsuarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -207,22 +187,14 @@ namespace PL.Migrations
                     b.Property<int>("Senha")
                         .HasColumnType("int");
 
-                    b.HasKey("VendedorId");
+                    b.Property<int>("TipoUsuario")
+                        .HasColumnType("int");
+
+                    b.HasKey("UsuarioId");
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("Vendedores");
-                });
-
-            modelBuilder.Entity("Entities.Models.Comprador", b =>
-                {
-                    b.HasOne("Entities.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Endereco");
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("Entities.Models.Endereco", b =>
@@ -240,7 +212,7 @@ namespace PL.Migrations
                 {
                     b.HasOne("Entities.Models.Categoria", "Categoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("CategoriaID")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -250,16 +222,18 @@ namespace PL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Vendedor", null)
-                        .WithMany("Produtos")
-                        .HasForeignKey("VendedorId");
+                    b.HasOne("Entities.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("Categoria");
 
                     b.Navigation("Cidade");
+
+                    b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Entities.Models.Vendedor", b =>
+            modelBuilder.Entity("Entities.Models.Usuario", b =>
                 {
                     b.HasOne("Entities.Models.Endereco", "Endereco")
                         .WithMany()
@@ -271,11 +245,6 @@ namespace PL.Migrations
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
-                {
-                    b.Navigation("Produtos");
-                });
-
-            modelBuilder.Entity("Entities.Models.Vendedor", b =>
                 {
                     b.Navigation("Produtos");
                 });

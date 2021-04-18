@@ -86,43 +86,22 @@ namespace PL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Compradores",
+                name: "Usuarios",
                 columns: table => new
                 {
-                    CompradorId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Senha = table.Column<int>(type: "int", nullable: false),
-                    EnderecoId = table.Column<int>(type: "int", nullable: false)
+                    EnderecoId = table.Column<int>(type: "int", nullable: false),
+                    TipoUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compradores", x => x.CompradorId);
+                    table.PrimaryKey("PK_Usuarios", x => x.UsuarioId);
                     table.ForeignKey(
-                        name: "FK_Compradores_Enderecos_EnderecoId",
-                        column: x => x.EnderecoId,
-                        principalTable: "Enderecos",
-                        principalColumn: "EnderecoId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Vendedores",
-                columns: table => new
-                {
-                    VendedorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Senha = table.Column<int>(type: "int", nullable: false),
-                    EnderecoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Vendedores", x => x.VendedorId);
-                    table.ForeignKey(
-                        name: "FK_Vendedores_Enderecos_EnderecoId",
+                        name: "FK_Usuarios_Enderecos_EnderecoId",
                         column: x => x.EnderecoId,
                         principalTable: "Enderecos",
                         principalColumn: "EnderecoId",
@@ -139,16 +118,18 @@ namespace PL.Migrations
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StatusVenda = table.Column<int>(type: "int", nullable: false),
-                    CategoriaID = table.Column<int>(type: "int", nullable: false),
+                    CategoriaId = table.Column<int>(type: "int", nullable: false),
                     CidadeId = table.Column<int>(type: "int", nullable: false),
-                    VendedorId = table.Column<int>(type: "int", nullable: true)
+                    CompradorId = table.Column<int>(type: "int", nullable: false),
+                    VendedorId = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produtos", x => x.ProdutoId);
                     table.ForeignKey(
-                        name: "FK_Produtos_Categorias_CategoriaID",
-                        column: x => x.CategoriaID,
+                        name: "FK_Produtos_Categorias_CategoriaId",
+                        column: x => x.CategoriaId,
                         principalTable: "Categorias",
                         principalColumn: "CategoriaId",
                         onDelete: ReferentialAction.Cascade);
@@ -159,17 +140,12 @@ namespace PL.Migrations
                         principalColumn: "CidadeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Produtos_Vendedores_VendedorId",
-                        column: x => x.VendedorId,
-                        principalTable: "Vendedores",
-                        principalColumn: "VendedorId",
+                        name: "FK_Produtos_Usuarios_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Compradores_EnderecoId",
-                table: "Compradores",
-                column: "EnderecoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enderecos_CidadeId",
@@ -177,9 +153,9 @@ namespace PL.Migrations
                 column: "CidadeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_CategoriaID",
+                name: "IX_Produtos_CategoriaId",
                 table: "Produtos",
-                column: "CategoriaID");
+                column: "CategoriaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Produtos_CidadeId",
@@ -187,21 +163,18 @@ namespace PL.Migrations
                 column: "CidadeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Produtos_VendedorId",
+                name: "IX_Produtos_UsuarioId",
                 table: "Produtos",
-                column: "VendedorId");
+                column: "UsuarioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendedores_EnderecoId",
-                table: "Vendedores",
+                name: "IX_Usuarios_EnderecoId",
+                table: "Usuarios",
                 column: "EnderecoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Compradores");
-
             migrationBuilder.DropTable(
                 name: "Grupo");
 
@@ -215,7 +188,7 @@ namespace PL.Migrations
                 name: "Categorias");
 
             migrationBuilder.DropTable(
-                name: "Vendedores");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Enderecos");

@@ -12,7 +12,6 @@ namespace Entities.Models
         public int Senha { get; set; }
         public int EnderecoId { get; set; }
         public Endereco Endereco { get; set; }
-        public int TipoUsuarioId { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
 
 

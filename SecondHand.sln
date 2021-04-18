@@ -21,10 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBBA3812-5
 	ProjectSection(SolutionItems) = preProject
 		categorias.sql = categorias.sql
 		cidades.sql = cidades.sql
-		Compradores.sql = Compradores.sql
 		Enderecos.sql = Enderecos.sql
 		Produtos.sql = Produtos.sql
-		Vendedores.sql = Vendedores.sql
+		Usuarios.sql = Usuarios.sql
 	EndProjectSection
 EndProject
 Global
