@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 
@@ -17,7 +18,7 @@ namespace Entities.Models
         public Cidade Cidade { get; set; }
         public int CompradorId { get; set; }
         public int VendedorId { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual ICollection<Usuario> Usuarios { get; set; }
    
         
 

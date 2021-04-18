@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210418171353_update-database")]
+    [Migration("20210418180226_update-database")]
     partial class updatedatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,9 +138,6 @@ namespace PL.Migrations
                     b.Property<int>("StatusVenda")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.Property<int>("VendedorId")
                         .HasColumnType("int");
 
@@ -149,8 +146,6 @@ namespace PL.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.HasIndex("CidadeId");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Produtos");
                 });
@@ -186,6 +181,9 @@ namespace PL.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Senha")
                         .HasColumnType("int");
 
@@ -195,6 +193,8 @@ namespace PL.Migrations
                     b.HasKey("UsuarioId");
 
                     b.HasIndex("EnderecoId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Usuarios");
                 });
@@ -224,15 +224,9 @@ namespace PL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
-
                     b.Navigation("Categoria");
 
                     b.Navigation("Cidade");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Entities.Models.Usuario", b =>
@@ -243,12 +237,21 @@ namespace PL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.Produto", null)
+                        .WithMany("Usuarios")
+                        .HasForeignKey("ProdutoId");
+
                     b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
                 {
                     b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("Entities.Models.Produto", b =>
+                {
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }
