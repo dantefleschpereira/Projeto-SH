@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace Entities.Models
+namespace Entities.Models.Dao
 {
     public interface IProdutoDao
     {
