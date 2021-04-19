@@ -1,9 +1,10 @@
 ﻿using System;
+using Entities.Models;
 using System.Collections.Generic;
 using System.Text;
 
 
-namespace Entities.Models.Dao
+namespace PL.Dao
 {
     public interface IProdutoDao
     {
