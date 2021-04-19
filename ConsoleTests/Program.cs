@@ -44,16 +44,19 @@ namespace ConsoleTests
             */
 
             //2) itens a venda de uma determinada categoria
-            IProdutoDao produtoDao = DaoFactory.CreateProdutoDao();
+            IProdutoDao produtoDao = DaoFactory.CreateProdutoDao(); //Injeção de dependência?
+
             ICollection<Produto> lista = new List<Produto>();
             lista = produtoDao.FindAll(1);
+
             foreach (var produto in lista)
             {
                 Console.WriteLine
-                    ("Produto: {0} \nDescrição: {1} \nPreço: {2}"
-                    , produto.Nome, produto.Descricao, produto.Preco);
-                Console.ReadLine();
+                    ("Categoria: {0} \nProduto: {1} \nDescrição: {2} \nPreço: {3}"
+                    , produto.Categoria.Nome, produto.Nome, produto.Descricao, produto.Preco);
+                Console.WriteLine("");
             }
+            Console.ReadLine();
 
 
 

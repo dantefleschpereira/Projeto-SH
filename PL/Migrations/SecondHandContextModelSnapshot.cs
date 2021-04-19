@@ -182,8 +182,8 @@ namespace PL.Migrations
                     b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Senha")
-                        .HasColumnType("int");
+                    b.Property<string>("Senha")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TipoUsuario")
                         .HasColumnType("int");

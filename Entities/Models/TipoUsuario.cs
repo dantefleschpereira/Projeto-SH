@@ -6,9 +6,8 @@ namespace Entities.Models
 {
     public enum TipoUsuario
     {
-        COMPRADOR = 1,
-        VENDEDOR = 2,
-        ADMINISTRADOR = 3
+        CLIENTE = 1,
+        ADMINISTRADOR = 2
     }
 }
 

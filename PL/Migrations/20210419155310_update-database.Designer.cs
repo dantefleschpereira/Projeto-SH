@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210418180226_update-database")]
+    [Migration("20210419155310_update-database")]
     partial class updatedatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,8 +184,8 @@ namespace PL.Migrations
                     b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Senha")
-                        .HasColumnType("int");
+                    b.Property<string>("Senha")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TipoUsuario")
                         .HasColumnType("int");

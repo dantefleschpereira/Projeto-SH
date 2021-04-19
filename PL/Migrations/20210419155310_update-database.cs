@@ -125,7 +125,7 @@ namespace PL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Senha = table.Column<int>(type: "int", nullable: false),
+                    Senha = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EnderecoId = table.Column<int>(type: "int", nullable: false),
                     TipoUsuario = table.Column<int>(type: "int", nullable: false),
                     ProdutoId = table.Column<int>(type: "int", nullable: true)
