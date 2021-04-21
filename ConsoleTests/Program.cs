@@ -47,7 +47,7 @@ namespace ConsoleTests
             IProdutoDao produtoDao = DaoFactory.CreateProdutoDao(); //Injeção de dependência?
 
             ICollection<Produto> lista;
-            lista = produtoDao.FindAll(1);
+            lista = produtoDao.FindProdutoByCategoriaId(1);
 
             foreach (var produto in lista)
             {
