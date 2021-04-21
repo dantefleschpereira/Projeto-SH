@@ -1,4 +1,4 @@
-﻿using PL.Dao;
+﻿using PL.Repositorio;
 using System;
 using System.Text;
 
@@ -9,7 +9,7 @@ namespace Entities.Models.Dao
     {
         public static IProdutoDao CreateProdutoDao()
         {
-            return new ProdutoDaoImpl();
+            return new ProdutoEF();
         }
     }
 }

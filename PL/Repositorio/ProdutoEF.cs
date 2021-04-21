@@ -7,13 +7,18 @@ using System.Reflection.Metadata;
 using System.Text;
 
 
-namespace PL.Dao
+namespace PL.Repositorio
 {
-    public class ProdutoDaoImpl : IProdutoDao
+    public class ProdutoEF : IProdutoDao
     {
-        SecondHandContext _context = new SecondHandContext();
-        
-        public ICollection<Produto> FindAll(int Id) //itens a venda de uma determinada categoria
+        private readonly SecondHandContext _context;
+
+        public ProdutoEF()
+        {
+            _context = new SecondHandContext();
+        }
+
+        public List<Produto> FindAll(int Id) //itens a venda de uma determinada categoria
         {
 
             {
@@ -24,13 +29,7 @@ namespace PL.Dao
                              where p.CategoriaId == CategoriaId
                              select p);
 
-                ICollection<Produto> produtos = new List<Produto>();
-                foreach (var item in itens)
-                {
-                    produtos.Add(item);
-                }
-
-                return produtos;
+                return itens.ToList();
             }
         }
     }

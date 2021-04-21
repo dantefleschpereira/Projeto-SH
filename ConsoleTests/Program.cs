@@ -1,6 +1,6 @@
 ﻿using BLL;
 using Entities.Models;
-using PL.Dao;
+using PL.Repositorio;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace ConsoleTests
             //2) itens a venda de uma determinada categoria
             IProdutoDao produtoDao = DaoFactory.CreateProdutoDao(); //Injeção de dependência?
 
-            ICollection<Produto> lista = new List<Produto>();
+            ICollection<Produto> lista;
             lista = produtoDao.FindAll(1);
 
             foreach (var produto in lista)
