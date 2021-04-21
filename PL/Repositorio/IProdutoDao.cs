@@ -8,6 +8,6 @@ namespace PL.Repositorio
 {
     public interface IProdutoDao
     {
-        List<Produto> FindAll(int CategoriaId);  
+        List<Produto> FindCategoriaById(int CategoriaId);  
     }
 }
