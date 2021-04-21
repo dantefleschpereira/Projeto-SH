@@ -11,10 +11,11 @@ namespace PL.Dao
 {
     public class ProdutoDaoImpl : IProdutoDao
     {
-        //itens a venda de uma determinada categoria
-        public ICollection<Produto> FindAll(int Id)
+        SecondHandContext _context = new SecondHandContext();
+        
+        public ICollection<Produto> FindAll(int Id) //itens a venda de uma determinada categoria
         {
-            using (SecondHandContext _context = new SecondHandContext())
+
             {
                 var CategoriaId = Id;
 
