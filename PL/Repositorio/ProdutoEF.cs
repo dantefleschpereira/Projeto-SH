@@ -18,7 +18,7 @@ namespace PL.Repositorio
             _context = new SecondHandContext();
         }
 
-        public List<Produto> FindCategoriaById(int Id) //itens a venda de uma determinada categoria
+        public List<Produto> FindProdutoByCategoriaId(int Id) //itens a venda de uma determinada categoria
         {
 
             {
