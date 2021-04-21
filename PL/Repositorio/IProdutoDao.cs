@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace PL.Dao
+namespace PL.Repositorio
 {
     public interface IProdutoDao
     {
-        ICollection <Produto> FindAll(int CategoriaId);  
+        List<Produto> FindAll(int CategoriaId);  
     }
 }
