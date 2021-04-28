@@ -13,7 +13,7 @@ namespace BLL
       
         private readonly IProdutoDao _dao;
 
-        public UserFacade()
+        public UserFacade() //Injeção de dependência?
         {
             _dao = DaoFactory.CreateProdutoDao();
         }
