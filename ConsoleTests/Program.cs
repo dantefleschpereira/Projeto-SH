@@ -6,7 +6,6 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
-using Entities.Models.Dao;
 
 namespace ConsoleTests
 {
@@ -43,11 +42,30 @@ namespace ConsoleTests
 
             */
 
-            //2) itens a venda de uma determinada categoria
-            IProdutoDao produtoDao = DaoFactory.CreateProdutoDao(); //Injeção de dependência?
 
+            //1)Usuários do sistema devem poder anunciar itens para venda.
+            UserFacade _user = new UserFacade();
+
+            _user.InserirProduto(new Produto()
+            {
+                Nome = "Celular Samsung",
+                Descricao = "Celular Samsung S9+ na cor preta",
+                Preco = 1500,
+                StatusVenda = StatusVenda.NEGOCIACAO,
+                CategoriaId = 1,
+                CidadeId = 1,
+                VendedorId = 3,
+
+            });
+
+            
+
+            //2) itens a venda de uma determinada categoria
+           // IProdutoDao produtoDao = DaoFactory.CreateProdutoDao();
+            
             ICollection<Produto> lista;
-            lista = produtoDao.FindProdutoByCategoriaId(1);
+            lista = _user.EncontrarProdutoPorCategoriaId(1);
+                //produtoDao.FindProdutoByCategoriaId(1);
 
             foreach (var produto in lista)
             {

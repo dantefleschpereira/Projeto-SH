@@ -32,5 +32,11 @@ namespace PL.Repositorio
                 return itens.ToList();
             }
         }
+
+        public void InserirProduto(Produto produto)
+        {
+            _context.Add(produto);
+            _context.SaveChanges();
+        }
     }
 }
