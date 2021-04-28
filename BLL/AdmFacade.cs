@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using PL;
+using PL.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,27 @@ namespace BLL
 {
     public class AdmFacade
     {
+        
+        private readonly IProdutoDao _dao;
 
+        public AdmFacade(IProdutoDao dao)
+        {
+            _dao = dao;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
         // atencao...
         //      - apenas um exemplo
         //      - implementar DAO para acesso ao DB
@@ -30,6 +51,6 @@ namespace BLL
             var grupos = _context.Grupo.ToList();
            
             return grupos;
-        }
+        } */
     }
 }

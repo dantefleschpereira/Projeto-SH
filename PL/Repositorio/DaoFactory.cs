@@ -3,7 +3,7 @@ using System;
 using System.Text;
 
 
-namespace Entities.Models.Dao
+namespace PL.Repositorio
 {
     public class DaoFactory
     {
