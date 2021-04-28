@@ -81,7 +81,7 @@ namespace ConsoleTests
             //2)itens a venda dentro de uma faixa de valores
             //TODO
 
-                
+
             //3)itens anunciados por um determinado vendedor, agrupados pelo status da venda
             //TODO
 
