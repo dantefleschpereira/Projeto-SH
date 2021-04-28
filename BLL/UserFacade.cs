@@ -18,7 +18,7 @@ namespace BLL
             _dao = DaoFactory.CreateProdutoDao();
         }
 
-        public void InserirProduto(Produto produto)
+        public void AnunciarProduto(Produto produto)
         {
             _dao.InserirProduto(produto);
         }
