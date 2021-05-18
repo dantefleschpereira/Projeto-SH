@@ -20,11 +20,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBBA3812-5731-4D5F-9883-8A3566001388}"
 	ProjectSection(SolutionItems) = preProject
 		categorias.sql = categorias.sql
-		cidades.sql = cidades.sql
-		Enderecos.sql = Enderecos.sql
 		Produtos.sql = Produtos.sql
 		Usuarios.sql = Usuarios.sql
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondHandWeb", "SecondHandWeb\SecondHandWeb.csproj", "{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +48,10 @@ Global
 		{C9EC1C4A-810E-4105-B7A0-52EC4ACF9F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9EC1C4A-810E-4105-B7A0-52EC4ACF9F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9EC1C4A-810E-4105-B7A0-52EC4ACF9F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +61,7 @@ Global
 		{F7F8E750-6645-4FC8-A4EF-180BDEDE8894} = {9C9584EA-6A2E-489D-A0E4-C1A8C522EF44}
 		{870542B3-0D82-44A6-83C0-9AA9CACBDE1F} = {C334F47E-76ED-4F3B-8EDD-9D26F6AA8C1B}
 		{C9EC1C4A-810E-4105-B7A0-52EC4ACF9F75} = {9606258A-D90F-41DC-9448-DC0AD025CF38}
+		{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7} = {C334F47E-76ED-4F3B-8EDD-9D26F6AA8C1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CF7F153-67D8-4F83-81F5-7F1971D4395A}

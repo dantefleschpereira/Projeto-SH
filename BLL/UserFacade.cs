@@ -10,10 +10,10 @@ namespace BLL
 {
     public class UserFacade
     {
-      
+
         private readonly IProdutoDao _dao;
 
-        public UserFacade() //Injeção de dependência?
+        public UserFacade()
         {
             _dao = DaoFactory.CreateProdutoDao();
         }
@@ -22,10 +22,17 @@ namespace BLL
         {
             _dao.InserirProduto(produto);
         }
-
-        public List<Produto> EncontrarProdutoPorCategoriaId(int CategoriaId)
+        public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId)
         {
-            return _dao.FindProdutoByCategoriaId(CategoriaId);
+            return _dao.FindProdutoByCategoriaId(categoriaId);
+        }
+        public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId)
+        {
+            return _dao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);
+        }
+        public List<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
+        {
+            return _dao.FindProdutoByFaixa(valorInicial, valorFinal);
         }
 
     }

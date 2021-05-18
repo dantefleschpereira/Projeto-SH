@@ -10,7 +10,7 @@ namespace BLL
 {
     public class AdmFacade
     {
-        
+
         private readonly IProdutoDao _dao;
 
         public AdmFacade(IProdutoDao dao)
@@ -18,14 +18,15 @@ namespace BLL
             _dao = dao;
         }
 
+        public List<Produto> EncontrarProdutoPorVendedorPorStatusVenda(int usuarioId)
+        {
+            return _dao.FindProdutoVendedorPorStatus(usuarioId);
+        }
 
-
-
-
-
-
-
-
+        public void RelatorioVendasPeriodo(DateTime inicial, DateTime final)
+        {
+            _dao.RelatorioVendasPeriodo(inicial, final);
+        }
 
 
 

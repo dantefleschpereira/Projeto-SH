@@ -6,8 +6,8 @@ namespace Entities.Models
 {
     public enum StatusVenda
     {
-        NEGOCIACAO = 1,
-        CONFIRMADO = 2,
+        DISPONIVEL = 1,
+        VENDIDO = 2,
         CANCELADO = 3
     }
 }

@@ -34,53 +34,6 @@ namespace PL.Migrations
                     b.ToTable("Categorias");
                 });
 
-            modelBuilder.Entity("Entities.Models.Cidade", b =>
-                {
-                    b.Property<int>("CidadeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CidadeId");
-
-                    b.ToTable("Cidades");
-                });
-
-            modelBuilder.Entity("Entities.Models.Endereco", b =>
-                {
-                    b.Property<int>("EnderecoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Bairro")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cep")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CidadeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Complemento")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Número")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Rua")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EnderecoId");
-
-                    b.HasIndex("CidadeId");
-
-                    b.ToTable("Enderecos");
-                });
-
             modelBuilder.Entity("Entities.Models.Grupo", b =>
                 {
                     b.Property<int>("GrupoId")
@@ -118,11 +71,11 @@ namespace PL.Migrations
                     b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CidadeId")
-                        .HasColumnType("int");
+                    b.Property<string>("Cidade")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CompradorId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DataVenda")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
@@ -136,31 +89,16 @@ namespace PL.Migrations
                     b.Property<int>("StatusVenda")
                         .HasColumnType("int");
 
-                    b.Property<int>("VendedorId")
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("ProdutoId");
 
                     b.HasIndex("CategoriaId");
 
-                    b.HasIndex("CidadeId");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Produtos");
-                });
-
-            modelBuilder.Entity("Entities.Models.Questionamento", b =>
-                {
-                    b.Property<int>("QuestionamentoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Questao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("QuestionamentoID");
-
-                    b.ToTable("Questionamentos");
                 });
 
             modelBuilder.Entity("Entities.Models.Usuario", b =>
@@ -173,14 +111,8 @@ namespace PL.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EnderecoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProdutoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Senha")
                         .HasColumnType("nvarchar(max)");
@@ -190,22 +122,7 @@ namespace PL.Migrations
 
                     b.HasKey("UsuarioId");
 
-                    b.HasIndex("EnderecoId");
-
-                    b.HasIndex("ProdutoId");
-
                     b.ToTable("Usuarios");
-                });
-
-            modelBuilder.Entity("Entities.Models.Endereco", b =>
-                {
-                    b.HasOne("Entities.Models.Cidade", "Cidade")
-                        .WithMany()
-                        .HasForeignKey("CidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cidade");
                 });
 
             modelBuilder.Entity("Entities.Models.Produto", b =>
@@ -216,40 +133,20 @@ namespace PL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Cidade", "Cidade")
+                    b.HasOne("Entities.Models.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("CidadeId")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Categoria");
 
-                    b.Navigation("Cidade");
-                });
-
-            modelBuilder.Entity("Entities.Models.Usuario", b =>
-                {
-                    b.HasOne("Entities.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Models.Produto", null)
-                        .WithMany("Usuarios")
-                        .HasForeignKey("ProdutoId");
-
-                    b.Navigation("Endereco");
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
                 {
                     b.Navigation("Produtos");
-                });
-
-            modelBuilder.Entity("Entities.Models.Produto", b =>
-                {
-                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

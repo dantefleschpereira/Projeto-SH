@@ -1,2 +1,2 @@
-# Projeto-SH
- Repositório de desenvolvimento teste.
+# SecondHand2021
+ Repositório do projeto de PSA
