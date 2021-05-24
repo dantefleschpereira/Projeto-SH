@@ -8,10 +8,14 @@ namespace Entities.Models
     public class Grupo
     {
         public int GrupoId { get; set; }
+
+        [Display(Name = "Grupo")]
         [Required]
         public String Nome { get; set; }
+
         [Required]
         public String Integrantes { get; set; }
+
         [Required]
         [Url]
         public String GitHub { get; set; }

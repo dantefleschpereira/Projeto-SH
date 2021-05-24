@@ -22,8 +22,8 @@ namespace SecondHandWeb.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            var secondHandContext = _context.Produtos.Include(p => p.Categoria).Include(p => p.Usuario);
-            return View(await secondHandContext.ToListAsync());
+            //var secondHandContext = _context.Produtos.Include(p => p.Categoria).Include(p => p.Usuario);
+            return View(await _context.Produtos.ToListAsync());
         }
 
         // GET: Produtos/Details/5
