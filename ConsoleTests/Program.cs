@@ -47,6 +47,7 @@ namespace ConsoleTests
             AdmFacade _adm = new AdmFacade(new ProdutoEF());
             UserFacade _user = new UserFacade();
 
+            
 
             // 1)Usuários do sistema devem poder anunciar itens para venda.
             Console.WriteLine("---------------------------------------------------------------------------------------");
@@ -131,13 +132,19 @@ namespace ConsoleTests
             }
             Console.WriteLine("---------------------------------------------------------------------------------------");
 
-
-
+           
 
             // 3)Número total de itens vendidos num período e o valor total destas vendas.
             DateTime inicial = new DateTime(2021, 02, 01);
             DateTime final = new DateTime(2021, 02, 27);
-            _adm.RelatorioVendasPeriodo(inicial, final);
+            List<RelProdutosVendidos> relatorio = _adm.RelatorioVendasPeriodo(inicial, final);
+            Console.WriteLine("Período do Relatório de Vendas: {0} até {1}", inicial, final);
+            foreach (RelProdutosVendidos r in relatorio)
+            {
+                Console.WriteLine
+                   ("\nQuantidade de Produtos Vendidos: {0} \nValor Total: R${1}\n"
+                   , r.Quantidade, r.Valor);
+            }
 
         }
     }

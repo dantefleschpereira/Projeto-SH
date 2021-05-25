@@ -23,9 +23,9 @@ namespace BLL
             return _dao.FindProdutoVendedorPorStatus(usuarioId);
         }
 
-        public void RelatorioVendasPeriodo(DateTime inicial, DateTime final)
+        public List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final)
         {
-            _dao.RelatorioVendasPeriodo(inicial, final);
+           return _dao.RelatorioVendasPeriodo(inicial, final);
         }
 
 

@@ -16,7 +16,7 @@ INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status
 VALUES (4, N'Mesa', N'Mesa de madeira redonda para 6 pessoas', CAST(800.00 AS Decimal(18, 2)), 3, 3, N'Capão da Canoa', 6, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [StatusVenda], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 2, 3, N'Capão da Canoa', 6, CAST(N'2012-02-15 08:34:09.000' AS DateTime))
+VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 2, 3, N'Capão da Canoa', 6, CAST(N'2021-02-15 08:34:09.000' AS DateTime))
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [StatusVenda], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
 VALUES (6, N'Porta', N'Porta de madeira na cor branca', CAST(350.00 AS Decimal(18, 2)), 2, 3, N'Capão da Canoa', 6, CAST(N'2021-02-10 07:34:09.000' AS DateTime))

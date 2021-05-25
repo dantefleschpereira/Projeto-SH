@@ -13,6 +13,6 @@ namespace PL.Repositorio
         List<Produto> FindProductByKeywordAndCategoriaId(string palavra, int categoriaId);
         List<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal);
         List<Produto> FindProdutoVendedorPorStatus(int usuarioId);
-        void RelatorioVendasPeriodo(DateTime inicial, DateTime final);
+        List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final);
     }
 }

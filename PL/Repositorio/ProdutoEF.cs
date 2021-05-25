@@ -90,28 +90,20 @@ namespace PL.Repositorio
 
 
         // 3. Número total de itens vendidos num período e o valor total destas vendas.
-        public void RelatorioVendasPeriodo(DateTime inicial, DateTime final)
+        public List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final)
         {
 
-            var itens = (from p in _context.Produtos.Include(u => u.Usuario)
-                         where p.StatusVenda == StatusVenda.VENDIDO
-                         where p.DataVenda >= inicial && p.DataVenda <= final
-                         select p);
-
-            var qtTotal = itens.Count();
-            decimal valorTotal = 0;
-            Console.WriteLine("---------------------------------------------------------------------------------------");
-            Console.WriteLine("Período de análise de vendas {0} até {1}\n", inicial, final);
-            foreach (Produto p in itens)
-            {
-                Console.WriteLine("Produto: {0}\nDescrição: {1}\nPreço: R${2}\nVendedor: {3}\n", p.Nome, p.Descricao, p.Preco.ToString("N2"), p.Usuario.Nome);
-                valorTotal += p.Preco;
-            }
-            Console.WriteLine("\nQuantidade total de produtos vendidos: {0}\t Valor total arrecadado: R${1}"
-                , qtTotal, valorTotal.ToString("N2"));
-            Console.WriteLine();
-            Console.WriteLine("--------------------------------------------------------------------------------------");
-
+            var itens = from p in _context.Produtos.Include(u => u.Usuario)
+                        where p.StatusVenda == StatusVenda.VENDIDO
+                        where p.DataVenda >= inicial && p.DataVenda <= final
+                        group p by p.StatusVenda into grpPro
+                        select new RelProdutosVendidos
+                        {
+                            Quantidade = grpPro.Count(),
+                            Valor = grpPro.Sum(e => e.Preco)
+                            
+                        };
+            return itens.ToList();
         }
     }
 }
