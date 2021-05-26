@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using PL;
+using BLL;
 
 namespace SecondHandWeb.Controllers
 {
@@ -14,16 +15,19 @@ namespace SecondHandWeb.Controllers
     {
         private readonly SecondHandContext _context;
 
+        NegocioFacade _bll = new NegocioFacade();
+
         public ProdutosController(SecondHandContext context)
         {
             _context = context;
         }
 
         // GET: Produtos
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             //var secondHandContext = _context.Produtos.Include(p => p.Categoria).Include(p => p.Usuario);
-            return View(await _context.Produtos.ToListAsync());
+            List<Produto> produtos = _bll.ListaDeProduto();
+            return View(produtos);
         }
 
         // GET: Produtos/Details/5

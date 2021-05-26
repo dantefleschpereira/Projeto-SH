@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Categoria.Nome)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
@@ -25,9 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.StatusVenda)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
@@ -44,6 +45,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
@@ -56,13 +60,10 @@
                 @Html.DisplayFor(modelItem => item.StatusVenda)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categoria.CategoriaId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Cidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usuario.UsuarioId)
+                @Html.DisplayFor(modelItem => item.Usuario.Nome)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataVenda)

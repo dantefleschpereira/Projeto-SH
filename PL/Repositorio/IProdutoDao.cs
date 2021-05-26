@@ -14,5 +14,6 @@ namespace PL.Repositorio
         List<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal);
         List<Produto> FindProdutoVendedorPorStatus(int usuarioId);
         List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final);
+        List<Produto> ListaDeProdutos();
     }
 }

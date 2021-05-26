@@ -105,5 +105,15 @@ namespace PL.Repositorio
                         };
             return itens.ToList();
         }
+
+        public List<Produto> ListaDeProdutos()
+        {
+            var itens = (from p in _context.Produtos
+                         .Include(u => u.Usuario)
+                         .Include(c => c.Categoria)
+                         select p);
+
+            return itens.ToList();
+        }
     }
 }

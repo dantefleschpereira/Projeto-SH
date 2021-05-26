@@ -8,12 +8,12 @@ using System.Text;
 
 namespace BLL
 {
-    public class UserFacade
+    public class NegocioFacade
     {
 
         private readonly IProdutoDao _dao;
 
-        public UserFacade()
+        public NegocioFacade()
         {
             _dao = DaoFactory.CreateProdutoDao();
         }
@@ -30,6 +30,12 @@ namespace BLL
         {
             return _dao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);
         }
+
+        public List<Produto> ListaDeProduto()
+        {
+            return _dao.ListaDeProdutos();
+        }
+
         public List<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
         {
             return _dao.FindProdutoByFaixa(valorInicial, valorFinal);

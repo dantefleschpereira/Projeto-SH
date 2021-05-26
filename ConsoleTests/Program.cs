@@ -45,7 +45,7 @@ namespace ConsoleTests
             */
 
             AdmFacade _adm = new AdmFacade(new ProdutoEF());
-            UserFacade _user = new UserFacade();
+            NegocioFacade _user = new NegocioFacade();
 
             
 
