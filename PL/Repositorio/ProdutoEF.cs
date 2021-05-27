@@ -111,6 +111,7 @@ namespace PL.Repositorio
             var itens = (from p in _context.Produtos
                          .Include(u => u.Usuario)
                          .Include(c => c.Categoria)
+                         where p.StatusVenda == StatusVenda.DISPONIVEL 
                          select p);
 
             return itens.ToList();
