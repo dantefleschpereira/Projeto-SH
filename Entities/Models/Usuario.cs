@@ -20,8 +20,6 @@ namespace Entities.Models
         [Required]
         public String Senha { get; set; }
 
-        [Required]
-        public virtual TipoUsuario TipoUsuario { get; set; }
 
 
     }

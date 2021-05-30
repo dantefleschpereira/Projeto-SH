@@ -124,9 +124,6 @@ namespace PL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoUsuario")
-                        .HasColumnType("int");
-
                     b.HasKey("UsuarioId");
 
                     b.ToTable("Usuarios");
