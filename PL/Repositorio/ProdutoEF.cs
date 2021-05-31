@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using System.Text;
-
+using Entities.ViewModels;
 
 namespace PL.Repositorio
 {
@@ -90,7 +90,7 @@ namespace PL.Repositorio
 
 
         // 3. Número total de itens vendidos num período e o valor total destas vendas.
-        public List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final)
+        public List<Entities.ViewModels.RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final)
         {
 
             var itens = from p in _context.Produtos.Include(u => u.Usuario)

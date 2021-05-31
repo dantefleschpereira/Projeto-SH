@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Entities.Model
+namespace Entities.Models
 {
     // classe herda do IdentityFramework
     public class ApplicationUser : IdentityUser

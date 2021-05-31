@@ -9,8 +9,8 @@ using Entities.Models;
 using PL;
 using BLL;
 using Microsoft.AspNetCore.Authorization;
-using Entities.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SecondHandWeb.Controllers
 {
@@ -20,15 +20,16 @@ namespace SecondHandWeb.Controllers
         private readonly SecondHandContext _context;
         private readonly NegocioFacade _negocioFacade;
         public readonly UserManager<ApplicationUser> _userManager;
-       // private IWebHostEnviroment _enviroment;
+        private IWebHostEnvironment _environment;
 
 
         public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade, 
-                                    UserManager<ApplicationUser> userManager)
+                                    UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             _context = context;
             _negocioFacade = negocioFacade;
             _userManager = userManager;
+            _environment = environment;
         }
 
         // GET: Produtos

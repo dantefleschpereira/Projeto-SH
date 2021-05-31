@@ -1,5 +1,4 @@
-﻿using Entities.Model;
-using Entities.Models;
+﻿using Entities.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +10,10 @@ namespace PL
     public class SecondHandContext : IdentityDbContext<ApplicationUser>
     {
         public SecondHandContext() : base()
+        {
+        }
+
+        public SecondHandContext(DbContextOptions<SecondHandContext> options) : base(options)
         {
         }
 

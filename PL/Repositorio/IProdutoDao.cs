@@ -2,7 +2,7 @@
 using Entities.Models;
 using System.Collections.Generic;
 using System.Text;
-
+using Entities.ViewModels;
 
 namespace PL.Repositorio
 {
