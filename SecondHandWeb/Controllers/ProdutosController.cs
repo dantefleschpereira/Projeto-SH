@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using PL;
 using BLL;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SecondHandWeb.Controllers
 {
+    [Authorize]
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;
