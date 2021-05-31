@@ -13,9 +13,9 @@ namespace PL.Repositorio
     {
         private readonly SecondHandContext _context;
 
-        public ProdutoEF()
+        public ProdutoEF(SecondHandContext context)
         {
-            _context = new SecondHandContext();
+            _context = context;
         }
 
         // 1. Usuários do sistema devem poder anunciar itens para venda.

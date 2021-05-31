@@ -44,6 +44,8 @@ namespace ConsoleTests
 
             */
 
+            /*
+
             AdmFacade _adm = new AdmFacade(new ProdutoEF());
             NegocioFacade _user = new NegocioFacade();
 
@@ -145,7 +147,7 @@ namespace ConsoleTests
                    ("\nQuantidade de Produtos Vendidos: {0} \nValor Total: R${1}\n"
                    , r.Quantidade, r.Valor);
             }
-
+            */
         }
     }
 }

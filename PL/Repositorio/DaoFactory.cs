@@ -7,9 +7,11 @@ namespace PL.Repositorio
 {
     public class DaoFactory
     {
+        /*
         public static IProdutoDao CreateProdutoDao()
         {
             return new ProdutoEF();
         }
+        */
     }
 }

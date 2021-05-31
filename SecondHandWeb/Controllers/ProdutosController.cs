@@ -9,7 +9,8 @@ using Entities.Models;
 using PL;
 using BLL;
 using Microsoft.AspNetCore.Authorization;
-
+using Entities.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace SecondHandWeb.Controllers
 {
@@ -17,19 +18,24 @@ namespace SecondHandWeb.Controllers
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;
+        private readonly NegocioFacade _negocioFacade;
+        public readonly UserManager<ApplicationUser> _userManager;
+       // private IWebHostEnviroment _enviroment;
 
-        NegocioFacade _bll = new NegocioFacade();
 
-        public ProdutosController(SecondHandContext context)
+        public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade, 
+                                    UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _negocioFacade = negocioFacade;
+            _userManager = userManager;
         }
 
         // GET: Produtos
         public IActionResult Index()
         {
             //var secondHandContext = _context.Produtos.Include(p => p.Categoria).Include(p => p.Usuario);
-            List<Produto> produtos = _bll.ListaDeProduto();
+            List<Produto> produtos = _negocioFacade.ListaDeProduto();
             return View(produtos);
         }
 

@@ -13,9 +13,9 @@ namespace BLL
 
         private readonly IProdutoDao _dao;
 
-        public NegocioFacade()
+        public NegocioFacade(IProdutoDao dao)
         {
-            _dao = DaoFactory.CreateProdutoDao();
+            _dao = dao;
         }
 
         public void AnunciarProduto(Produto produto)
