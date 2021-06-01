@@ -23,7 +23,7 @@ namespace SecondHandWeb.Controllers
         private IWebHostEnvironment _environment;
 
 
-        public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade, 
+        public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade,
                                     UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             _context = context;
@@ -175,6 +175,16 @@ namespace SecondHandWeb.Controllers
         private bool ProdutoExists(int id)
         {
             return _context.Produtos.Any(e => e.ProdutoId == id);
+        }
+
+
+        public async Task<IActionResult> DadosUsuario()
+        {
+            var usuario = await _userManager.GetUserAsync(User);
+            ViewBag.Id = usuario.Id;
+            ViewBag.UserName = usuario.UserName;
+
+            return View();
         }
     }
 }
