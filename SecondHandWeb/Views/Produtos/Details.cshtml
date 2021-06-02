@@ -1,4 +1,6 @@
-﻿@model Entities.Models.Produto
+﻿@model Entities.Models.Produto 
+
+
 
 @{
     ViewData["Title"] = "Details";
@@ -10,52 +12,52 @@
     <h4>Produto</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Nome)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Descricao)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Descricao)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Preco)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Preco)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StatusVenda)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.StatusVenda)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Categoria)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Categoria.CategoriaId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cidade)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cidade)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Usuario)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Usuario.UsuarioId)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DataVenda)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataVenda)
         </dd>
     </dl>
@@ -64,3 +66,46 @@
     <a asp-action="Edit" asp-route-id="@Model.ProdutoId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+
+<div class="row">
+    <h3>Imagens</h3>
+    <div class="col-md-4">
+
+
+        @foreach (Entities.Models.Imagem im in Model.Imagens)
+        {
+
+            <div class="form-group">
+                <img width="300"
+                     src=@Url.Action("GetImage", "Produtos", new { id=im.ImagemId})
+                     alt=@im.ImageMimeType>
+            </div>}
+
+
+        @*</form>*@
+    </div>
+</div>
+
+@using (Html.BeginForm("LoadFiles", "Produtos",
+                       FormMethod.Post,
+                         new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" asp-for="ProdutoId" />
+    <dl>
+        <dt>
+            <label for="FileUpload_FormFile">Selecionar arquivos</label>
+        </dt>
+        <dd>
+            <input id="files" type="file"
+                   name="files" multiple />
+        </dd>
+    </dl>
+
+    <input type="submit" value="Enviar arquivos" class="btn btn-primary" />
+
+    <div style="margin-top:15px">
+        <output name="result"></output>
+    </div>}

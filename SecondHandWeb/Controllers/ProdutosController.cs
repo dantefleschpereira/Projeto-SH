@@ -35,7 +35,6 @@ namespace SecondHandWeb.Controllers
         // GET: Produtos
         public IActionResult Index()
         {
-            //var secondHandContext = _context.Produtos.Include(p => p.Categoria).Include(p => p.Usuario);
             List<Produto> produtos = _negocioFacade.ListaDeProduto();
             return View(produtos);
         }
@@ -48,7 +47,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await _context.Produtos
+            var produto = await _context.Produtos.Include("Imagens")
                 .Include(p => p.Categoria)
                 .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(m => m.ProdutoId == id);
@@ -61,10 +60,17 @@ namespace SecondHandWeb.Controllers
         }
 
         // GET: Produtos/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome");
+            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Email");
+
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
+
+            Produto novoProduto = new Produto();
+            {
+                //UsuarioId = usuario.Id;
+            }
             return View();
         }
 
@@ -186,5 +192,61 @@ namespace SecondHandWeb.Controllers
 
             return View();
         }
+
+        public IActionResult ListaDosMeusProdutos()
+        {
+            List<Produto> produtos = _negocioFacade.ListaDeProduto();
+            return View(produtos);
+        }
+
+
+        public ActionResult GetImage(int id)
+        {
+            Imagem im = _context.Imagem.Find(id);
+            if (im != null)
+            {
+                return File(im.ImageFile, im.ImageMimeType);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> LoadFiles(int ProdutoId,
+            List<Microsoft.AspNetCore.Http.IFormFile> files)
+        {
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    Imagem im = new Imagem();
+                    im.ProdutoId = ProdutoId;
+                    im.ImageMimeType = formFile.ContentType;
+                    im.ImageFile = new byte[formFile.Length];
+
+                    using (var stream = new System.IO.MemoryStream())
+                    {
+                        await formFile.CopyToAsync(stream);
+                        im.ImageFile = stream.ToArray();
+
+                    }
+                    _context.Imagem.Add(im);
+                }
+
+                _context.SaveChanges();
+
+            }
+
+            var produto = await _context.Produtos.Include("Imagens")
+                         .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
+
+            return View("Details", produto);
+        }
+
+
+
     }
 }

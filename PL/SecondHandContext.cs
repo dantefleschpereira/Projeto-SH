@@ -23,6 +23,9 @@ namespace PL
        // public DbSet<Questionamento> Questionamentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
+        public DbSet<Imagem> Imagem { get; set; }
+
+
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
 

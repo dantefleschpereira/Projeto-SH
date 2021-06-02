@@ -4,18 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Produtos</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Adicionar Produto</a>
+    <a asp-action="Create">Create New</a>
 </p>
-
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria.Nome)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
@@ -28,25 +24,24 @@
             <th>
                 @Html.DisplayNameFor(model => model.StatusVenda)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Usuario)
             </th>
-            @*<th>
+            <th>
                 @Html.DisplayNameFor(model => model.DataVenda)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Nome)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -60,10 +55,13 @@
                 @Html.DisplayFor(modelItem => item.StatusVenda)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Cidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Nome)
+                @Html.DisplayFor(modelItem => item.Usuario.Email)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataVenda)
