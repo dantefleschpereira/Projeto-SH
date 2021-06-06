@@ -252,6 +252,40 @@ namespace PL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Transacoes",
+                columns: table => new
+                {
+                    TransacaoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProdutoId = table.Column<int>(type: "int", nullable: false),
+                    CompradorId = table.Column<int>(type: "int", nullable: false),
+                    VendedorId = table.Column<int>(type: "int", nullable: false),
+                    Data = table.Column<DateTimeOffset>(type: "DateTimeOffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transacao", x => x.TransacaoId);
+                    table.ForeignKey(
+                        name: "FK_Transacoes_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
+                        principalColumn: "ProdutoId"
+                        );
+                    table.ForeignKey(
+                        name: "FK_Transacoes_VendedorId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
+                        principalColumn: "UsuarioID"
+                         );
+                    table.ForeignKey(
+                        name: "FK_Transacoes_Comprador_ID",
+                        column: x => x.CompradorId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId"
+                        );
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

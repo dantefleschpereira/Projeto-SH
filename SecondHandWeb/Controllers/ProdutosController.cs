@@ -183,6 +183,30 @@ namespace SecondHandWeb.Controllers
             return _context.Produtos.Any(e => e.ProdutoId == id);
         }
 
+        // GET: Produtos/Buy/3
+        public async Task<IActionResult> Buy(int? id_user, int?id_produto)
+        {
+            if (id_user == null)
+            {
+                return NotFound();
+            }
+
+            if (id_produto == null)
+            {
+                return NotFound();
+            }
+
+            var produto = await _context.Produtos
+                .Include(p => p.Categoria)
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
 
         public async Task<IActionResult> DadosUsuario()
         {

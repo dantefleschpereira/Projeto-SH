@@ -41,5 +41,10 @@ namespace BLL
             return _dao.FindProdutoByFaixa(valorInicial, valorFinal);
         }
 
+        public void RegistrarCompra(int id_usuario, int id_produto)
+        { 
+            return _dao
+        }
+
     }
 }
