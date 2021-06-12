@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Entities.ViewModels;
 
-namespace PL.Repositorio
+namespace Entities.Interfaces
 {
     public interface IProdutoDao
     {
@@ -15,5 +15,7 @@ namespace PL.Repositorio
         List<Produto> FindProdutoVendedorPorStatus(int usuarioId);
         List<RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final);
         List<Produto> ListaDeProdutos();
+        public IEnumerable<Produto> Produtos();
+        Produto GetProdutoById(int produtoId);
     }
 }

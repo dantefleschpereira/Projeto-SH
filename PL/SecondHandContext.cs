@@ -20,13 +20,13 @@ namespace PL
         public DbSet<Grupo> Grupo { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
-       // public DbSet<Questionamento> Questionamentos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
+        // public DbSet<Questionamento> Questionamentos { get; set; }
+
         public DbSet<Imagem> Imagem { get; set; }
-
-
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

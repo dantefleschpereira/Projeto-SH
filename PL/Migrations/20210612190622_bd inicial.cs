@@ -208,7 +208,7 @@ namespace PL.Migrations
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    StatusVenda = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
@@ -229,6 +229,27 @@ namespace PL.Migrations
                         principalTable: "Usuarios",
                         principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CarrinhoCompraItens",
+                columns: table => new
+                {
+                    CarrinhoCompraItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProdutoId = table.Column<int>(type: "int", nullable: true),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    CarrinhoCompraId = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarrinhoCompraItens", x => x.CarrinhoCompraItemId);
+                    table.ForeignKey(
+                        name: "FK_CarrinhoCompraItens_Produtos_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
+                        principalColumn: "ProdutoId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,6 +313,11 @@ namespace PL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CarrinhoCompraItens_ProdutoId",
+                table: "CarrinhoCompraItens",
+                column: "ProdutoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Imagem_ProdutoId",
                 table: "Imagem",
                 column: "ProdutoId");
@@ -323,6 +349,9 @@ namespace PL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "CarrinhoCompraItens");
 
             migrationBuilder.DropTable(
                 name: "Grupo");

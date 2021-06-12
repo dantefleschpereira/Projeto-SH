@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210602204048_bd inicial")]
+    [Migration("20210612190622_bd inicial")]
     partial class bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,6 +96,30 @@ namespace PL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
+                {
+                    b.Property<int>("CarrinhoCompraItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CarrinhoCompraId")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("int");
+
+                    b.HasKey("CarrinhoCompraItemId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("CarrinhoCompraItens");
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
@@ -189,7 +213,7 @@ namespace PL.Migrations
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("StatusVenda")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<int>("UsuarioId")
@@ -357,6 +381,15 @@ namespace PL.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
+                {
+                    b.HasOne("Entities.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId");
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("Entities.Models.Imagem", b =>

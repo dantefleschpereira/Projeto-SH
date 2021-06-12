@@ -1,10 +1,6 @@
-﻿using Entities.Models;
-using PL;
-using PL.Repositorio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Entities.Interfaces;
+using Entities.Models;
 
 namespace BLL
 {
@@ -39,6 +35,16 @@ namespace BLL
         public List<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
         {
             return _dao.FindProdutoByFaixa(valorInicial, valorFinal);
+        }
+
+        public IEnumerable<Produto> Produtos()
+        {
+            return _dao.Produtos();
+        }
+
+        public Produto ProdutoById(int produtoId)
+        {
+            return _dao.GetProdutoById(produtoId);
         }
 
     }

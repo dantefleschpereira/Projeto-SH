@@ -22,7 +22,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="">Meus Produtos</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="Index">Meus Produtos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Adm" asp-action="Index">Administrador</a>
@@ -30,6 +30,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="CarrinhoCompra" asp-action="Index">Carrinho</a>
+                        </li>
+                        @await Component.InvokeAsync("CarrinhoCompraResumo")
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

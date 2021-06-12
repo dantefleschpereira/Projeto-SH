@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Entities.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using PL.Repositorio;
 using System;

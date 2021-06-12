@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Preco)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StatusVenda)
+                @Html.DisplayNameFor(model => model.Status)
             </th>
 
             <th>
@@ -57,7 +57,7 @@
                 @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StatusVenda)
+                @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cidade)
@@ -65,13 +65,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Usuario.Nome)
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.DataVenda)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
+                @*<a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a>*@ |
+                <a asp-action="Details" asp-route-id="@item.ProdutoId">Comprar</a> |
+                @*<a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>*@
             </td>
         </tr>
 }

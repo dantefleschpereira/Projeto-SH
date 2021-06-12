@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using System.Text;
 using Entities.ViewModels;
+using Entities.Interfaces;
 
 namespace PL.Repositorio
 {
@@ -38,9 +39,9 @@ namespace PL.Repositorio
                 var categoriaId = Id;
 
                 var itens = (from p in _context.Produtos
-                                    .Include(c => c.Categoria).Include(u => u.Usuario)
+                                    .Include(c => c.Categoria)
                              where p.CategoriaId == categoriaId
-                             && p.StatusVenda == StatusVenda.DISPONIVEL
+                             && p.Status == Status.DISPONIVEL
                              select p);
 
                 return itens.ToList();
@@ -50,10 +51,10 @@ namespace PL.Repositorio
         // 2. Itens a venda dada uma palavra chave e uma categoria.
         public List<Produto> FindProductByKeywordAndCategoriaId(string palavra, int categoriaId)
         {
-            var itens = (from p in _context.Produtos.Include(c => c.Categoria).Include(u => u.Usuario)
+            var itens = (from p in _context.Produtos.Include(c => c.Categoria)
                          where p.Descricao.Contains(palavra) || p.Nome.Contains(palavra)
                          where p.CategoriaId == categoriaId
-                         && p.StatusVenda == StatusVenda.DISPONIVEL
+                         && p.Status == Status.DISPONIVEL
                          select p);
 
             return itens.ToList();
@@ -65,8 +66,8 @@ namespace PL.Repositorio
         // 2. Itens a venda dentro de uma faixa de valores.
         public List<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal)
         {
-            var itens = (from p in _context.Produtos.Include(u => u.Usuario)
-                         where p.StatusVenda == StatusVenda.DISPONIVEL
+            var itens = (from p in _context.Produtos
+                         where p.Status == Status.DISPONIVEL
                          where p.Preco >= valorInicial && p.Preco <= valorFinal
                          select p);
 
@@ -82,7 +83,7 @@ namespace PL.Repositorio
 
             var itens = (from p in _context.Produtos.Include(u => u.Usuario)
                          where p.UsuarioId == id
-                         select p).OrderByDescending(s => s.StatusVenda);
+                         select p).OrderByDescending(s => s.Status);
 
             return itens.ToList();
 
@@ -94,14 +95,14 @@ namespace PL.Repositorio
         {
 
             var itens = from p in _context.Produtos.Include(u => u.Usuario)
-                        where p.StatusVenda == StatusVenda.VENDIDO
+                        where p.Status == Status.VENDIDO
                         where p.DataVenda >= inicial && p.DataVenda <= final
-                        group p by p.StatusVenda into grpPro
+                        group p by p.Status into grpPro
                         select new RelProdutosVendidos
                         {
                             Quantidade = grpPro.Count(),
                             Valor = grpPro.Sum(e => e.Preco)
-                            
+
                         };
             return itens.ToList();
         }
@@ -111,10 +112,23 @@ namespace PL.Repositorio
             var itens = (from p in _context.Produtos
                          .Include(u => u.Usuario)
                          .Include(c => c.Categoria)
-                         where p.StatusVenda == StatusVenda.DISPONIVEL 
+                         .Include(i => i.Imagens)
+                         where p.Status == Status.DISPONIVEL
                          select p);
 
             return itens.ToList();
         }
+
+        public IEnumerable<Produto> Produtos()
+        {
+            return _context.Produtos.Include(c => c.Categoria);
+        }
+
+        public Produto GetProdutoById(int produtoId)
+        {
+            return _context.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
+        }
+
+
     }
 }

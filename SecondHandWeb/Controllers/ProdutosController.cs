@@ -11,6 +11,7 @@ using BLL;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
+using Entities.ViewModels;
 
 namespace SecondHandWeb.Controllers
 {
@@ -38,6 +39,50 @@ namespace SecondHandWeb.Controllers
             List<Produto> produtos = _negocioFacade.ListaDeProduto();
             return View(produtos);
         }
+
+        
+        public IActionResult List()
+        {
+            ViewBag.Produto = "Produtos";
+            ViewData["Categoria"] = "Categoria";
+
+            var produtoListViewModel = new ProdutoListViewModel();
+            produtoListViewModel.Produtos = _negocioFacade.ListaDeProduto();
+            produtoListViewModel.CategoriaAtual = "Categoria Atual";
+            return View(produtoListViewModel);
+        }
+        
+        /*
+        public IActionResult List(string categoria)
+        {
+            string _categoria = categoria;
+            IEnumerable<Produto> produtos;
+            string categoriaAtual = string.Empty;
+
+            if (string.IsNullOrEmpty(categoria))
+            {
+                produtos = _negocioFacade.ListaDeProduto().OrderBy(p => p.ProdutoId);
+                categoriaAtual = "Todos os produtos";
+            }
+            else
+            {
+
+                produtos = _negocioFacade.ListaDeProduto()
+                           .Where(p => p.Categoria.Nome.Equals(categoria))
+                           .OrderBy(p => p.Nome);
+
+                categoriaAtual = categoria;
+            }
+
+            var produtoListViewModel = new ProdutoListViewModel
+            {
+                Produtos = produtos,
+                CategoriaAtual = categoriaAtual
+            };
+
+            return View(produtoListViewModel);
+        }
+        */
 
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(int? id)

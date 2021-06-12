@@ -20,7 +20,7 @@ namespace Entities.Models
         public decimal Preco { get; set; }
 
         [Display(Name = "Status da Venda")]
-        public StatusVenda StatusVenda { get; set; }
+        public Status Status { get; set; }
 
         public int CategoriaId { get; set; }
         public virtual Categoria Categoria { get; set; }

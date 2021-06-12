@@ -1,0 +1,55 @@
+﻿@model PL.Componentes.CarrinhoCompraViewModel
+
+<div class="row checkoutForm">
+    <h2>Detalhes de sua compra:</h2>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Quantidade</th>
+                <th>Produto</th>
+                <th class="text-right">Preço</th>
+                <th class="text-right">Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItens)
+            {
+                <tr>
+                    <td class="text-center">@item.Quantidade</td>
+                    <td class="text-left">@item.Produto.Nome</td>
+                    <td class="text-right">@item.Produto.Preco.ToString("c")</td>
+                    <td class="text-right">
+                        @((item.Quantidade * item.Produto.Preco).ToString("c"))
+                    </td>
+                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra" asp-route-lancheId="@item.Produto.ProdutoId"></a></td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total:</td>
+                <td class="text-right">
+                    @Model.CarrinhoCompraTotal.ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Compra</a>
+           @* <a class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Adicionar mais produtos<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a asp-controller="Produto" asp-action="List" asp-route-categoria="Normal">Normal</a></li>
+                    <li><a asp-controller="Produto" asp-action="List" asp-route-categoria="Natural">Natural</a></li>
+                </ul>
+            </a>
+               *@
+        </div>
+    </div>
+</div>

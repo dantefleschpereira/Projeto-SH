@@ -1,0 +1,19 @@
+﻿@using SecondHandWeb.Models
+@model Entities.ViewModels.ProdutoListViewModel
+
+<div><h2>@Model.CategoriaAtual</h2></div>
+
+@foreach (var produto in Model.Produtos)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@produto.Imagens" class="img-rounded" alt=""/>
+        </div>
+        <div class="caption">
+            <h3 class="pull-right">@produto.Preco.ToString("c")</h3>
+            <h3>@produto.Nome</h3>
+            <p>@produto.Descricao</p>
+        </div>
+    </div>        
+}
+
