@@ -29,6 +29,8 @@ namespace Entities.Models
 
         [Required]
         public int UsuarioId { get; set; }
+
+        [Display(Name = "Vendedor")]
         public virtual Usuario Usuario { get; set; }
 
         [Display(Name = "Data da Venda")]

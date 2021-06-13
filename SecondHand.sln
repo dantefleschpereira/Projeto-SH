@@ -19,10 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{C9EC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBBA3812-5731-4D5F-9883-8A3566001388}"
 	ProjectSection(SolutionItems) = preProject
-		categorias.sql = categorias.sql
-		Produtos.sql = Produtos.sql
 		Seed.sql = Seed.sql
-		Usuarios.sql = Usuarios.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondHandWeb", "SecondHandWeb\SecondHandWeb.csproj", "{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}"

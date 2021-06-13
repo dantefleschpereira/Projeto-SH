@@ -16,7 +16,7 @@ using Entities.ViewModels;
 namespace SecondHandWeb.Controllers
 {
     [Authorize]
-    public class ProdutosController : Controller
+    public class MeusProdutosController : Controller
     {
         private readonly SecondHandContext _context;
         private readonly NegocioFacade _negocioFacade;
@@ -24,7 +24,7 @@ namespace SecondHandWeb.Controllers
         private IWebHostEnvironment _environment;
 
 
-        public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade,
+        public MeusProdutosController(SecondHandContext context, NegocioFacade negocioFacade,
                                     UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             _context = context;
@@ -40,7 +40,7 @@ namespace SecondHandWeb.Controllers
             return View(produtos);
         }
 
-        
+
         public IActionResult List()
         {
             ViewBag.Produto = "Produtos";
@@ -51,7 +51,7 @@ namespace SecondHandWeb.Controllers
             produtoListViewModel.CategoriaAtual = "Categoria Atual";
             return View(produtoListViewModel);
         }
-        
+
         /*
         public IActionResult List(string categoria)
         {
@@ -244,7 +244,7 @@ namespace SecondHandWeb.Controllers
             return View(produtos);
         }
 
-        
+
         public ActionResult GetImage(int id)
         {
             Imagem im = _context.Imagem.Find(id);
@@ -258,7 +258,7 @@ namespace SecondHandWeb.Controllers
             }
         }
 
-        /*
+
         [HttpPost]
         public async Task<IActionResult> LoadFiles(int ProdutoId,
             List<Microsoft.AspNetCore.Http.IFormFile> files)
@@ -290,27 +290,6 @@ namespace SecondHandWeb.Controllers
 
             return View("Details", produto);
         }
-        */
-
-        public async Task<IActionResult> Comprar(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await _context.Produtos.Include("Imagens")
-                .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
-                .FirstOrDefaultAsync(m => m.ProdutoId == id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-
-            return View(produto);
-        }
-
 
     }
 }

@@ -2,12 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PL.Componentes;
-using PL.Repositorio;
-using PL.Componentes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
