@@ -47,7 +47,12 @@ namespace SecondHandWeb
             services.AddSession();
 
             services.AddTransient<NegocioFacade, NegocioFacade>();
+            services.AddTransient<AdmFacade, AdmFacade>();
+
             services.AddTransient<IProdutoDao, ProdutoEF>();
+            services.AddTransient<IPedidoDao, PedidoEF>();
+
+
 
             services.AddControllersWithViews();
             services.AddRazorPages();
