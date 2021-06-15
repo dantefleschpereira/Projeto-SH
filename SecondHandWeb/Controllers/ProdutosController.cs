@@ -15,7 +15,7 @@ using Entities.ViewModels;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Comprador")]
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;

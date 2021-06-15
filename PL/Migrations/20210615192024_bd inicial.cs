@@ -28,7 +28,6 @@ namespace PL.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Nome = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Endereco = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -100,6 +99,19 @@ namespace PL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pedidos", x => x.PedidoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -423,6 +435,9 @@ namespace PL.Migrations
 
             migrationBuilder.DropTable(
                 name: "PedidoDetalhes");
+
+            migrationBuilder.DropTable(
+                name: "ProjectRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -42,10 +42,6 @@ namespace PL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Endereco")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -315,6 +311,21 @@ namespace PL.Migrations
                     b.HasIndex("UsuarioId");
 
                     b.ToTable("Produtos");
+                });
+
+            modelBuilder.Entity("Entities.Models.ProjectRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectRoles");
                 });
 
             modelBuilder.Entity("Entities.Models.Usuario", b =>

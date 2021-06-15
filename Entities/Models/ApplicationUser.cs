@@ -15,8 +15,5 @@ namespace Entities.Models
         public string Nome { get; set; }
 
 
-        [MaxLength(255)]
-        [Display(Name = "Endereço")]
-        public string Endereco { get; set; }
     }
 }

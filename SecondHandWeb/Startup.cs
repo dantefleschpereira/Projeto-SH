@@ -40,6 +40,7 @@ namespace SecondHandWeb
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SecondHandContext>();
             services.AddControllersWithViews();
 
