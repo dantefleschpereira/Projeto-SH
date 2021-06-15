@@ -22,5 +22,7 @@ namespace SecondHandWeb
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+       
     }
 }

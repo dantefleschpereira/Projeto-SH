@@ -45,7 +45,7 @@ namespace SecondHandWeb.Controllers
                 _carrinhoCompra.LimparCarrinho();
                 return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
             }
-
+            // _context.Produtos.Remove(produto); remover o produto vendido do banco de dados
             return View(pedido);
         }
 

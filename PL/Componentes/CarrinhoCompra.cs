@@ -68,6 +68,7 @@ namespace PL.Componentes
             {
                 carrinhoCompraItem.Quantidade++;
             }
+           
             _context.SaveChanges();
         }
 
