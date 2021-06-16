@@ -9,7 +9,7 @@
 <h3>Detalhes do Produto</h3>
 
 <div>
-   
+
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -36,24 +36,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Status)
         </dd>
-       @* <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Categoria.Nome)
-        </dd>
-       <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cidade)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cidade)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Usuario.Nome)
-        </dd>*@
+        @* <dt class="col-sm-2">
+                 @Html.DisplayNameFor(model => model.Categoria)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Categoria.Nome)
+             </dd>
+            <dt class="col-sm-2">
+                 @Html.DisplayNameFor(model => model.Cidade)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Cidade)
+             </dd>
+             <dt class="col-sm-2">
+                 @Html.DisplayNameFor(model => model.Usuario)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Usuario.Nome)
+             </dd>*@
 
     </dl>
 </div>
@@ -80,8 +80,8 @@
 </div>
 
 @using (Html.BeginForm("LoadFiles", "MeusProdutos",
-                            FormMethod.Post,
-                              new { enctype = "multipart/form-data" }))
+                           FormMethod.Post,
+                             new { enctype = "multipart/form-data" }))
 {
     <input type="hidden" asp-for="ProdutoId" />
     <dl>

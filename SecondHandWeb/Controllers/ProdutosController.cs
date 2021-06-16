@@ -39,50 +39,8 @@ namespace SecondHandWeb.Controllers
             List<Produto> produtos = _negocioFacade.ListaDeProduto();
             return View(produtos);
         }
-
-        
-        public IActionResult List()
-        {
-            ViewBag.Produto = "Produtos";
-            ViewData["Categoria"] = "Categoria";
-
-            var produtoListViewModel = new ProdutoListViewModel();
-            produtoListViewModel.Produtos = _negocioFacade.ListaDeProduto();
-            produtoListViewModel.CategoriaAtual = "Categoria Atual";
-            return View(produtoListViewModel);
-        }
-        
-        /*
-        public IActionResult List(string categoria)
-        {
-            string _categoria = categoria;
-            IEnumerable<Produto> produtos;
-            string categoriaAtual = string.Empty;
-
-            if (string.IsNullOrEmpty(categoria))
-            {
-                produtos = _negocioFacade.ListaDeProduto().OrderBy(p => p.ProdutoId);
-                categoriaAtual = "Todos os produtos";
-            }
-            else
-            {
-
-                produtos = _negocioFacade.ListaDeProduto()
-                           .Where(p => p.Categoria.Nome.Equals(categoria))
-                           .OrderBy(p => p.Nome);
-
-                categoriaAtual = categoria;
-            }
-
-            var produtoListViewModel = new ProdutoListViewModel
-            {
-                Produtos = produtos,
-                CategoriaAtual = categoriaAtual
-            };
-
-            return View(produtoListViewModel);
-        }
-        */
+               
+       
 
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -258,39 +216,7 @@ namespace SecondHandWeb.Controllers
             }
         }
 
-        /*
-        [HttpPost]
-        public async Task<IActionResult> LoadFiles(int ProdutoId,
-            List<Microsoft.AspNetCore.Http.IFormFile> files)
-        {
-            foreach (var formFile in files)
-            {
-                if (formFile.Length > 0)
-                {
-                    Imagem im = new Imagem();
-                    im.ProdutoId = ProdutoId;
-                    im.ImageMimeType = formFile.ContentType;
-                    im.ImageFile = new byte[formFile.Length];
-
-                    using (var stream = new System.IO.MemoryStream())
-                    {
-                        await formFile.CopyToAsync(stream);
-                        im.ImageFile = stream.ToArray();
-
-                    }
-                    _context.Imagem.Add(im);
-                }
-
-                _context.SaveChanges();
-
-            }
-
-            var produto = await _context.Produtos.Include("Imagens")
-                         .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
-
-            return View("Details", produto);
-        }
-        */
+       
 
         public async Task<IActionResult> Comprar(int? id)
         {

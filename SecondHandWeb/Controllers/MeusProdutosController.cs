@@ -40,19 +40,7 @@ namespace SecondHandWeb.Controllers
             return View(produtos);
         }
 
-
-        public IActionResult List()
-        {
-            ViewBag.Produto = "Produtos";
-            ViewData["Categoria"] = "Categoria";
-
-            var produtoListViewModel = new ProdutoListViewModel();
-            produtoListViewModel.Produtos = _negocioFacade.ListaDeProduto();
-            produtoListViewModel.CategoriaAtual = "Categoria Atual";
-            return View(produtoListViewModel);
-        }
-
-       
+               
 
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -83,12 +71,12 @@ namespace SecondHandWeb.Controllers
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Email");
             ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status");
 
-            
-            
+
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
 
             Produto novoProduto = new Produto();
             {
-                //UsuarioId = usuario.Id;
+               
             }
             return View();
         }
