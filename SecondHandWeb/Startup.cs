@@ -127,9 +127,10 @@ namespace SecondHandWeb
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            CreateRoles(serviceProvider).Wait();
+            //CreateRoles(serviceProvider).Wait();
         }
 
+        /*
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -145,6 +146,7 @@ namespace SecondHandWeb
                 }
             }
         }
+        */
 
     }
 }

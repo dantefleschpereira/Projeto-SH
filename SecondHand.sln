@@ -20,6 +20,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EBBA3812-5731-4D5F-9883-8A3566001388}"
 	ProjectSection(SolutionItems) = preProject
 		Seed.sql = Seed.sql
+		Seed1.sql = Seed1.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecondHandWeb", "SecondHandWeb\SecondHandWeb.csproj", "{CB05AC6B-9D3C-49BC-8445-906FE57EA4B7}"
