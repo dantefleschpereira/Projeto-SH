@@ -52,37 +52,7 @@ namespace SecondHandWeb.Controllers
             return View(produtoListViewModel);
         }
 
-        /*
-        public IActionResult List(string categoria)
-        {
-            string _categoria = categoria;
-            IEnumerable<Produto> produtos;
-            string categoriaAtual = string.Empty;
-
-            if (string.IsNullOrEmpty(categoria))
-            {
-                produtos = _negocioFacade.ListaDeProduto().OrderBy(p => p.ProdutoId);
-                categoriaAtual = "Todos os produtos";
-            }
-            else
-            {
-
-                produtos = _negocioFacade.ListaDeProduto()
-                           .Where(p => p.Categoria.Nome.Equals(categoria))
-                           .OrderBy(p => p.Nome);
-
-                categoriaAtual = categoria;
-            }
-
-            var produtoListViewModel = new ProdutoListViewModel
-            {
-                Produtos = produtos,
-                CategoriaAtual = categoriaAtual
-            };
-
-            return View(produtoListViewModel);
-        }
-        */
+       
 
         // GET: Produtos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -107,10 +77,14 @@ namespace SecondHandWeb.Controllers
         // GET: Produtos/Create
         public async Task<IActionResult> Create()
         {
+            
+
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome");
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Email");
+            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status");
 
-            var usuario = await _userManager.GetUserAsync(HttpContext.User);
+            
+            
 
             Produto novoProduto = new Produto();
             {
@@ -134,6 +108,7 @@ namespace SecondHandWeb.Controllers
             }
             ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produto.CategoriaId);
             ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", produto.UsuarioId);
+            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status", produto.Status);
             return View(produto);
         }
 
