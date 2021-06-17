@@ -19,30 +19,29 @@ namespace SecondHandWeb.Controllers
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;
-        private readonly NegocioFacade _negocioFacade;
+        private readonly ProdutoFacade produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
         private IWebHostEnvironment _environment;
 
 
-        public ProdutosController(SecondHandContext context, NegocioFacade negocioFacade,
+        public ProdutosController(SecondHandContext context,
                                     UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
         {
             _context = context;
-            _negocioFacade = negocioFacade;
+            produtoFacade = new ProdutoFacade();
             _userManager = userManager;
             _environment = environment;
         }
 
-        // GET: Produtos
-        public IActionResult Index()
+        // GET: Items
+        public async Task<IActionResult> Index()
         {
-            List<Produto> produtos = _negocioFacade.ListaDeProduto();
-            return View(produtos);
+            return View(await produtoFacade.ListAll());
         }
-               
-       
 
-        // GET: Produtos/Details/5
+
+
+        // GET: Items/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,15 +49,12 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await _context.Produtos.Include("Imagens")
-                .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
-                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+            var produto = await produtoFacade.DetailsById(id);
+
             if (produto == null)
             {
                 return NotFound();
             }
-
             return View(produto);
         }
 
@@ -77,110 +73,7 @@ namespace SecondHandWeb.Controllers
             return View();
         }
 
-        // POST: Produtos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(produto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produto.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", produto.UsuarioId);
-            return View(produto);
-        }
-
-        // GET: Produtos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await _context.Produtos.FindAsync(id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produto.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", produto.UsuarioId);
-            return View(produto);
-        }
-
-        // POST: Produtos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
-        {
-            if (id != produto.ProdutoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produto.ProdutoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produto.CategoriaId);
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "UsuarioId", produto.UsuarioId);
-            return View(produto);
-        }
-
-        // GET: Produtos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await _context.Produtos
-                .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
-                .FirstOrDefaultAsync(m => m.ProdutoId == id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-
-            return View(produto);
-        }
-
-        // POST: Produtos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var produto = await _context.Produtos.FindAsync(id);
-            _context.Produtos.Remove(produto);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
+        
         private bool ProdutoExists(int id)
         {
             return _context.Produtos.Any(e => e.ProdutoId == id);
@@ -196,12 +89,6 @@ namespace SecondHandWeb.Controllers
             return View();
         }
 
-        public IActionResult ListaDosMeusProdutos()
-        {
-            List<Produto> produtos = _negocioFacade.ListaDeProduto();
-            return View(produtos);
-        }
-
         
         public ActionResult GetImage(int id)
         {
@@ -215,8 +102,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
         }
-
-       
+              
 
         public async Task<IActionResult> Comprar(int? id)
         {
