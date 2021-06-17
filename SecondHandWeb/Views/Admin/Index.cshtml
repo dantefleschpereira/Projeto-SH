@@ -4,6 +4,13 @@
         <p>
             <h2>Esta é a área do Administrador</h2>
         </p>
+
+        <div class="navbar-collapse collapse d-sm-inline-flex">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AdminProdutos" asp-action="Index">Produtos</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="AdminCategorias" asp-action="Index">Categorias</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="AdminPedidos" asp-action="Index">Compras</a>
+        </div>
+
     </div>
     <a asp-area="" asp-controller="Home" asp-action="Index">Volta a Home Page</a>
 </div>

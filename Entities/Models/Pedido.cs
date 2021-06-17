@@ -12,7 +12,6 @@ namespace Entities.Models
     [Table("Pedidos")]
     public class Pedido
     {
-        //[BindNever]
         public int PedidoId { get; set; }
 
         public virtual List<PedidoDetalhe> PedidoItens { get; set; }
@@ -62,14 +61,13 @@ namespace Entities.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal PedidoTotal { get; set; }
 
-        //[BindNever]
-        //[ScaffoldColumn(false)]
-        [Display(Name = "Data/Hora de Recebimento do Pedido")]
+        
+        [Display(Name = "Data/Hora de Recebimento do produto")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime PedidoEnviado { get; set; }
 
-        [Display(Name = "Data/Hora da Entrega do Pedido")]
+        [Display(Name = "Data/Hora da Entrega do produto")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTime? PedidoEntregueEm { get; set; }
