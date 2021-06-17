@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using PL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SecondHandWeb.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class AdminPedidosController : Controller
     {
         private readonly SecondHandContext _context;
