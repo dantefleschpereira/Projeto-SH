@@ -36,13 +36,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
                         </li>
-                        @if (User.IsInRole("Comprador"))
-                        {
+                        
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="CarrinhoCompra" asp-action="Index">Compras</a>
                     </li>
-                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         @await Component.InvokeAsync("CarrinhoCompraResumo")
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -5,6 +5,7 @@ using PL.Componentes;
 
 namespace SecondHandWeb.Controllers
 {
+    [Authorize(Roles = "Comprador")]
     public class CarrinhoCompraController : Controller
     {
         private readonly IProdutoDao _produtoDao;
