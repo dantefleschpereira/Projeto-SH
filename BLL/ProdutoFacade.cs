@@ -25,10 +25,42 @@ namespace BLL
         public async Task<Produto> GetToDeleteById(int? id) => await ProdutoDao.GetToDeleteById(id);
         public async Task DeleteById(int? id) => await ProdutoDao.DeleteById(id);
         public bool ProdutoExists(int id) => ProdutoDao.ProdutoExists(id);
-      //public Imagem GetImage(int id) => ProdutoDao.GetImage(id);
-      //public void SaveImagem(Imagem im) => ProdutoDao.SaveImagem(im);
-      //public async Task<Produto> ProdutoImagem(int ProdutoId) => await ProdutoDao.ProdutoImagem(ProdutoId);
+        //public Imagem GetImage(int id) => ProdutoDao.GetImage(id);
+        //public void SaveImagem(Imagem im) => ProdutoDao.SaveImagem(im);
+        //public async Task<Produto> ProdutoImagem(int ProdutoId) => await ProdutoDao.ProdutoImagem(ProdutoId);
 
+        public void AnunciarProduto(Produto produto)
+        {
+            ProdutoDao.InserirProduto(produto);
+        }
+        public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId)
+        {
+            return ProdutoDao.FindProdutoByCategoriaId(categoriaId);
+        }
+        public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId)
+        {
+            return ProdutoDao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);
+        }
+
+        public List<Produto> ListaDeProduto()
+        {
+            return ProdutoDao.ListaDeProdutos();
+        }
+
+        public List<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
+        {
+            return ProdutoDao.FindProdutoByFaixa(valorInicial, valorFinal);
+        }
+
+        public IEnumerable<Produto> Produtos()
+        {
+            return ProdutoDao.Produtos();
+        }
+
+        public Produto ProdutoById(int produtoId)
+        {
+            return ProdutoDao.GetProdutoById(produtoId);
+        }
 
     } 
 }
