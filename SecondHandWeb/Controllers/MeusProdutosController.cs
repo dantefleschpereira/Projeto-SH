@@ -15,24 +15,23 @@ namespace SecondHandWeb.Controllers
     public class MeusProdutosController : Controller
     {
 
-        private readonly ProdutoFacade produtoFacade;
+        private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
-        private IWebHostEnvironment _environment;
         private readonly SecondHandContext _context;
 
 
-        public MeusProdutosController(UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
+        public MeusProdutosController(UserManager<ApplicationUser> userManager,
+                                        ProdutoFacade produtoFacade)
         {
-            produtoFacade = new ProdutoFacade();
+            _produtoFacade = produtoFacade;
             _userManager = userManager;
-            _environment = environment;
             _context = new SecondHandContext();
         }
 
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            return View(await produtoFacade.ListAll());
+            return View(await _produtoFacade.ListAll());
         }
 
         // GET: Items/Details/5
@@ -43,7 +42,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await produtoFacade.DetailsById(id);
+            var produto = await _produtoFacade.DetailsById(id);
 
             if (produto == null)
             {
@@ -65,7 +64,7 @@ namespace SecondHandWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                await produtoFacade.Create(produto);
+                await _produtoFacade.Create(produto);
                 return RedirectToAction(nameof(Index));
             }
             return View(produto);
@@ -79,7 +78,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await produtoFacade.EditById(id);
+            var produto = await _produtoFacade.EditById(id);
 
             if (produto == null)
             {
@@ -102,11 +101,11 @@ namespace SecondHandWeb.Controllers
             {
                 try
                 {
-                    await produtoFacade.EditByIdAndObject(id, produto);
+                    await _produtoFacade.EditByIdAndObject(id, produto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!produtoFacade.ProdutoExists(produto.ProdutoId))
+                    if (!_produtoFacade.ProdutoExists(produto.ProdutoId))
                     {
                         return NotFound();
                     }
@@ -128,7 +127,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await produtoFacade.DetailsById(id);
+            var produto = await _produtoFacade.DetailsById(id);
 
             if (produto == null)
             {
@@ -143,7 +142,7 @@ namespace SecondHandWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await produtoFacade.DeleteById(id);
+            await _produtoFacade.DeleteById(id);
 
             return RedirectToAction(nameof(Index));
         }

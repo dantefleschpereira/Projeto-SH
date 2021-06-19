@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using Entities.Interfaces;
-using Entities.Models;
+﻿using Entities.Models;
+using PL;
+using System.Collections.Generic;
 
 namespace BLL
 {
     public class NegocioFacade
     {
 
-        private readonly IProdutoDao _dao;
+        private readonly ProdutoDao _dao;
 
-        public NegocioFacade(IProdutoDao dao)
+        public NegocioFacade(ProdutoDao dao)
         {
             _dao = dao;
         }
@@ -42,10 +42,7 @@ namespace BLL
             return _dao.Produtos();
         }
 
-        public Produto ProdutoById(int produtoId)
-        {
-            return _dao.GetProdutoById(produtoId);
-        }
+       
 
     }
 }

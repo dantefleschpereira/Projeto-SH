@@ -1,13 +1,4 @@
-﻿using BLL;
-using Entities.Models;
-using PL.Repositorio;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
-
-namespace ConsoleTests
+﻿namespace ConsoleTests
 {
     class Program
     {

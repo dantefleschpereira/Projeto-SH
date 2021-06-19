@@ -1,4 +1,4 @@
-﻿using Entities.Interfaces;
+﻿using BLL;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,12 +8,12 @@ namespace SecondHandWeb.Controllers
 {
     public class PedidoController : Controller
     {
-        private readonly IPedidoDao _pedidoRepository;
+        private readonly PedidoFacade _pedidoFacade;
         private readonly CarrinhoCompra _carrinhoCompra;
 
-        public PedidoController(IPedidoDao pedidoRepository, CarrinhoCompra carrinhoCompra)
+        public PedidoController(PedidoFacade pedidoFacade, CarrinhoCompra carrinhoCompra)
         {
-            _pedidoRepository = pedidoRepository;
+            _pedidoFacade = pedidoFacade;
             _carrinhoCompra = carrinhoCompra;
         }
         [Authorize]
@@ -32,12 +32,12 @@ namespace SecondHandWeb.Controllers
 
             if (_carrinhoCompra.CarrinhoCompraItens.Count == 0)
             {
-                ModelState.AddModelError("", "Seu carrinho esta vazio, que tal incluir um lanche...");
+                ModelState.AddModelError("", "Seu carrinho esta vazio");
             }
 
             if (ModelState.IsValid)
             {
-                _pedidoRepository.CriarPedido(pedido);
+                _pedidoFacade.CriarPedido(pedido);
 
                 ViewBag.CheckoutCompletoMensagem = "Obrigado por sua compra :) ";
                 ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();

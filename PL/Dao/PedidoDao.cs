@@ -1,18 +1,21 @@
-﻿using Entities.Interfaces;
-using Entities.Models;
+﻿using Entities.Models;
 using PL.Componentes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PL.Repositorio
+namespace PL
 {
-    public class PedidoEF : IPedidoDao
+    public class PedidoDao
     {
-        private readonly SecondHandContext _appDbContext;
+        private readonly SecondHandContext _context;
         private readonly CarrinhoCompra _carrinhoCompra;
 
-        public PedidoEF(SecondHandContext appDbContext, CarrinhoCompra carrinhoCompra)
+        public PedidoDao(SecondHandContext context, CarrinhoCompra carrinhoCompra)
         {
-            _appDbContext = appDbContext;
+            _context = context;
             _carrinhoCompra = carrinhoCompra;
         }
 
@@ -21,8 +24,8 @@ namespace PL.Repositorio
             pedido.PedidoEnviado = DateTime.Now;
             //pedido.PedidoEntregueEm = DateTime.Now;
 
-            _appDbContext.Pedidos.Add(pedido);
-            _appDbContext.SaveChanges();
+            _context.Pedidos.Add(pedido);
+            _context.SaveChanges();
 
             var carrinhoCompraItens = _carrinhoCompra.CarrinhoCompraItens;
 
@@ -35,9 +38,9 @@ namespace PL.Repositorio
                     PedidoId = pedido.PedidoId,
                     Preco = carrinhoItem.Produto.Preco
                 };
-                _appDbContext.PedidoDetalhes.Add(pedidoDetail);
+                _context.PedidoDetalhes.Add(pedidoDetail);
             }
-            _appDbContext.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }

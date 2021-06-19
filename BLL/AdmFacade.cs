@@ -1,21 +1,17 @@
-﻿using Entities.Interfaces;
-using Entities.Models;
+﻿using Entities.Models;
 using Entities.ViewModels;
 using PL;
-using PL.Repositorio;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BLL
 {
     public class AdmFacade
     {
 
-        private readonly IProdutoDao _dao;
+        private readonly ProdutoDao _dao;
 
-        public AdmFacade(IProdutoDao dao)
+        public AdmFacade(ProdutoDao dao)
         {
             _dao = dao;
         }

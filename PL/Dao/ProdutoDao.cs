@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.Interfaces;
+using Entities.Models;
 using Entities.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,15 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PL.Repositorio
+namespace PL
 {
-    public class ProdutoDao
+    public class ProdutoDao: IProduto
     {
         private readonly SecondHandContext _context;
 
-        public ProdutoDao()
+        public ProdutoDao(SecondHandContext context)
         {
-            _context = new SecondHandContext();
+            _context = context;
         }
 
         public SecondHandContext GetContext()
@@ -189,13 +190,23 @@ namespace PL.Repositorio
             return _context.Produtos.Include(c => c.Categoria);
         }
 
+        public async Task<Produto> GetProdutoById(int? id)
+        {
+            var produto = await _context.Produtos.Include("Imagens")
+                .Include(p => p.Categoria)
+                .Include(p => p.Usuario)
+                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+
+            return produto;
+        }
+
         public Produto GetProdutoById(int produtoId)
         {
             return _context.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
         }
-
-
     }
+
+
 
 
     /*

@@ -4,21 +4,14 @@ using Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PL;
 using PL.Componentes;
-using PL.Repositorio;
-using SecondHandWeb.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SecondHandWeb
 {
@@ -47,12 +40,17 @@ namespace SecondHandWeb
             services.AddMemoryCache();
             services.AddSession();
 
+            services.AddTransient<PedidoFacade, PedidoFacade>();
             services.AddTransient<NegocioFacade, NegocioFacade>();
             services.AddTransient<AdmFacade, AdmFacade>();
             services.AddTransient<ProdutoFacade, ProdutoFacade>();
 
-            services.AddTransient<IProdutoDao, ProdutoEF>();
-            services.AddTransient<IPedidoDao, PedidoEF>();
+            services.AddTransient<ProdutoDao, ProdutoDao>();
+            services.AddTransient<PedidoDao, PedidoDao>();
+
+            services.AddTransient<IProduto, ProdutoDao>();
+            
+
 
 
 

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BLL;
+using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Entities.Models;
 using PL;
-using BLL;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Entities.ViewModels;
+using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
@@ -19,24 +14,25 @@ namespace SecondHandWeb.Controllers
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;
-        private readonly ProdutoFacade produtoFacade;
+        private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
-        private IWebHostEnvironment _environment;
+        
 
 
         public ProdutosController(SecondHandContext context,
-                                    UserManager<ApplicationUser> userManager, IWebHostEnvironment environment)
+                                    UserManager<ApplicationUser> userManager,
+                                    ProdutoFacade produtoFacade)
         {
             _context = context;
-            produtoFacade = new ProdutoFacade();
+            _produtoFacade = produtoFacade;
             _userManager = userManager;
-            _environment = environment;
+            
         }
 
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            return View(await produtoFacade.ListAll());
+            return View(await _produtoFacade.ListAll());
         }
 
 
@@ -49,34 +45,19 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await produtoFacade.DetailsById(id);
+            var produto = await _produtoFacade.DetailsById(id);
 
             if (produto == null)
             {
                 return NotFound();
             }
             return View(produto);
-        }
-
-        // GET: Produtos/Create
-        public async Task<IActionResult> Create()
-        {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome");
-            ViewData["UsuarioId"] = new SelectList(_context.Usuarios, "UsuarioId", "Email");
-
-            var usuario = await _userManager.GetUserAsync(HttpContext.User);
-
-            Produto novoProduto = new Produto();
-            {
-                //UsuarioId = usuario.Id;
-            }
-            return View();
-        }
+        }      
 
         
         private bool ProdutoExists(int id)
         {
-            return _context.Produtos.Any(e => e.ProdutoId == id);
+            return _produtoFacade.ProdutoExists(id);
         }
 
 
@@ -111,10 +92,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var produto = await _context.Produtos.Include("Imagens")
-                .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
-                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+            var produto = await _produtoFacade.ProdutoById(id);
             if (produto == null)
             {
                 return NotFound();
