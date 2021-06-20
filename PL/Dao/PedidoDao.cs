@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using PL.Componentes;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,52 @@ namespace PL
                 _context.PedidoDetalhes.Add(pedidoDetail);
             }
             _context.SaveChanges();
+        }
+
+        public async Task<List<Pedido>> ListAll()
+        {
+            return await _context.Pedidos.ToListAsync();
+        }
+
+        public async Task<Pedido> DetailsById(int? id)
+        {
+            return await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);
+        }
+
+        public async Task Create(Pedido pedido)
+        {
+            _context.Add(pedido);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<Pedido> EditById(int? id)
+        {
+            return await _context.Pedidos.FindAsync(id);
+        }
+
+        public async Task<Pedido> EditByIdAndObject(int id, Pedido pedido)
+        {
+            _context.Update(pedido);
+            await _context.SaveChangesAsync();
+
+            return pedido;
+        }
+        public async Task<Pedido> GetToDeleteById(int? id)
+        {
+            var pedido = await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);
+
+            return pedido;
+        }
+
+        public async Task DeleteById(int? id)
+        {
+            var pedido = await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);
+            _context.Pedidos.Remove(pedido);
+            await _context.SaveChangesAsync();
+        }
+
+        public bool PedidoExists(int id)
+        {
+            return _context.Pedidos.Any(e => e.PedidoId == id);
         }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using PL;
 using Microsoft.AspNetCore.Authorization;
+using BLL;
 
 namespace SecondHandWeb.Controllers
 {
@@ -15,6 +16,7 @@ namespace SecondHandWeb.Controllers
     public class AdminPedidosController : Controller
     {
         private readonly SecondHandContext _context;
+        //private readonly PedidoFacade _pedidoFacade;
 
         public AdminPedidosController(SecondHandContext context)
         {

@@ -42,8 +42,8 @@ namespace SecondHandWeb
 
             services.AddTransient<CategoriaFacade, CategoriaFacade>();
             services.AddTransient<PedidoFacade, PedidoFacade>();
-            services.AddTransient<NegocioFacade, NegocioFacade>();
-            services.AddTransient<AdmFacade, AdmFacade>();
+            //services.AddTransient<NegocioFacade, NegocioFacade>();
+            //services.AddTransient<AdmFacade, AdmFacade>();
             services.AddTransient<ProdutoFacade, ProdutoFacade>();
 
             services.AddTransient<ProdutoDao, ProdutoDao>();
