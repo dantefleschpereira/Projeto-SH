@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210620015919_Bd inicial")]
+    [Migration("20210620192928_Bd inicial")]
     partial class Bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,6 +241,9 @@ namespace PL.Migrations
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
+
+                    b.Property<int>("TotalItensPedido")
+                        .HasColumnType("int");
 
                     b.HasKey("PedidoId");
 

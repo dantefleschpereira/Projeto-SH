@@ -240,6 +240,9 @@ namespace PL.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
+                    b.Property<int>("TotalItensPedido")
+                        .HasColumnType("int");
+
                     b.HasKey("PedidoId");
 
                     b.ToTable("Pedidos");

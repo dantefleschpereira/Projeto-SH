@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.Models
 {
-    // classe herda do IdentityFramework
+
     public class ApplicationUser : IdentityUser
     {
         [MaxLength(50)]

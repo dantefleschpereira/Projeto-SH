@@ -1,6 +1,8 @@
 ﻿using Entities.Models;
 using PL;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BLL
@@ -58,6 +60,8 @@ namespace BLL
         {
             return await _produtoDao.GetProdutoById(id);
         }
+
+        public IQueryable<String> IQueryPesquisaCateg() => _produtoDao.IQueryPesquisaCat();
 
     } 
 }

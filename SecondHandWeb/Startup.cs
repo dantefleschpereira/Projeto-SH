@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PL;
 using PL.Componentes;
+using SecondHandWeb.Models;
 using System;
 
 namespace SecondHandWeb
@@ -41,16 +42,14 @@ namespace SecondHandWeb
             services.AddSession();
 
             services.AddTransient<CategoriaFacade, CategoriaFacade>();
-            services.AddTransient<PedidoFacade, PedidoFacade>();
-            //services.AddTransient<NegocioFacade, NegocioFacade>();
-            //services.AddTransient<AdmFacade, AdmFacade>();
+            services.AddTransient<PedidoFacade, PedidoFacade>();            
             services.AddTransient<ProdutoFacade, ProdutoFacade>();
 
             services.AddTransient<ProdutoDao, ProdutoDao>();
             services.AddTransient<PedidoDao, PedidoDao>();
             services.AddTransient<CategoriaDao, CategoriaDao>();
             services.AddTransient<IProduto, ProdutoDao>();
-
+            services.AddScoped<RelatorioVendasService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

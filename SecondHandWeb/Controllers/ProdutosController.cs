@@ -5,7 +5,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PL;
+using SecondHandWeb.Models;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
@@ -29,12 +33,50 @@ namespace SecondHandWeb.Controllers
             
         }
 
+
+        // GET: Movies
+        public async Task<IActionResult> Index(string categoria, string searchString)
+        {
+            // Use LINQ to get list of genres.
+            IQueryable<String> categoriaQuery = _produtoFacade.IQueryPesquisaCateg();
+
+            var produtos = _produtoFacade.Produtos();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                produtos = produtos.Where(s => s.Nome.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(categoria))
+            {
+                produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
+            }
+
+            var produtoCategoriaVM = new ProdutoCategoriaVM
+            {
+                Categorias = new SelectList(await categoriaQuery.Distinct().ToListAsync()),
+                Produtos = _produtoFacade.ListaDeProduto()
+            };
+
+            return View(produtoCategoriaVM);
+        }
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
+
+
+
+
+        /*
         // GET: Items
         public async Task<IActionResult> Index()
         {
             return View(await _produtoFacade.ListAll());
         }
-
+        */
 
 
         // GET: Items/Details/5

@@ -1,73 +1,84 @@
-﻿@model IEnumerable<Entities.Models.Produto>
+﻿@*@model IEnumerable<Entities.Models.Produto>*@
+    @model SecondHandWeb.Models.ProdutoCategoriaVM
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 <h1>Produtos</h1>
+
+<form asp-controller="Produtos" asp-action="Index" method="get">
+    <p>
+
+        <select asp-for="Categoria" asp-items="Model.Categorias">
+            <option value="">All</option>
+        </select>
+
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria.Nome)
+                @Html.DisplayNameFor(model => model.Produtos[0].Categoria.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                @Html.DisplayNameFor(model => model.Produtos[0].Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                @Html.DisplayNameFor(model => model.Produtos[0].Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Preco)
+                @Html.DisplayNameFor(model => model.Produtos[0].Preco)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>*@
+            @* <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>*@
 
             <th>
-                @Html.DisplayNameFor(model => model.Cidade)
+                @Html.DisplayNameFor(model => model.Produtos[0].Cidade)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Usuario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataVenda)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataVenda)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preco)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Nome)
-            </td>*@
-            
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a>*@ |
-                <a asp-action="Comprar" asp-route-id="@item.ProdutoId">Saiba Mais</a> |
-                @*<a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>*@
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Produtos)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descricao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Preco)
+    </td>
+    @* <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.Cidade)
+    </td>
+    @* <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nome)
+        </td>*@
+
+    <td>
+        @*<a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a>*@ |
+        <a asp-action="Comprar" asp-route-id="@item.ProdutoId">Saiba Mais</a> |
+        @*<a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>*@
+    </td>
+</tr>}
     </tbody>
 </table>

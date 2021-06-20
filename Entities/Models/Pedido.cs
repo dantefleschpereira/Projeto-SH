@@ -61,7 +61,12 @@ namespace Entities.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal PedidoTotal { get; set; }
 
-        
+        [BindNever]
+        [ScaffoldColumn(false)]
+        [Display(Name = "Itens da compra")]
+        public int TotalItensPedido { get; set; }
+
+
         [Display(Name = "Data/Hora de Recebimento do produto")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]

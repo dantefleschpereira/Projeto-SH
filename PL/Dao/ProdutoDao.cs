@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PL
 {
-    public class ProdutoDao: IProduto
+    public class ProdutoDao : IProduto
     {
         private readonly SecondHandContext _context;
 
@@ -185,7 +185,7 @@ namespace PL
             return itens.ToList();
         }
 
-        public IEnumerable<Produto> Produtos()
+        public  IEnumerable<Produto> Produtos()
         {
             return _context.Produtos.Include(c => c.Categoria);
         }
@@ -204,6 +204,17 @@ namespace PL
         {
             return _context.Produtos.FirstOrDefault(p => p.ProdutoId == produtoId);
         }
+
+        public IQueryable<String> IQueryPesquisaCat()
+        {
+            IQueryable<String> categoriaQuery = from m in _context.Produtos
+                                                orderby m.Categoria.Nome
+                                                select m.Categoria.Nome;
+
+            return categoriaQuery;
+        }
+
+
     }
 
 
