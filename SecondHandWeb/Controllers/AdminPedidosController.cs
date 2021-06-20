@@ -15,18 +15,18 @@ namespace SecondHandWeb.Controllers
     [Authorize(Roles = "Administrador")]
     public class AdminPedidosController : Controller
     {
-        private readonly SecondHandContext _context;
-        //private readonly PedidoFacade _pedidoFacade;
 
-        public AdminPedidosController(SecondHandContext context)
+        private readonly PedidoFacade _pedidoFacade;
+
+        public AdminPedidosController(PedidoFacade pedidoFacade)
         {
-            _context = context;
+            _pedidoFacade = pedidoFacade;
         }
 
         // GET: AdminPedidos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pedidos.ToListAsync());
+            return View(await _pedidoFacade.ListAll());
         }
 
         // GET: AdminPedidos/Details/5
@@ -37,8 +37,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos
-                .FirstOrDefaultAsync(m => m.PedidoId == id);
+            var pedido = await _pedidoFacade.DetailsById(id);
             if (pedido == null)
             {
                 return NotFound();
@@ -62,8 +61,7 @@ namespace SecondHandWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pedido);
-                await _context.SaveChangesAsync();
+                await _pedidoFacade.Create(pedido);
                 return RedirectToAction(nameof(Index));
             }
             return View(pedido);
@@ -77,7 +75,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos.FindAsync(id);
+            var pedido = await _pedidoFacade.EditById(id);
             if (pedido == null)
             {
                 return NotFound();
@@ -101,8 +99,7 @@ namespace SecondHandWeb.Controllers
             {
                 try
                 {
-                    _context.Update(pedido);
-                    await _context.SaveChangesAsync();
+                    await _pedidoFacade.EditByIdAndObject(id, pedido);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -128,8 +125,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var pedido = await _context.Pedidos
-                .FirstOrDefaultAsync(m => m.PedidoId == id);
+            var pedido = await _pedidoFacade.DetailsById(id);
             if (pedido == null)
             {
                 return NotFound();
@@ -143,15 +139,13 @@ namespace SecondHandWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pedido = await _context.Pedidos.FindAsync(id);
-            _context.Pedidos.Remove(pedido);
-            await _context.SaveChangesAsync();
+            await _pedidoFacade.DeleteById(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool PedidoExists(int id)
         {
-            return _context.Pedidos.Any(e => e.PedidoId == id);
+            return _pedidoFacade.PedidoExists(id);
         }
     }
 }
