@@ -8,23 +8,24 @@ using Microsoft.EntityFrameworkCore;
 using Entities.Models;
 using PL;
 using Microsoft.AspNetCore.Authorization;
+using BLL;
 
 namespace SecondHandWeb.Controllers
 {
     [Authorize(Roles = "Administrador")]
     public class AdminCategoriasController : Controller
     {
-        private readonly SecondHandContext _context;
+        private readonly CategoriaFacade _categoriaFacade;
 
-        public AdminCategoriasController(SecondHandContext context)
+        public AdminCategoriasController(CategoriaFacade categoriaFacade)
         {
-            _context = context;
+            _categoriaFacade = categoriaFacade;
         }
 
         // GET: AdminCategorias
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categorias.ToListAsync());
+            return View(await _categoriaFacade.ListAll());
         }
 
         // GET: AdminCategorias/Details/5
@@ -35,8 +36,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
+            var categoria = await _categoriaFacade.DetailsById(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -60,8 +60,7 @@ namespace SecondHandWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categoria);
-                await _context.SaveChangesAsync();
+                await _categoriaFacade.Create(categoria);
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -75,7 +74,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = await _categoriaFacade.EditById(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -99,8 +98,7 @@ namespace SecondHandWeb.Controllers
             {
                 try
                 {
-                    _context.Update(categoria);
-                    await _context.SaveChangesAsync();
+                   await _categoriaFacade.EditByIdAndObject(id, categoria);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -126,8 +124,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
 
-            var categoria = await _context.Categorias
-                .FirstOrDefaultAsync(m => m.CategoriaId == id);
+            var categoria = await _categoriaFacade.DetailsById(id);
             if (categoria == null)
             {
                 return NotFound();
@@ -141,15 +138,13 @@ namespace SecondHandWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
-            _context.Categorias.Remove(categoria);
-            await _context.SaveChangesAsync();
+            await _categoriaFacade.DeleteById(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoriaExists(int id)
         {
-            return _context.Categorias.Any(e => e.CategoriaId == id);
+            return _categoriaFacade.CategoriaExists(id);
         }
     }
 }

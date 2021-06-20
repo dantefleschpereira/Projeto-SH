@@ -40,6 +40,7 @@ namespace SecondHandWeb
             services.AddMemoryCache();
             services.AddSession();
 
+            services.AddTransient<CategoriaFacade, CategoriaFacade>();
             services.AddTransient<PedidoFacade, PedidoFacade>();
             services.AddTransient<NegocioFacade, NegocioFacade>();
             services.AddTransient<AdmFacade, AdmFacade>();
@@ -47,11 +48,8 @@ namespace SecondHandWeb
 
             services.AddTransient<ProdutoDao, ProdutoDao>();
             services.AddTransient<PedidoDao, PedidoDao>();
-
+            services.AddTransient<CategoriaDao, CategoriaDao>();
             services.AddTransient<IProduto, ProdutoDao>();
-            
-
-
 
 
             services.AddControllersWithViews();
