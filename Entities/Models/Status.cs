@@ -11,6 +11,6 @@ namespace Entities.Models
         DISPONIVEL = 1,
         VENDIDO = 2,
         CANCELADO = 3,
-        NEGOCICACAO = 4
+        NEGOCIACAO = 4
     }
 }

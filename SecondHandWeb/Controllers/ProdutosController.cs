@@ -132,6 +132,7 @@ namespace SecondHandWeb.Controllers
             }
 
             var produto = await _produtoFacade.ProdutoById(id);
+            _produtoFacade.Comprar(produto);
             if (produto == null)
             {
                 return NotFound();

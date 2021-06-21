@@ -214,6 +214,35 @@ namespace PL
             return categoriaQuery;
         }
 
+        public void ComprarProduto(Produto produto)
+        {
+           
+            //produto.Status = Status.NEGOCIACAO;
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
+
+        }
+
+        public void ConfirmarVenda(Produto produto)
+        {
+            produto.Status = Status.VENDIDO;
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
+
+        }
+
+        public async Task<List<Produto>> ListaDeProdutosNegociacao()
+        {
+            var itens = (from p in _context.Produtos
+                         .Include(u => u.Usuario)
+                         .Include(c => c.Categoria)
+                         .Include(i => i.Imagens)
+                         where p.Status == Status.NEGOCIACAO
+                         select p);
+
+            return await itens.ToListAsync();
+        }
+
 
     }
 

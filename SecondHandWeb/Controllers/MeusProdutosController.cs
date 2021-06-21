@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PL;
 using System.Collections.Generic;
@@ -84,6 +85,9 @@ namespace SecondHandWeb.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
+            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status", produto.Status);
+
             return View(produto);
         }
 
@@ -116,6 +120,9 @@ namespace SecondHandWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
+            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status", produto.Status);
+
             return View(produto);
         }
 
@@ -202,9 +209,33 @@ namespace SecondHandWeb.Controllers
             return View("Details", produto);
         }
 
+        public async Task<IActionResult> Vender(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var produto = await _produtoFacade.ProdutoById(id);
+            _produtoFacade.ConfirmarVendaProduto(produto);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
+
+        public async Task<IActionResult> ProdutosNegociacao()
+        {
+            return View(await _produtoFacade.ProdutosEmNegociacao());
+        }
+
+        
+        }
     }
 
-}
+
 
 
 
