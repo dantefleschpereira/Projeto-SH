@@ -217,12 +217,12 @@ namespace SecondHandWeb.Controllers
             }
 
             var produto = await _produtoFacade.ProdutoById(id);
-            _produtoFacade.ConfirmarVendaProduto(produto);
+            
             if (produto == null)
             {
                 return NotFound();
             }
-
+            _produtoFacade.ConfirmarVendaProduto(produto);
             return View(produto);
         }
 

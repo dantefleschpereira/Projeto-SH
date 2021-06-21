@@ -63,7 +63,7 @@ namespace BLL
 
         public IQueryable<String> IQueryPesquisaCateg() => _produtoDao.IQueryPesquisaCat();
 
-        public void Comprar(Produto produto) => _produtoDao.ComprarProduto(produto);
+        public void Comprar(int? id) => _produtoDao.ComprarProduto(id);
 
         public void ConfirmarVendaProduto(Produto produto) => _produtoDao.ConfirmarVenda(produto);
 

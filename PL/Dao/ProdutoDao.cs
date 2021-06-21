@@ -214,13 +214,16 @@ namespace PL
             return categoriaQuery;
         }
 
-        public void ComprarProduto(Produto produto)
+        public void ComprarProduto(int? Id)
         {
-           
-            //produto.Status = Status.NEGOCIACAO;
-            _context.Produtos.Update(produto);
-            _context.SaveChanges();
-
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == Id);
+            if (produto != null && produto.Status == Status.DISPONIVEL)
+            {
+                //produto.Status = Status.NEGOCIACAO;
+                produto.DataVenda = DateTime.Now;
+                _context.Produtos.Update(produto);
+                _context.SaveChanges();
+            }
         }
 
         public void ConfirmarVenda(Produto produto)

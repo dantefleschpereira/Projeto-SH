@@ -122,7 +122,7 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
         }
-              
+
 
         public async Task<IActionResult> Comprar(int? id)
         {
@@ -132,7 +132,7 @@ namespace SecondHandWeb.Controllers
             }
 
             var produto = await _produtoFacade.ProdutoById(id);
-            _produtoFacade.Comprar(produto);
+            _produtoFacade.Comprar(id);
             if (produto == null)
             {
                 return NotFound();
@@ -140,6 +140,7 @@ namespace SecondHandWeb.Controllers
 
             return View(produto);
         }
+
 
 
     }
