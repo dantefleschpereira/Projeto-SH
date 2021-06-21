@@ -67,9 +67,6 @@ namespace SecondHandWeb.Controllers
             return "From [HttpPost]Index: filter on " + searchString;
         }
 
-
-
-
         /*
         // GET: Items
         public async Task<IActionResult> Index()

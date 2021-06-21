@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 namespace SecondHandWeb.Models
 {
     public class RelatorioVendasService
-    {
-        
+    {        
         private readonly PedidoDao _pedidoDao;
         public RelatorioVendasService(PedidoDao pedidoDao)
         {
