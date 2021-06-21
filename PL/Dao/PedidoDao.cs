@@ -89,5 +89,26 @@ namespace PL
         {
             return _context.Pedidos.Any(e => e.PedidoId == id);
         }
+
+        public async Task<List<Pedido>> FindCompraByDateAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var resultado = from obj in _context.Pedidos select obj;
+
+            if (minDate.HasValue)
+            {
+                resultado = resultado.Where(x => x.PedidoEnviado >= minDate.Value);
+            }
+
+            if (maxDate.HasValue)
+            {
+                resultado = resultado.Where(x => x.PedidoEnviado <= maxDate.Value);
+            }
+
+            return await resultado
+                .Include(l => l.PedidoItens)
+                .ThenInclude(l => l.Produto)
+                .OrderByDescending(x => x.PedidoEnviado)
+                .ToListAsync();
+        }
     }
 }
