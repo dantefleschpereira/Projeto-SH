@@ -36,6 +36,10 @@ namespace Entities.Models
         [Display(Name = "Data da Venda")]
         public DateTime? DataVenda { get; set; }
 
+        [Display(Name = "Comprador")]
+        public string NomeComprador { get; set; }
+        public string IdComprador { get; set; }
+
         public virtual ICollection<Imagem> Imagens { get; set; }
 
 

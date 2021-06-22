@@ -49,6 +49,7 @@ namespace SecondHandWeb
             services.AddTransient<PedidoDao, PedidoDao>();
             services.AddTransient<CategoriaDao, CategoriaDao>();
             services.AddTransient<IProduto, ProdutoDao>();
+
             services.AddScoped<RelatorioVendasService>();
 
             services.AddControllersWithViews();

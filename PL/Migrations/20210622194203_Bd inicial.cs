@@ -249,7 +249,9 @@ namespace PL.Migrations
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UsuarioId = table.Column<int>(type: "int", nullable: false),
-                    DataVenda = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DataVenda = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NomeComprador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdComprador = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -214,23 +214,31 @@ namespace PL
             return categoriaQuery;
         }
 
-        public void ComprarProduto(int? Id)
+        public void ComprarProduto(int Id, string nomeUsuario)
         {
-            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == Id);
+            var user = _context.Users.FirstOrDefault(u => u.Nome.Equals(nomeUsuario));
+            var produto = _context.Produtos.First(p => p.ProdutoId == Id);
             if (produto != null && produto.Status == Status.DISPONIVEL)
             {
-                //produto.Status = Status.NEGOCIACAO;
-                produto.DataVenda = DateTime.Now;
-                _context.Produtos.Update(produto);
+                produto.NomeComprador = user.Nome;
+                produto.IdComprador = user.Id;
+                produto.Status = Status.NEGOCIACAO;
+                //produto.DataVenda = DateTime.Now;
+                _context.Update(produto);
                 _context.SaveChanges();
             }
         }
 
-        public void ConfirmarVenda(Produto produto)
+        public void ConfirmarVenda(int Id)
         {
-            produto.Status = Status.VENDIDO;
-            _context.Produtos.Update(produto);
-            _context.SaveChanges();
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == Id);
+            if (produto != null)
+            {
+                produto.Status = Status.VENDIDO;
+                produto.DataVenda = DateTime.Now;
+                _context.Update(produto);
+                _context.SaveChanges();
+            }
 
         }
 

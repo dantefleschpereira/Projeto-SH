@@ -29,13 +29,12 @@ namespace SecondHandWeb.Controllers
             _context = new SecondHandContext();
         }
 
-        // GET: Items
+     
         public async Task<IActionResult> Index()
         {
             return View(await _produtoFacade.ListAll());
         }
 
-        // GET: Items/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,13 +51,13 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        // GET: Items/Create
+        
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Items/Create
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
@@ -71,7 +70,7 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        // GET: Items/Edit/5
+      
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,7 +90,7 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        // POST: Items/Edit/5
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
@@ -126,7 +125,7 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        // GET: Items/Delete/5
+      
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -144,7 +143,7 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        // POST: Items/Delete/5
+     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -209,20 +208,12 @@ namespace SecondHandWeb.Controllers
             return View("Details", produto);
         }
 
-        public async Task<IActionResult> Vender(int? id)
+        public async Task<IActionResult> Vender(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var produto = await _produtoFacade.ProdutoById(id);
-            
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            _produtoFacade.ConfirmarVendaProduto(produto);
+             
+            _produtoFacade.ConfirmarVendaProduto(id);            
+                       
             return View(produto);
         }
 

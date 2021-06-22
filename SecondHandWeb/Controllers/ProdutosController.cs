@@ -34,22 +34,21 @@ namespace SecondHandWeb.Controllers
         }
 
 
-        // GET: Movies
         public async Task<IActionResult> Index(string categoria, string searchString)
         {
-            // Use LINQ to get list of genres.
+            
             IQueryable<String> categoriaQuery = _produtoFacade.IQueryPesquisaCateg();
 
             var produtos = _produtoFacade.Produtos();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                produtos = produtos.Where(s => s.Nome.Contains(searchString));
+                produtos = produtos.Where(p => p.Nome.Contains(searchString));
             }
 
             if (!string.IsNullOrEmpty(categoria))
             {
-                produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
+                produtos = produtos.Where(c => c.Categoria.Nome.Equals(categoria));
             }
 
             var produtoCategoriaVM = new ProdutoCategoriaVM
@@ -68,7 +67,7 @@ namespace SecondHandWeb.Controllers
         }
 
         /*
-        // GET: Items
+       
         public async Task<IActionResult> Index()
         {
             return View(await _produtoFacade.ListAll());
@@ -76,7 +75,7 @@ namespace SecondHandWeb.Controllers
         */
 
 
-        // GET: Items/Details/5
+    
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -124,15 +123,15 @@ namespace SecondHandWeb.Controllers
         }
 
 
-        public async Task<IActionResult> Comprar(int? id)
+        public async Task<IActionResult> Comprar(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return NotFound();
             }
-
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
             var produto = await _produtoFacade.ProdutoById(id);
-            _produtoFacade.Comprar(id);
+            _produtoFacade.Comprar(id, usuario.Nome);
             if (produto == null)
             {
                 return NotFound();

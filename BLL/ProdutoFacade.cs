@@ -63,9 +63,9 @@ namespace BLL
 
         public IQueryable<String> IQueryPesquisaCateg() => _produtoDao.IQueryPesquisaCat();
 
-        public void Comprar(int? id) => _produtoDao.ComprarProduto(id);
+        public void Comprar(int id, string nomeUsuario) => _produtoDao.ComprarProduto(id, nomeUsuario);
 
-        public void ConfirmarVendaProduto(Produto produto) => _produtoDao.ConfirmarVenda(produto);
+        public void ConfirmarVendaProduto(int id) => _produtoDao.ConfirmarVenda(id);
 
         public async Task<List<Produto>> ProdutosEmNegociacao() => await _produtoDao.ListaDeProdutosNegociacao();
 

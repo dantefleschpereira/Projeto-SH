@@ -295,7 +295,13 @@ namespace PL.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdComprador")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeComprador")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")

@@ -22,10 +22,10 @@ SET IDENTITY_INSERT [dbo].[Usuarios] OFF
 SET IDENTITY_INSERT [dbo].[Produtos] ON
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (1, N'Iphone', N'Celular Iphone cor gold', CAST(279.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', 1, CAST(N'2021-01-18 10:34:09.000' AS DateTime))
+VALUES (1, N'Iphone', N'Celular Iphone cor gold', CAST(279.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (2, N'Ipad', N'Tablet Apple cor branca', CAST(199.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', 1, CAST(N'2021-02-21 09:34:09.000' AS DateTime))
+VALUES (2, N'Ipad', N'Tablet Apple cor branca', CAST(199.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
 VALUES (3, N'Tv', N'Tv da marca Sony cor preta', CAST(200.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', 1, NULL)
@@ -34,16 +34,16 @@ INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status
 VALUES (4, N'Mesa', N'Mesa de madeira redonda para 6 pessoas', CAST(500.00 AS Decimal(18, 2)), 1, 3,N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, CAST(N'2021-02-15 08:34:09.000' AS DateTime))
+VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (6, N'Porta', N'Porta de madeira na cor branca', CAST(350.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, CAST(N'2021-02-10 07:34:09.000' AS DateTime))
+VALUES (6, N'Porta', N'Porta de madeira na cor branca', CAST(350.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (7, N'Cadeira', N'Cadeira de ferro na cor branca', CAST(40.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, CAST(N'2021-02-09 10:14:09.000' AS DateTime))
+VALUES (7, N'Cadeira', N'Cadeira de ferro na cor branca', CAST(40.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
-VALUES (8, N'Prancha de surf', N'Prancha da marca Tri Coast', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', 1, CAST(N'2021-01-18 11:38:09.000' AS DateTime))
+VALUES (8, N'Prancha de surf', N'Prancha da marca Tri Coast', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', 1, NULL)
 
 INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda]) 
 VALUES (9, N'Camisa do Barcelona', N'Camisa do time Barcelona com número 10', CAST(150.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', 1, NULL)
