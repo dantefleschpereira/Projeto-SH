@@ -177,6 +177,7 @@ namespace PL
         public IQueryable<Produto> Produtos()
         {
             var produtos = from p in _context.Produtos.Include("Categoria")
+                           where p.Status == Status.DISPONIVEL
                            select p;
             return produtos;
         }
