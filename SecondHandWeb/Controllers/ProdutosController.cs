@@ -64,8 +64,7 @@ namespace SecondHandWeb.Controllers
         {
             return "From [HttpPost]Index: filter on " + searchString;
         }
-
-          
+         
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -81,8 +80,7 @@ namespace SecondHandWeb.Controllers
             }
             return View(produto);
         }      
-
-        
+       
         private bool ProdutoExists(int id)
         {
             return _produtoFacade.ProdutoExists(id);
@@ -97,8 +95,7 @@ namespace SecondHandWeb.Controllers
 
             return View();
         }
-
-        
+       
         public ActionResult GetImage(int id)
         {
             Imagem im = _context.Imagem.Find(id);
@@ -111,7 +108,6 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
         }
-
 
         public async Task<IActionResult> Comprar(int id)
         {
@@ -129,8 +125,6 @@ namespace SecondHandWeb.Controllers
 
             return View(produto);
         }
-
-
 
     }
 }

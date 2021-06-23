@@ -15,13 +15,13 @@ namespace PL.Componentes
     {
         private readonly SecondHandContext _context;
 
-        //injeta o contexto no construtor
+    
         public CarrinhoCompra(SecondHandContext contexto)
         {
             _context = contexto;
         }
 
-        //define as propriedades do Carrinho : Id e os Itens
+       
         public string CarrinhoCompraId { get; set; }
         public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
 
@@ -31,7 +31,7 @@ namespace PL.Componentes
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            //obtem um serviço do tipo do nosso contexto 
+            //obtem um serviço do tipo do contexto 
             var context = services.GetService<SecondHandContext>();
 
             //obtem ou gera o Id do carrinho

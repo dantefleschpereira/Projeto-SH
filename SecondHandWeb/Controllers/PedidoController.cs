@@ -38,7 +38,7 @@ namespace SecondHandWeb.Controllers
                 ModelState.AddModelError("", "Seu carrinho esta vazio");
             }
 
-            //calcula o total do pedido
+            //valor total do pedido
             foreach (var item in items)
             {
                 totalItensPedido += item.Quantidade;
@@ -61,7 +61,7 @@ namespace SecondHandWeb.Controllers
                 _carrinhoCompra.LimparCarrinho();
                 return View("~/Views/Pedido/CheckoutCompleto.cshtml", pedido);
             }
-            // _context.Produtos.Remove(produto); remover o produto vendido do banco de dados
+          
             return View(pedido);
         }
 

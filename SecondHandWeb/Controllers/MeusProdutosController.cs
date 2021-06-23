@@ -30,7 +30,6 @@ namespace SecondHandWeb.Controllers
             _context = new SecondHandContext();
         }
 
-        // exibir produtos do usuário logado
         public async Task<IActionResult> Index()
         {
             var usuario = await _userManager.GetUserAsync(HttpContext.User);
@@ -58,14 +57,12 @@ namespace SecondHandWeb.Controllers
             }
             return View(produto);
         }
-
         
         public async Task <IActionResult> Create()
         {
             var usuario = await _userManager.GetUserAsync(HttpContext.User);
 
             Produto produto = new Produto() { IdVendedor = usuario.Id, NomeVendedor = usuario.Nome};
-            
             
             
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
@@ -145,8 +142,7 @@ namespace SecondHandWeb.Controllers
 
             return View(produto);
         }
-
-      
+     
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

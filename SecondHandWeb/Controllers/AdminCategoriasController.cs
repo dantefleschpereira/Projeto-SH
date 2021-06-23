@@ -21,14 +21,12 @@ namespace SecondHandWeb.Controllers
         {
             _categoriaFacade = categoriaFacade;
         }
-
-        // GET: AdminCategorias
+     
         public async Task<IActionResult> Index()
         {
             return View(await _categoriaFacade.ListAll());
         }
 
-        // GET: AdminCategorias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,15 +43,12 @@ namespace SecondHandWeb.Controllers
             return View(categoria);
         }
 
-        // GET: AdminCategorias/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: AdminCategorias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategoriaId,Nome")] Categoria categoria)
@@ -65,8 +60,7 @@ namespace SecondHandWeb.Controllers
             }
             return View(categoria);
         }
-
-        // GET: AdminCategorias/Edit/5
+           
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,9 +76,6 @@ namespace SecondHandWeb.Controllers
             return View(categoria);
         }
 
-        // POST: AdminCategorias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoriaId,Nome")] Categoria categoria)
@@ -116,7 +107,7 @@ namespace SecondHandWeb.Controllers
             return View(categoria);
         }
 
-        // GET: AdminCategorias/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +124,7 @@ namespace SecondHandWeb.Controllers
             return View(categoria);
         }
 
-        // POST: AdminCategorias/Delete/5
+    
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
