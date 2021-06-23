@@ -18,10 +18,6 @@ namespace PL
             _context = context;
         }
 
-        public SecondHandContext GetContext()
-        {
-            return _context;
-        }
 
         public async Task<List<Produto>> ListAll()
         {
@@ -29,7 +25,6 @@ namespace PL
                          .Include(u => u.Usuario)
                          .Include(c => c.Categoria)
                          .Include(i => i.Imagens)
-                            where p.Status == Status.DISPONIVEL
                             select p);
             return await produtos.ToListAsync();
         }
@@ -63,14 +58,7 @@ namespace PL
             await _context.SaveChangesAsync();
 
             return produto;
-        }
-
-        public async Task<Produto> GetToDeleteById(int? id)
-        {
-            var item = await _context.Produtos.FirstOrDefaultAsync(m => m.ProdutoId == id);
-
-            return item;
-        }
+        }      
 
         public async Task DeleteById(int? id)
         {
@@ -127,8 +115,6 @@ namespace PL
         }
 
 
-
-
         // 2. Itens a venda dentro de uma faixa de valores.
         public List<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal)
         {
@@ -179,15 +165,17 @@ namespace PL
                          .Include(u => u.Usuario)
                          .Include(c => c.Categoria)
                          .Include(i => i.Imagens)
-                         where p.Status == Status.DISPONIVEL
+
                          select p);
 
             return itens.ToList();
         }
 
-        public  IEnumerable<Produto> Produtos()
+        public IQueryable<Produto> Produtos()
         {
-            return _context.Produtos.Include(c => c.Categoria);
+            var produtos = from p in _context.Produtos.Include("Categoria")
+                           select p;
+            return produtos;
         }
 
         public async Task<Produto> GetProdutoById(int? id)
@@ -214,6 +202,23 @@ namespace PL
             return categoriaQuery;
         }
 
+        public IQueryable<Produto> FindProductByKeyword(string searchString)
+        {
+            var produtos = from p in _context.Produtos.Include("Categoria")
+                            .Where(s => s.Nome.Contains(searchString))
+                           select p;
+
+            return produtos;
+        }
+
+        public IQueryable<Produto> FindProductByCatByKeyword(string categoria)
+        {
+            var produtos = from p in _context.Produtos.Include("Categoria")
+                           .Where(p => p.Categoria.Nome.Equals(categoria))
+                           select p;
+            return produtos;
+        }
+
         public void ComprarProduto(int Id, string nomeUsuario)
         {
             var user = _context.Users.FirstOrDefault(u => u.Nome.Equals(nomeUsuario));
@@ -223,7 +228,7 @@ namespace PL
                 produto.NomeComprador = user.Nome;
                 produto.IdComprador = user.Id;
                 produto.Status = Status.NEGOCIACAO;
-                
+
                 //produto.DataVenda = DateTime.Now;
                 _context.Update(produto);
                 _context.SaveChanges();
@@ -255,31 +260,42 @@ namespace PL
             return await itens.ToListAsync();
         }
 
+        public async Task<List<Produto>> ListaDeProdutosAsync()
+        {
+            var itens = (from p in _context.Produtos
+                         .Include(u => u.Usuario)
+                         .Include(c => c.Categoria)
+                         .Include(i => i.Imagens)
+                         where p.Status == Status.DISPONIVEL
+                         select p);
 
+            return await itens.ToListAsync();
+
+        }
+
+
+
+
+        /*
+        public Imagem GetImage(int id)
+        {
+            Imagem im = _context.Imagem.Find(id);
+            return im;
+        }
+
+        public void SaveImagem(Imagem im)
+        {
+            _context.Imagem.Add(im);
+            _context.SaveChanges();
+        }
+
+        public async Task <Produto> ProdutoImagem(int ProdutoId)
+        {
+            var produto = await  _context.Produtos.Include("Imagens")
+                         .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
+
+            return produto;
+        }
+        */
     }
-
-
-
-
-    /*
-    public Imagem GetImage(int id)
-    {
-        Imagem im = _context.Imagem.Find(id);
-        return im;
-    }
-
-    public void SaveImagem(Imagem im)
-    {
-        _context.Imagem.Add(im);
-        _context.SaveChanges();
-    }
-
-    public async Task <Produto> ProdutoImagem(int ProdutoId)
-    {
-        var produto = await  _context.Produtos.Include("Imagens")
-                     .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
-
-        return produto;
-    }
-    */
 }

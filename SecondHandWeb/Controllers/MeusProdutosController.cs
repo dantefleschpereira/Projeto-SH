@@ -15,16 +15,17 @@ namespace SecondHandWeb.Controllers
     [Authorize(Roles = "Vendedor")]
     public class MeusProdutosController : Controller
     {
-
+        private readonly CategoriaFacade _categoriaFacade;
         private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
         private readonly SecondHandContext _context;
 
 
         public MeusProdutosController(UserManager<ApplicationUser> userManager,
-                                        ProdutoFacade produtoFacade)
+                                        ProdutoFacade produtoFacade, CategoriaFacade categoriaFacade)
         {
             _produtoFacade = produtoFacade;
+            _categoriaFacade = categoriaFacade;
             _userManager = userManager;
             _context = new SecondHandContext();
         }
@@ -67,6 +68,8 @@ namespace SecondHandWeb.Controllers
                 await _produtoFacade.Create(produto);
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
+
             return View(produto);
         }
 
@@ -84,8 +87,9 @@ namespace SecondHandWeb.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
-            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status", produto.Status);
+            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
+            ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
+
 
             return View(produto);
         }
@@ -119,8 +123,9 @@ namespace SecondHandWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "Nome", produto.CategoriaId);
-            ViewData["Status"] = new SelectList(_context.Produtos, "Status", "Status", produto.Status);
+            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
+            ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
+
 
             return View(produto);
         }

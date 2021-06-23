@@ -71,13 +71,7 @@ namespace PL
 
             return pedido;
         }
-        public async Task<Pedido> GetToDeleteById(int? id)
-        {
-            var pedido = await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);
-
-            return pedido;
-        }
-
+      
         public async Task DeleteById(int? id)
         {
             var pedido = await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);

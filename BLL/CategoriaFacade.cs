@@ -22,8 +22,8 @@ namespace BLL
         public async Task Create(Categoria categoria) => await _categoriaDao.Create(categoria);
         public async Task<Categoria> EditById(int? id) => await _categoriaDao.EditById(id);
         public async Task<Categoria> EditByIdAndObject(int id, Categoria categoria) => await _categoriaDao.EditByIdAndObject(id, categoria);
-        public async Task<Categoria> GetToDeleteById(int? id) => await _categoriaDao.GetToDeleteById(id);
         public async Task DeleteById(int? id) => await _categoriaDao.DeleteById(id);
         public bool CategoriaExists(int id) => _categoriaDao.CategoriaExists(id);
+        public List<Categoria> Categorias() => _categoriaDao.TodasCategorias();
     }
 }

@@ -20,8 +20,6 @@ namespace SecondHandWeb.Controllers
         private readonly SecondHandContext _context;
         private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
-        
-
 
         public ProdutosController(SecondHandContext context,
                                     UserManager<ApplicationUser> userManager,
@@ -33,32 +31,33 @@ namespace SecondHandWeb.Controllers
             
         }
 
-
         public async Task<IActionResult> Index(string categoria, string searchString)
         {
-            
+          
             IQueryable<String> categoriaQuery = _produtoFacade.IQueryPesquisaCateg();
 
-            var produtos = _produtoFacade.Produtos();
+            var produtos = _produtoFacade.ProdutosQuery();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                produtos = produtos.Where(p => p.Nome.Contains(searchString));
+                produtos = _produtoFacade.BuscarProdutoPorPalavra(searchString);
             }
 
             if (!string.IsNullOrEmpty(categoria))
             {
-                produtos = produtos.Where(c => c.Categoria.Nome.Equals(categoria));
+                //produtos = _produtoFacade.BuscarProdutoPorPalavraCategoria(categoria);
+               produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
             }
 
             var produtoCategoriaVM = new ProdutoCategoriaVM
             {
                 Categorias = new SelectList(await categoriaQuery.Distinct().ToListAsync()),
-                Produtos = _produtoFacade.ListaDeProduto()
+                Produtos = await produtos.ToListAsync()
             };
 
             return View(produtoCategoriaVM);
         }
+               
 
         [HttpPost]
         public string Index(string searchString, bool notUsed)
@@ -66,16 +65,7 @@ namespace SecondHandWeb.Controllers
             return "From [HttpPost]Index: filter on " + searchString;
         }
 
-        /*
-       
-        public async Task<IActionResult> Index()
-        {
-            return View(await _produtoFacade.ListAll());
-        }
-        */
-
-
-    
+          
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

@@ -21,7 +21,6 @@ namespace BLL
         public async Task Create(Pedido pedido) => await _pedidoDao.Create(pedido);
         public async Task<Pedido> EditById(int? id) => await _pedidoDao.EditById(id);
         public async Task<Pedido> EditByIdAndObject(int id, Pedido pedido) => await _pedidoDao.EditByIdAndObject(id, pedido);
-        public async Task<Pedido> GetToDeleteById(int? id) => await _pedidoDao.GetToDeleteById(id);
         public async Task DeleteById(int? id) => await _pedidoDao.DeleteById(id);
         public bool PedidoExists(int id) => _pedidoDao.PedidoExists(id);
     }

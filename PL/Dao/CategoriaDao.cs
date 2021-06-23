@@ -21,6 +21,11 @@ namespace PL
             return await _context.Categorias.ToListAsync();
         }
 
+        public List<Categoria> TodasCategorias()
+        {
+            return  _context.Categorias.ToList();
+        }
+
         public async Task<Categoria> DetailsById(int? id)
         {
             return await _context.Categorias.FirstOrDefaultAsync(m => m.CategoriaId == id);
@@ -43,13 +48,7 @@ namespace PL
 
             return categoria;
         }
-        public async Task<Categoria> GetToDeleteById(int? id)
-        {
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(m => m.CategoriaId == id);
-
-            return categoria;
-        }
-
+       
         public async Task DeleteById(int? id)
         {
             var categoria = await _context.Categorias.FirstOrDefaultAsync(m => m.CategoriaId == id);
