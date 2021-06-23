@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210623123204_Bd inicial")]
+    [Migration("20210623203253_Bd inicial")]
     partial class Bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -300,10 +300,16 @@ namespace PL.Migrations
                     b.Property<string>("IdComprador")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdVendedor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NomeComprador")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeVendedor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")

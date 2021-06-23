@@ -15,52 +15,52 @@ SET IDENTITY_INSERT [dbo].[Categorias] OFF
 
 SET IDENTITY_INSERT [dbo].[Produtos] ON
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (1, N'Iphone', N'Celular Iphone cor gold', CAST(279.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (1, N'Iphone', N'Celular Iphone cor gold', CAST(279.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (2, N'Ipad', N'Tablet Apple cor branca', CAST(199.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (2, N'Ipad', N'Tablet Apple cor branca', CAST(199.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (3, N'Tv', N'Tv da marca Sony cor preta', CAST(200.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (3, N'Tv', N'Tv da marca Sony cor preta', CAST(200.00 AS Decimal(18, 2)), 1, 1, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (4, N'Mesa', N'Mesa de madeira redonda para 6 pessoas', CAST(500.00 AS Decimal(18, 2)), 1, 3,N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (4, N'Mesa', N'Mesa de madeira redonda para 6 pessoas', CAST(500.00 AS Decimal(18, 2)), 1, 3,N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (5, N'Cadeira', N'Cadeira de madeira na cor preta', CAST(50.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (6, N'Porta', N'Porta de madeira na cor branca', CAST(350.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (6, N'Porta', N'Porta de madeira na cor branca', CAST(350.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (7, N'Cadeira', N'Cadeira de ferro na cor branca', CAST(40.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (7, N'Cadeira', N'Cadeira de ferro na cor branca', CAST(40.00 AS Decimal(18, 2)), 1, 3, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (8, N'Prancha de surf', N'Prancha da marca Tri Coast', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (8, N'Prancha de surf', N'Prancha da marca Tri Coast', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (9, N'Camisa do Barcelona', N'Camisa do time Barcelona com número 10', CAST(150.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (9, N'Camisa do Barcelona', N'Camisa do time Barcelona com número 10', CAST(150.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (10, N'Camisa do Vancouver Canucks', N'Camisa do time de hockey com número 88', CAST(250.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (10, N'Camisa do Vancouver Canucks', N'Camisa do time de hockey com número 88', CAST(250.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (11, N'Prancha de snowboard', N'Prancha da marca Burton', CAST(500.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (11, N'Prancha de snowboard', N'Prancha da marca Burton', CAST(500.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (12, N'Skate', N'Skate da marca Drop Dead', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (12, N'Skate', N'Skate da marca Drop Dead', CAST(400.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
-INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador]) 
-VALUES (13, N'Bola de futebol', N'Bola de futebol da marca Adidas na cor branca', CAST(100.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL)
+INSERT INTO [dbo].[Produtos] ([ProdutoId], [Nome], [Descricao], [Preco], [Status], [CategoriaID], [Cidade], [UsuarioId], [DataVenda], [NomeComprador], [IdComprador], [NomeVendedor], [IdVendedor]) 
+VALUES (13, N'Bola de futebol', N'Bola de futebol da marca Adidas na cor branca', CAST(100.00 AS Decimal(18, 2)), 1, 4, N'Porto Alegre', N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, NULL, NULL, N'Luis', N'a39c5dc3-196a-4460-828c-900f0096925a')
 
 
 SET IDENTITY_INSERT [dbo].[Produtos] OFF
 
 
-INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'2dd54ce7-84b6-4af2-9d99-3c28e91a8671', NULL, 'Hugo', N'comprador@psa.br', N'COMPRADOR@PSA.BR', N'comprador@psa.br', N'COMPRADOR@PSA.BR', 1, N'AQAAAAEAACcQAAAAEJHjpLbX33jJycOhiQNqkuZ/SxkEqtS99Z08lOHxwXCt0xzGWS9Vm892sqKXsbR8Rw==', N'LIZ2BH7WKJKFH5EOI5KNYGUU7Y36RW2A', N'1142d987-44c5-4d33-9c12-90bad15da75a', NULL, 0, 0, NULL, 1, 0)
+INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'2dd54ce7-84b6-4af2-9d99-3c28e91a8671', NULL, 'Hugo', N'hugo@psa.br', N'HUGO@PSA.BR', N'hugo@psa.br', N'HUGO@PSA.BR', 1, N'AQAAAAEAACcQAAAAEJHjpLbX33jJycOhiQNqkuZ/SxkEqtS99Z08lOHxwXCt0xzGWS9Vm892sqKXsbR8Rw==', N'LIZ2BH7WKJKFH5EOI5KNYGUU7Y36RW2A', N'1142d987-44c5-4d33-9c12-90bad15da75a', NULL, 0, 0, NULL, 1, 0)
 INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'67b24e7e-cfe2-448d-8e2d-8081b429fe1d', NULL, 'Ze', N'admin@psa.br', N'ADMIN@PSA.BR', N'admin@psa.br', N'ADMIN@PSA.BR', 1, N'AQAAAAEAACcQAAAAEGLvWHqnptSTqfcpblpMh+TwXFDwFtex7GPG8G1XBcY85/zA+GcBud2BtR3cDYJl4A==', N'EOHWGEUYCH52ASK7JHUV4YGCTMUPUUI6', N'e45ce73e-7708-4967-afd0-11b19847cb15', NULL, 0, 0, NULL, 1, 0)
-INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, 'Luis', N'vendedor@psa.br', N'VENDEDOR@PSA.BR', N'vendedor@psa.br', N'VENDEDOR@PSA.BR', 1, N'AQAAAAEAACcQAAAAEMfAo6pVQv20i/Waqh5wDugBnLtyYk/YUhEQTZtFmWWfszmQUf6tmoxIJaGyg9S5ww==', N'2B6TUYFP4YX2JVZOEICWO2XTKXF3YLL4', N'2c699072-b3ed-44e4-8d01-71b446d925bc', NULL, 0, 0, NULL, 1, 0)
+INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) VALUES (N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, 'Luis', N'luis@psa.br', N'LUIS@PSA.BR', N'luis@psa.br', N'LUIS@PSA.BR', 1, N'AQAAAAEAACcQAAAAEMfAo6pVQv20i/Waqh5wDugBnLtyYk/YUhEQTZtFmWWfszmQUf6tmoxIJaGyg9S5ww==', N'2B6TUYFP4YX2JVZOEICWO2XTKXF3YLL4', N'2c699072-b3ed-44e4-8d01-71b446d925bc', NULL, 0, 0, NULL, 1, 0)
 
 
 

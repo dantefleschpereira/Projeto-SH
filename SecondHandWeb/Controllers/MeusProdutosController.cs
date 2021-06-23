@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "Vendedor")]
+    [Authorize(Roles = "Vendedor, Comprador")]
     public class MeusProdutosController : Controller
     {
         private readonly CategoriaFacade _categoriaFacade;
@@ -30,10 +30,17 @@ namespace SecondHandWeb.Controllers
             _context = new SecondHandContext();
         }
 
-     
+        // exibir produtos do usuário logado
         public async Task<IActionResult> Index()
         {
-            return View(await _produtoFacade.ListAll());
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
+            return View(await _produtoFacade.ListAll(usuario));
+        }
+
+        public async Task<IActionResult> MeusProdutos()
+        {
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
+            return View(await _produtoFacade.ListAll(usuario));
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -53,21 +60,30 @@ namespace SecondHandWeb.Controllers
         }
 
         
-        public IActionResult Create()
+        public async Task <IActionResult> Create()
         {
+            var usuario = await _userManager.GetUserAsync(HttpContext.User);
+
+            Produto produto = new Produto() { IdVendedor = usuario.Id, NomeVendedor = usuario.Nome};
+            
+            
+            
+            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
+
             return View();
         }
 
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
+        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto, ApplicationUser usuario)
         {
-            if (ModelState.IsValid)
-            {
-                await _produtoFacade.Create(produto);
+
+            usuario = await _userManager.GetUserAsync(HttpContext.User);
+
+            await _produtoFacade.Create(produto, usuario);
                 return RedirectToAction(nameof(Index));
-            }
+            
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
 
             return View(produto);
@@ -222,9 +238,11 @@ namespace SecondHandWeb.Controllers
             return View(produto);
         }
 
-        public async Task<IActionResult> ProdutosNegociacao()
+        public async Task<IActionResult> ProdutosNegociacao(ApplicationUser usuario)
+
         {
-            return View(await _produtoFacade.ProdutosEmNegociacao());
+            usuario = await _userManager.GetUserAsync(HttpContext.User);
+            return View(await _produtoFacade.ProdutosEmNegociacao(usuario));
         }
 
         

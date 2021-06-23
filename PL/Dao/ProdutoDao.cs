@@ -19,12 +19,12 @@ namespace PL
         }
 
 
-        public async Task<List<Produto>> ListAll()
+        public async Task<List<Produto>> ListAll(ApplicationUser usuario)
         {
-            var produtos = (from p in _context.Produtos
-                         .Include(u => u.Usuario)
+            var produtos = (from p in _context.Produtos                        
                          .Include(c => c.Categoria)
                          .Include(i => i.Imagens)
+                         where p.IdVendedor.Equals(usuario.Id)
                             select p);
             return await produtos.ToListAsync();
         }
@@ -41,8 +41,11 @@ namespace PL
             return produto;
         }
 
-        public async Task Create(Produto produto)
+        public async Task Create(Produto produto, ApplicationUser usuario)
         {
+            produto.IdVendedor = usuario.Id;
+            produto.NomeVendedor = usuario.Nome;
+            produto.Status = Status.DISPONIVEL;
             _context.Add(produto);
             await _context.SaveChangesAsync();
         }
@@ -248,13 +251,14 @@ namespace PL
 
         }
 
-        public async Task<List<Produto>> ListaDeProdutosNegociacao()
+        public async Task<List<Produto>> ListaDeProdutosNegociacao(ApplicationUser usuario)
         {
             var itens = (from p in _context.Produtos
-                         .Include(u => u.Usuario)
+
                          .Include(c => c.Categoria)
                          .Include(i => i.Imagens)
                          where p.Status == Status.NEGOCIACAO
+                         where p.IdVendedor.Equals(usuario.Id)
                          select p);
 
             return await itens.ToListAsync();

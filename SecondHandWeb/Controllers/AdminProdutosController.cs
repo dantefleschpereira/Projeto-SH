@@ -25,11 +25,12 @@ namespace SecondHandWeb.Controllers
         }
 
         // GET: AdminProdutos
+        /*
         public async Task<IActionResult> Index()
         {
             return View(await produtoFacade.ListAll());
         }
-
+        */
         // GET: AdminProdutos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -63,7 +64,7 @@ namespace SecondHandWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                await produtoFacade.Create(produto);
+                //await produtoFacade.Create(produto);
                 return RedirectToAction(nameof(Index));
             }
             return View(produto);

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "Comprador")]
+    [Authorize(Roles = "Vendedor, Comprador")]
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;
@@ -48,7 +48,7 @@ namespace SecondHandWeb.Controllers
                 //produtos = _produtoFacade.BuscarProdutoPorPalavraCategoria(categoria);
                produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
             }
-
+            
             var produtoCategoriaVM = new ProdutoCategoriaVM
             {
                 Categorias = new SelectList(await categoriaQuery.Distinct().ToListAsync()),

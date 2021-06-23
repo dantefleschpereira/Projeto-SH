@@ -236,7 +236,9 @@ namespace PL.Migrations
                     UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: true),
                     NomeComprador = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdComprador = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IdComprador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeVendedor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdVendedor = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
