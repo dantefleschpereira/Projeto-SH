@@ -68,7 +68,7 @@
                 @* <a asp-action="Edit" asp-route-id="@item.ProdutoId">Editar</a> *@
                 <div class="text-center">
                     <div class="btn-group ">
-                        <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="Vender">Confirmar Venda</a>
+                        <a class="btn btn-success" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Vender">Confirmar Venda</a>
 
                     </div>
                 </div>
