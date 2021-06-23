@@ -248,7 +248,7 @@ namespace PL.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
                     Cidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false),
+                    UsuarioId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DataVenda = table.Column<DateTime>(type: "datetime2", nullable: true),
                     NomeComprador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdComprador = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -257,16 +257,16 @@ namespace PL.Migrations
                 {
                     table.PrimaryKey("PK_Produtos", x => x.ProdutoId);
                     table.ForeignKey(
+                        name: "FK_Produtos_AspNetUsers_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Produtos_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
                         principalTable: "Categorias",
                         principalColumn: "CategoriaId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Produtos_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
-                        principalTable: "Usuarios",
-                        principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -443,10 +443,10 @@ namespace PL.Migrations
                 name: "ProjectRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Pedidos");
@@ -455,10 +455,10 @@ namespace PL.Migrations
                 name: "Produtos");
 
             migrationBuilder.DropTable(
-                name: "Categorias");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Categorias");
         }
     }
 }

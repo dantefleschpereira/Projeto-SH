@@ -143,12 +143,12 @@ namespace PL
 
 
         // 3. Itens anunciados por um determinado vendedor, agrupados pelo status da venda.
-        public List<Produto> FindProdutoVendedorPorStatus(int usuarioId)
+        public List<Produto> FindProdutoVendedorPorStatus(string usuarioId)
         {
             var id = usuarioId;
 
             var itens = (from p in _context.Produtos.Include(u => u.Usuario)
-                         where p.UsuarioId == id
+                         where p.Usuario.Id == id
                          select p).OrderByDescending(s => s.Status);
 
             return itens.ToList();
@@ -223,6 +223,7 @@ namespace PL
                 produto.NomeComprador = user.Nome;
                 produto.IdComprador = user.Id;
                 produto.Status = Status.NEGOCIACAO;
+                
                 //produto.DataVenda = DateTime.Now;
                 _context.Update(produto);
                 _context.SaveChanges();

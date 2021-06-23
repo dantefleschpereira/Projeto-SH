@@ -310,8 +310,8 @@ namespace PL.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ProdutoId");
 
@@ -539,11 +539,9 @@ namespace PL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Entities.Models.Usuario", "Usuario")
+                    b.HasOne("Entities.Models.ApplicationUser", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("Categoria");
 

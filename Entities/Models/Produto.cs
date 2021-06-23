@@ -27,11 +27,14 @@ namespace Entities.Models
 
         public string Cidade { get; set; }
 
-        [Required]
-        public int UsuarioId { get; set; }
+        //[Required]
+        //public int UsuarioId { get; set; }
 
         [Display(Name = "Vendedor")]
-        public virtual Usuario Usuario { get; set; }
+        public virtual ApplicationUser Usuario { get; set; }
+
+        //[Display(Name = "Vendedor")]
+        //public virtual Usuario Usuario { get; set; }
 
         [Display(Name = "Data da Venda")]
         public DateTime? DataVenda { get; set; }
