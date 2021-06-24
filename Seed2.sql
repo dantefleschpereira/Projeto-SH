@@ -3,15 +3,12 @@ use SecondHand
 
 SET IDENTITY_INSERT [dbo].[Categorias] ON
 INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (1, N'Eletrônicos')
-INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (2, N'Casa')
-INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (3, N'Móveis')
-INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (4, N'Esportes')
-INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (5, N'Ferramentas')
-INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (6, N'Roupas')
+INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (2, N'Móveis')
+INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (3, N'Esportes')
+INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (4, N'Ferramentas')
+INSERT INTO [dbo].[Categorias] ([CategoriaId], [Nome]) VALUES (5, N'Roupas')
 
 SET IDENTITY_INSERT [dbo].[Categorias] OFF
-
-
 
 
 INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) 
@@ -25,11 +22,10 @@ VALUES (N'a39c5dc3-196a-4460-828c-900f0096925a', NULL, 'Luis', N'luis@psa.br', N
 
 
 
-INSERT INTO [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'6a1bbd8e-edef-42d2-949a-605644cefac0', N'Vendedor', N'VENDEDOR', N'6772569e-e01e-4d92-94e1-93204be1e552')
+INSERT INTO [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'6a1bbd8e-edef-42d2-949a-605644cefac0', N'User', N'USER', N'6772569e-e01e-4d92-94e1-93204be1e552')
 INSERT INTO [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'802e0cb6-f784-4da3-b618-8f485dae6cbe', N'Administrador', N'ADMINISTRADOR', N'e783c050-a385-4a69-a251-dc4eb62e65c9')
-INSERT INTO [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStamp]) VALUES (N'a0720860-932d-43d3-a967-42cc3100f66f', N'Comprador', N'COMPRADOR', N'39ad851b-1cff-4380-b63e-31101c18383f')
 
-INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'2dd54ce7-84b6-4af2-9d99-3c28e91a8671', N'a0720860-932d-43d3-a967-42cc3100f66f')
+INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'2dd54ce7-84b6-4af2-9d99-3c28e91a8671', N'6a1bbd8e-edef-42d2-949a-605644cefac0')
 INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'a39c5dc3-196a-4460-828c-900f0096925a', N'6a1bbd8e-edef-42d2-949a-605644cefac0')
 INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'67b24e7e-cfe2-448d-8e2d-8081b429fe1d', N'802e0cb6-f784-4da3-b618-8f485dae6cbe')
 

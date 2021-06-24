@@ -4,7 +4,7 @@
     ViewData["Title"] = "MeusProdutos";
 }
 
-<h1>MeusProdutos</h1>
+<h1>Meus Produtos</h1>
 <li class="nav-item">
     <a asp-area="" asp-controller="MeusProdutos" asp-action="ProdutosNegociacao">Produtos em Negociação</a>
 </li>
@@ -71,9 +71,8 @@
         @Html.DisplayFor(modelItem => item.DataVenda)
     </td>
     <td>
-        <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
+        <a asp-action="Details" asp-route-id="@item.ProdutoId">Detalhes</a> 
+        <a asp-action="Delete" asp-route-id="@item.ProdutoId">Excluir</a>
     </td>
 </tr>}
     </tbody>

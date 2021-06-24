@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "Vendedor, Comprador")]
+    [Authorize(Roles = "User, Administrador")]
     public class ProdutosController : Controller
     {
         private readonly SecondHandContext _context;

@@ -52,11 +52,14 @@ namespace PL
 
         public async Task<Produto> EditById(int? id)
         {
-            return await _context.Produtos.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
+            produto.Status = Status.DISPONIVEL;
+            return produto;
         }
 
         public async Task<Produto> EditByIdAndObject(int id, Produto produto)
         {
+            produto.Status = Status.DISPONIVEL;
             _context.Update(produto);
             await _context.SaveChangesAsync();
 

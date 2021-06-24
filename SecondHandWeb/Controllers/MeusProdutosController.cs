@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "Vendedor, Comprador")]
+    [Authorize(Roles = "User")]
     public class MeusProdutosController : Controller
     {
         private readonly CategoriaFacade _categoriaFacade;
@@ -73,7 +73,7 @@ namespace SecondHandWeb.Controllers
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto, ApplicationUser usuario)
+        public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Descricao,Preco,Status,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto, ApplicationUser usuario)
         {
 
             usuario = await _userManager.GetUserAsync(HttpContext.User);
@@ -95,13 +95,13 @@ namespace SecondHandWeb.Controllers
             }
 
             var produto = await _produtoFacade.EditById(id);
-
+            produto.Status = Status.DISPONIVEL;
             if (produto == null)
             {
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-            ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
+           // ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "ProdutoId", "Status", produto.Status);
 
 
             return View(produto);
@@ -110,7 +110,7 @@ namespace SecondHandWeb.Controllers
    
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,Descricao,Preco,StatusVenda,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,Descricao,Preco,Status,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
         {
             if (id != produto.ProdutoId)
             {
@@ -122,6 +122,7 @@ namespace SecondHandWeb.Controllers
                 try
                 {
                     await _produtoFacade.EditByIdAndObject(id, produto);
+                    
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -134,12 +135,13 @@ namespace SecondHandWeb.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
+                return RedirectToAction(nameof(MeusProdutos));
             }
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-            ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
+            //ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
 
-
+            
             return View(produto);
         }
      
