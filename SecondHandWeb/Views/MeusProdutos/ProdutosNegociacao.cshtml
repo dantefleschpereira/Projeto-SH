@@ -24,17 +24,11 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Categoria)
-            </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.Cidade)
-        </th>*@
-            @*<th>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </th>*@
+            </th>           
             <th>
-                @Html.DisplayNameFor(model => model.DataVenda)
-            </th>
-            <th></th>
+                @Html.DisplayNameFor(model => model.NomeComprador)
+            </th>       
+            
         </tr>
     </thead>
     <tbody>
@@ -54,18 +48,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Categoria.Nome)
-            </td>
-            @*<td>
-            @Html.DisplayFor(modelItem => item.Cidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Email)
-        </td>*@
+            </td>            
             <td>
-                @Html.DisplayFor(modelItem => item.DataVenda)
+                @Html.DisplayFor(modelItem => item.NomeComprador)
             </td>
+            
             <td>
-                @* <a asp-action="Edit" asp-route-id="@item.ProdutoId">Editar</a> *@
                 <div class="text-center">
                     <div class="btn-group ">
                         <a class="btn btn-success" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Vender">Confirmar Venda</a>

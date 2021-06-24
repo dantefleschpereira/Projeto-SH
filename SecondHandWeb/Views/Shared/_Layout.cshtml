@@ -43,10 +43,10 @@
                         }
                         @if (User.IsInRole("User"))
                         {
-                            @await Component.InvokeAsync("CarrinhoCompraResumo")}
+                            @await Component.InvokeAsync("CarrinhoCompraResumo")
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Histórico de Compras</a>
-                        </li>
+                        </li>}
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>
                         </li>
