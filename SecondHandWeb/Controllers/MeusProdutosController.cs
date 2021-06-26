@@ -1,7 +1,6 @@
 ﻿using BLL;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -101,8 +100,6 @@ namespace SecondHandWeb.Controllers
                 return NotFound();
             }
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-           // ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "ProdutoId", "Status", produto.Status);
-
 
             return View(produto);
         }
@@ -161,16 +158,7 @@ namespace SecondHandWeb.Controllers
 
             return View(produto);
         }
-
-     
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await _produtoFacade.DeleteById(id);
-
-            return RedirectToAction(nameof(Index));
-        }
+            
 
         public async Task<IActionResult> DadosUsuario()
         {
@@ -233,6 +221,15 @@ namespace SecondHandWeb.Controllers
              
             _produtoFacade.ConfirmarVendaProduto(id);            
                        
+            return View(produto);
+        }
+
+        public async Task<IActionResult> CancelarVenda(int id)
+        {
+            var produto = await _produtoFacade.ProdutoById(id);
+
+            _produtoFacade.CancelarVendaProduto(id);
+
             return View(produto);
         }
 

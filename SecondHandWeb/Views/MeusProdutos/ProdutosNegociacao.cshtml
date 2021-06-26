@@ -56,7 +56,12 @@
             <td>
                 <div class="text-center">
                     <div class="btn-group ">
-                        <a class="btn btn-success" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Vender">Confirmar Venda</a>
+                        <a class="btn btn-success" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Vender">Confirmar</a>
+                    </div>
+                    <div class="btn-group ">
+                        <div class="btn-group ">
+                            <a class="btn btn-danger" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="CancelarVenda">Cancelar</a>
+                        </div>
 
                     </div>
                 </div>

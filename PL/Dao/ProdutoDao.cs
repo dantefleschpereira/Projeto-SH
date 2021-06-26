@@ -79,19 +79,6 @@ namespace PL
         }
 
 
-        // 1. Usuários do sistema devem poder anunciar itens para venda.
-        public void InserirProduto(Produto produto)
-        {
-            _context.Add(produto);
-            _context.SaveChanges();
-
-            if (produto != null)
-            {
-                Console.WriteLine("Produto anunciado com sucesso! Id do produto: {0}", produto.ProdutoId);
-            }
-        }
-
-
         // 2. Itens a venda de uma determinada categoria.
         public List<Produto> FindProdutoByCategoriaId(int Id)
         {
@@ -249,6 +236,19 @@ namespace PL
             {
                 produto.Status = Status.VENDIDO;
                 produto.DataVenda = DateTime.Now;
+                _context.Update(produto);
+                _context.SaveChanges();
+            }
+
+        }
+
+        public void CancelarVenda(int Id)
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == Id);
+            if (produto != null)
+            {
+                produto.Status = Status.CANCELADO;
+                //produto.DataVenda = DateTime.Now;
                 _context.Update(produto);
                 _context.SaveChanges();
             }

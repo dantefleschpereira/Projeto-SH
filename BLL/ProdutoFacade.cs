@@ -30,10 +30,6 @@ namespace BLL
         //public void SaveImagem(Imagem im) => _produtoDao.SaveImagem(im);
         //public async Task<Produto> ProdutoImagem(int ProdutoId) => await _produtoDao.ProdutoImagem(ProdutoId);
 
-        public void AnunciarProduto(Produto produto)
-        {
-            _produtoDao.InserirProduto(produto);
-        }
         public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId)
         {
             return _produtoDao.FindProdutoByCategoriaId(categoriaId);
@@ -70,6 +66,7 @@ namespace BLL
         public void Comprar(int id, string nomeUsuario) => _produtoDao.ComprarProduto(id, nomeUsuario);
 
         public void ConfirmarVendaProduto(int id) => _produtoDao.ConfirmarVenda(id);
+        public void CancelarVendaProduto(int id) => _produtoDao.CancelarVenda(id);
 
         public async Task<List<Produto>> ProdutosEmNegociacao(ApplicationUser usuario) => await _produtoDao.ListaDeProdutosNegociacao(usuario);
 
