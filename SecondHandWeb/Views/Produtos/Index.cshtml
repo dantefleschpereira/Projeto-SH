@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<Entities.Models.Produto>*@
-    @model SecondHandWeb.Models.ProdutoCategoriaVM
+﻿@model SecondHandWeb.Models.ProdutoCategoriaVM
 
 @{ ViewData["Title"] = "Index"; }
 
@@ -31,20 +30,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Produtos[0].Preco)
             </th>
-            @* <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>*@
-
             <th>
                 @Html.DisplayNameFor(model => model.Produtos[0].Cidade)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Usuario)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataVenda)
-                </th>*@
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Produtos[0].NomeVendedor)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -63,20 +54,17 @@
     <td>
         @Html.DisplayFor(modelItem => item.Preco)
     </td>
-    @* <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.Cidade)
     </td>
-    @* <td>
-            @Html.DisplayFor(modelItem => item.Usuario.Nome)
-        </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.NomeVendedor)
+    </td>
 
-<td>
-    @*<a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>*@
-    <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Comprar">Comprar</a>
-</td>
+    <td>
+        @*<a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>*@
+        <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Comprar">Comprar</a>
+    </td>
 </tr>}
 
     </tbody>

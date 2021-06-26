@@ -92,7 +92,7 @@ namespace PL.Componentes
                     _context.CarrinhoCompraItens.Remove(carrinhoCompraItem);
                 }
             }
-
+            produto.Status = Status.DISPONIVEL;
             _context.SaveChanges();
 
             return quantidadeLocal;
