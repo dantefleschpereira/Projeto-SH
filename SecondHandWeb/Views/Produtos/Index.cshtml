@@ -7,7 +7,6 @@
 
 <form asp-controller="Produtos" asp-action="Index" method="get">
     <p>
-
         <select asp-for="Categoria" asp-items="Model.Categorias">
             <option value="">All</option>
         </select>
@@ -75,11 +74,10 @@
         </td>*@
 
 <td>
-    @*<a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a>*@
-    <a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>
-    @*<a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>*@
-    @* <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Comprar">Saiba Mais</a>*@
+    @*<a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>*@
+    <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Comprar">Comprar</a>
 </td>
 </tr>}
+
     </tbody>
 </table>

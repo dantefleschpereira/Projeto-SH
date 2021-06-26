@@ -5,13 +5,13 @@
 }
 
 <h1>Meus Produtos</h1>
-<li class="nav-item">
-    <a asp-area="" asp-controller="MeusProdutos" asp-action="ProdutosNegociacao">Produtos em Negociação</a>
-</li>
+<p>
+    <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="Create">Anunciar Produto</a>
+</p>
+<p>
+    <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="ProdutosNegociacao">Produtos em Negociação</a>
+</p>
 
-<li class="nav-item">
-    <a asp-action="Create">Anunciar Produto</a>
-</li>
 <table class="table">
     <thead>
         <tr>
@@ -34,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NomeVendedor)
+                @Html.DisplayNameFor(model => model.NomeComprador)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataVenda)
@@ -45,35 +45,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Nome)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Descricao)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Preco)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Status)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Categoria.Nome)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Cidade)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NomeVendedor)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DataVenda)
-    </td>
-    <td>
-        <a asp-action="Details" asp-route-id="@item.ProdutoId">Detalhes</a> 
-        <a asp-action="Delete" asp-route-id="@item.ProdutoId">Excluir</a>
-    </td>
-</tr>}
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeComprador)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataVenda)
+                </td>
+                <td>
+                    @* <a asp-action="Details" asp-route-id="@item.ProdutoId">Detalhes</a>*@
+                    <p><a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Details">Detalhes</a></p>
+                    <p><a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Delete">Excluir</a></p>
+                    @* <a asp-action="Delete" asp-route-id="@item.ProdutoId">Excluir</a>*@
+                </td>
+            </tr>
+}
     </tbody>
 </table>

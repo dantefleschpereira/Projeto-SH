@@ -58,8 +58,10 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="MeusProdutos" asp-action="Edit" asp-route-id="@Model.ProdutoId">Editar</a><br />
-    <a asp-controller="MeusProdutos" asp-action="Index">Voltar</a>
+   
+    <p><a class="btn btn-primary" asp-controller="MeusProdutos" asp-route-id="@Model.ProdutoId" asp-action="Edit">Editar</a></p>
+    <p><a class="btn btn-primary" asp-controller="MeusProdutos" asp-action="MeusProdutos">Voltar</a></p>
+
 </div>
 
 <div class="row">
