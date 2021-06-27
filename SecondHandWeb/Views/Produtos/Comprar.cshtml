@@ -83,16 +83,10 @@
                         new { enctype = "multipart/form-data" }))
 {
 
-
     <div text-right">
         <p class="formPullRightButton">
-            <a class="btn btn-primary" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-produtoId="@Model.ProdutoId">Comprar</a>
+            <a class="btn btn-primary" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-produtoId="@Model.ProdutoId">Avançar</a>
         </p>
-    </div>
-    <div text-right">
-        <p class="formPullRightButton">
-            <a class="btn btn-primary" asp-controller="Produtos" asp-action="Index" asp-route-action="Index">Voltar</a>
-        </p>
-    </div>
+    </div>    
 
 }

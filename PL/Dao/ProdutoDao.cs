@@ -21,10 +21,10 @@ namespace PL
 
         public async Task<List<Produto>> ListAll(ApplicationUser usuario)
         {
-            var produtos = (from p in _context.Produtos                        
+            var produtos = (from p in _context.Produtos
                          .Include(c => c.Categoria)
                          .Include(i => i.Imagens)
-                         where p.IdVendedor.Equals(usuario.Id)
+                            where p.IdVendedor.Equals(usuario.Id)
                             select p);
             return await produtos.ToListAsync();
         }
@@ -64,7 +64,7 @@ namespace PL
             await _context.SaveChangesAsync();
 
             return produto;
-        }      
+        }
 
         public async Task DeleteById(int? id)
         {
@@ -242,13 +242,22 @@ namespace PL
 
         }
 
+        public async Task<List<Produto>> HistoricoProdutos(string IdComprador)
+        {
+            var produtos = from p in _context.Produtos.Include("Categoria")
+                         .Where(p => p.Status == Status.NEGOCIACAO || p.Status == Status.VENDIDO || p.Status == Status.CANCELADO)
+                         .Where(p => p.IdComprador.Equals(IdComprador))
+                           select p;
+            return await produtos.ToListAsync();
+
+        }
+
         public void CancelarVenda(int Id)
         {
             var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == Id);
             if (produto != null)
             {
-                produto.Status = Status.CANCELADO;
-                //produto.DataVenda = DateTime.Now;
+                produto.Status = Status.CANCELADO;             
                 _context.Update(produto);
                 _context.SaveChanges();
             }

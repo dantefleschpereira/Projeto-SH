@@ -70,5 +70,6 @@ namespace BLL
 
         public async Task<List<Produto>> ProdutosEmNegociacao(ApplicationUser usuario) => await _produtoDao.ListaDeProdutosNegociacao(usuario);
 
+        public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
     } 
 }

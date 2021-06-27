@@ -5,13 +5,19 @@
 }
 
 <h1>Meus Produtos</h1>
-<p>
-    <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="Create">Anunciar Produto</a>
-</p>
-<p>
-    <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="ProdutosNegociacao">Produtos em Negociação</a>
-</p>
-
+<td>
+    <div class="text-left">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="Create">Anunciar Produto</a>
+        </div>
+        <div class="btn-group ">
+            <div class="btn-group ">
+                <a class="btn btn-success" asp-controller="MeusProdutos" asp-action="ProdutosNegociacao">Produtos em Negociação</a>
+            </div>
+        </div>
+    </div>
+    <div><br /></div>
+</td>
 <table class="table">
     <thead>
         <tr>
@@ -72,11 +78,19 @@
                 </td>
                 <td>
                     @* <a asp-action="Details" asp-route-id="@item.ProdutoId">Detalhes</a>*@
-                    <p><a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Details">Detalhes</a></p>
-                    <p><a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Delete">Excluir</a></p>
+                    <div class="text-left">
+                        <div class="btn-group ">
+                            <a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Details">Detalhes</a>
+                        </div>
+                        <div class="btn-group ">
+                            <div class="btn-group ">
+                                <a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Delete">Excluir</a>
+                            </div>
+                        </div>
+                    </div>
                     @* <a asp-action="Delete" asp-route-id="@item.ProdutoId">Excluir</a>*@
                 </td>
             </tr>
-}
+        }
     </tbody>
 </table>

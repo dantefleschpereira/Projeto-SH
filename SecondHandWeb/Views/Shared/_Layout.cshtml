@@ -39,14 +39,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CarrinhoCompra" asp-action="Index">Meus Pedidos</a>
                             </li>
-
                         }
                         @if (User.IsInRole("User"))
                         {
                             @await Component.InvokeAsync("CarrinhoCompraResumo")
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Histórico de Compras</a>
-                        </li>*@
+                       <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MeusProdutos" asp-action="GetHistoricoDeProdutos">Histórico de Compras</a>
+                        </li>
                         }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacidade</a>

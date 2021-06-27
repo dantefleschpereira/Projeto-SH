@@ -240,7 +240,14 @@ namespace SecondHandWeb.Controllers
             return View(await _produtoFacade.ProdutosEmNegociacao(usuario));
         }
 
-        
+        public async Task<IActionResult> GetHistoricoDeProdutos(ApplicationUser usuario)
+        {
+            usuario = await _userManager.GetUserAsync(HttpContext.User);
+            var produtos = await _produtoFacade.BuscarHistoricoProdutos(usuario.Id);
+            return View(produtos);
+        }
+
+
         }
     }
 

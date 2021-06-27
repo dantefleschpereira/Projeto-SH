@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Entities.Models.Produto>
+
+@{
+    ViewData["Title"] = "GetHistoricoDeProdutos";
+}
+
+<h1>Meu Histórico de Compra</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.DataVenda)
+        </th>
+        <th>
+                @Html.DisplayNameFor(model => model.NomeComprador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdComprador)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.NomeVendedor)
+            </th>
+            @* <th>
+            @Html.DisplayNameFor(model => model.IdVendedor)
+        </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DataVenda)
+            </td>
+             <td>
+            @Html.DisplayFor(modelItem => item.NomeComprador)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdComprador)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeVendedor)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.IdVendedor)
+        </td>*@
+        </tr>
+        }
+    </tbody>
+</table>
