@@ -81,12 +81,9 @@
                     <div class="text-left">
                         <div class="btn-group ">
                             <a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Details">Detalhes</a>
-                        </div>
-                        <div class="btn-group ">
-                            <div class="btn-group ">
-                                <a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Delete">Excluir</a>
-                            </div>
-                        </div>
+                            &nbsp;<a class="btn btn-info" asp-controller="MeusProdutos" asp-route-id="@item.ProdutoId" asp-action="Delete">Excluir</a>
+
+                        </div>                       
                     </div>
                     @* <a asp-action="Delete" asp-route-id="@item.ProdutoId">Excluir</a>*@
                 </td>
