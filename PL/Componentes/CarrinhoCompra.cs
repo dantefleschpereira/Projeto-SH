@@ -27,20 +27,20 @@ namespace PL.Componentes
 
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
-            //define uma sessão
+            //definir sessão
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            //obtem um serviço do tipo do contexto 
+            //obter serviço do tipo do contexto 
             var context = services.GetService<SecondHandContext>();
 
-            //obtem ou gera o Id do carrinho
+            //obter ou gerar o Id do carrinho
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
-            //atribui o id do carrinho na Sessão
+            //atribuir o id do carrinho na sessão
             session.SetString("CarrinhoId", carrinhoId);
 
-            //retorna o carrinho com o contexto e o Id atribuido ou obtido
+            //retornar o carrinho com o contexto e o Id atribuido ou obtido
             return new CarrinhoCompra(context)
             {
                 CarrinhoCompraId = carrinhoId

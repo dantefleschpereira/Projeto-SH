@@ -38,24 +38,24 @@ namespace SecondHandWeb.Controllers
                 ModelState.AddModelError("", "Seu carrinho esta vazio");
             }
 
-            //valor total do pedido
+            //Valor total do pedido
             foreach (var item in items)
             {
                 totalItensPedido += item.Quantidade;
                 precoTotalPedido += (item.Produto.Preco * item.Quantidade);
             }
 
-            //atribui o total de itens do pedido
+            //Total de itens do pedido
             pedido.TotalItensPedido = totalItensPedido;
 
-            //atribui o total do pedido ao pedido
+            //Total do pedido ao pedido
             pedido.PedidoTotal = precoTotalPedido;
 
             if (ModelState.IsValid)
             {
                 _pedidoFacade.CriarPedido(pedido);
 
-                ViewBag.CheckoutCompletoMensagem = "Obrigado por sua compra :) ";
+                ViewBag.CheckoutCompletoMensagem = "Acompanhe a situação do seu pedido no menu Histórico de Compras";
                 ViewBag.TotalPedido = _carrinhoCompra.GetCarrinhoCompraTotal();
 
                 _carrinhoCompra.LimparCarrinho();
