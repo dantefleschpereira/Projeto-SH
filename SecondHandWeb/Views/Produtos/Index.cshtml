@@ -2,17 +2,18 @@
 
 @{ ViewData["Title"] = "Index"; }
 
-<h1>Produtos</h1>
+<h1>Produtos<br /></h1>
 
-<form asp-controller="Produtos" asp-action="Index" method="get">
-    <p>
-        <select asp-for="Categoria" asp-items="Model.Categorias">
-            <option value="">All</option>
-        </select>
+<form asp-controller="Produtos" asp-action="Index" method="get">    
+        <div>
+            <p>
+                Preço Mínimo <input type="number" asp-for="SearchString" />
 
-        Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+                &nbsp;&nbsp;Preço Máximo <input type="number" asp-for="SearchString" />
+
+                <input type="submit" value="Filter" />
+            </p>        
+        </div>    
 </form>
 
 <form asp-controller="Produtos" asp-action="Index" method="get">
@@ -21,7 +22,7 @@
             <option value="">All</option>
         </select>
 
-        Title: <input type="text" asp-for="SearchString" />
+        Produto: <input type="text" asp-for="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
