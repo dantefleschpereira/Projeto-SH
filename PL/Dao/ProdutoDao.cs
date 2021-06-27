@@ -32,7 +32,6 @@ namespace PL
 
         public async Task<Produto> DetailsById(int? id)
         {
-
             var produto = await _context.Produtos.Include("Imagens")
                 .Include(p => p.Categoria)
                 .Include(p => p.Usuario)

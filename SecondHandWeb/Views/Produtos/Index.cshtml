@@ -76,6 +76,8 @@
     <td>
         @*<a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>*@
         <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Comprar">Comprar</a>
+        <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Details">Detalhes</a>
+
     </td>
 </tr>
 }
