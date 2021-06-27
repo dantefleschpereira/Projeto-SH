@@ -46,7 +46,7 @@ namespace BLL
 
         public async Task<List<Produto>> ListaProdutosAsync() => await _produtoDao.ListaDeProdutosAsync();
 
-        public List<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
+        public IQueryable<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
         {
             return _produtoDao.FindProdutoByFaixa(valorInicial, valorFinal);
         }

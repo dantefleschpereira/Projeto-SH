@@ -13,5 +13,7 @@ namespace SecondHandWeb.Models
         public SelectList Categorias { get; set; }
         public string Categoria { get; set; }
         public string SearchString { get; set; }
+        public decimal PrecoMin { get; set; }
+        public decimal PrecoMax { get; set; }
     }
 }

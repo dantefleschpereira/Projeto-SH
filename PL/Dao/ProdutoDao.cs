@@ -109,14 +109,15 @@ namespace PL
 
 
         // 2. Itens a venda dentro de uma faixa de valores.
-        public List<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal)
+        public IQueryable<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal)
         {
             var itens = (from p in _context.Produtos
+                         .Include(c => c.Categoria)                         
                          where p.Status == Status.DISPONIVEL
                          where p.Preco >= valorInicial && p.Preco <= valorFinal
                          select p);
 
-            return itens.ToList();
+            return itens;
         }
 
 
@@ -222,8 +223,7 @@ namespace PL
                 produto.NomeComprador = user.Nome;
                 produto.IdComprador = user.Id;
                 produto.Status = Status.NEGOCIACAO;
-
-                //produto.DataVenda = DateTime.Now;
+                
                 _context.Update(produto);
                 _context.SaveChanges();
             }

@@ -31,7 +31,8 @@ namespace SecondHandWeb.Controllers
             
         }
 
-        public async Task<IActionResult> Index(string categoria, string searchString)
+        public async Task<IActionResult> Index(string categoria, string searchString,
+                                                decimal precoMin, decimal precoMax)
         {
           
             IQueryable<String> categoriaQuery = _produtoFacade.IQueryPesquisaCateg();
@@ -47,6 +48,10 @@ namespace SecondHandWeb.Controllers
             {
                 //produtos = _produtoFacade.BuscarProdutoPorPalavraCategoria(categoria);
                produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
+            }
+            if (precoMin > -1 && precoMax > precoMin)
+            {
+                produtos = _produtoFacade.EncontrarProdutoPorFaixaDeValores(precoMin, precoMax);
             }
             
             var produtoCategoriaVM = new ProdutoCategoriaVM

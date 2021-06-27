@@ -4,16 +4,16 @@
 
 <h1>Produtos<br /></h1>
 
-<form asp-controller="Produtos" asp-action="Index" method="get">    
-        <div>
-            <p>
-                Preço Mínimo <input type="number" asp-for="SearchString" />
+<form asp-controller="Produtos" asp-action="Index" method="get">
+    <div>
+        <p>
+            Preço Mínimo <input type="number" asp-for="PrecoMin" />
 
-                &nbsp;&nbsp;Preço Máximo <input type="number" asp-for="SearchString" />
+            &nbsp;&nbsp;Preço Máximo <input type="number" asp-for="PrecoMax" />
 
-                <input type="submit" value="Filter" />
-            </p>        
-        </div>    
+            <input type="submit" value="Filter" />
+        </p>
+    </div>
 </form>
 
 <form asp-controller="Produtos" asp-action="Index" method="get">
@@ -77,7 +77,8 @@
         @*<a asp-action="Comprar" asp-route-id="@item.ProdutoId">Comprar</a>*@
         <a class="btn btn-success" asp-controller="Produtos" asp-route-id="@item.ProdutoId" asp-action="Comprar">Comprar</a>
     </td>
-</tr>}
+</tr>
+}
 
     </tbody>
 </table>
