@@ -26,7 +26,7 @@ namespace PL
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoDetalhe> PedidoDetalhes { get; set; }
         public DbSet<ProjectRole> ProjectRoles { get; set; }
-
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

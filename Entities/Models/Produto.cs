@@ -47,9 +47,7 @@ namespace Entities.Models
 
         public virtual ICollection<Imagem> Imagens { get; set; }
 
-
-
-
+        public virtual ICollection<QuestionAnswer> QuestionAnswers { get; set; }
 
     }
 }

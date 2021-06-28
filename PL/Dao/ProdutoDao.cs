@@ -289,7 +289,11 @@ namespace PL
 
         }
 
-
+        public void addQuestion(QuestionAnswer qa)
+        {
+            _context.QuestionAnswers.Add(qa);
+            _context.SaveChanges();
+        }
 
 
         /*

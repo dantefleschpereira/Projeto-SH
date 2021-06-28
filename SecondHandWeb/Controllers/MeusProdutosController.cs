@@ -247,8 +247,26 @@ namespace SecondHandWeb.Controllers
             return View(produtos);
         }
 
+        public async Task<IActionResult> AddQuestion(int ProdutoId, string qaString)
+        {
+            var usuario = await _userManager.GetUserAsync(User);
 
+            ViewBag.Id = usuario.Id;
+            ViewBag.UserName = usuario.UserName;
+
+            QuestionAnswer novo = new QuestionAnswer()
+            {
+                Text = qaString,
+                User = usuario.UserName,
+                ProdutoId = ProdutoId
+            };
+
+            _produtoFacade.addQuestion(novo);
+
+            return RedirectToAction("Details", "Produtos", new { Id = ProdutoId });
         }
+
+    }
     }
 
 
