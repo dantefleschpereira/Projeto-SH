@@ -25,51 +25,22 @@ namespace BLL
         public bool ProdutoExists(int id) => _produtoDao.ProdutoExists(id);
         public IQueryable<Produto> BuscarProdutoPorPalavra(string palavra) => _produtoDao.FindProductByKeyword(palavra);
         public IQueryable<Produto> BuscarProdutoPorPalavraCategoria(string palavra) => _produtoDao.FindProductByCatByKeyword(palavra);
+        public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId) => _produtoDao.FindProdutoByCategoriaId(categoriaId);        
+        public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId) => _produtoDao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);      
+        public List<Produto> ListaDeProduto() => _produtoDao.ListaDeProdutos();       
+        public async Task<List<Produto>> ListaProdutosAsync() => await _produtoDao.ListaDeProdutosAsync();
+        public IQueryable<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal) => _produtoDao.FindProdutoByFaixa(valorInicial, valorFinal);        
+        public IQueryable<Produto> ProdutosQuery() => _produtoDao.Produtos();       
+        public async Task<Produto> ProdutoById(int? id) => await _produtoDao.GetProdutoById(id);
+        public IQueryable<String> IQueryPesquisaCateg() => _produtoDao.IQueryPesquisaCat();
+        public void Comprar(int id, string nomeUsuario) => _produtoDao.ComprarProduto(id, nomeUsuario);
+        public void ConfirmarVendaProduto(int id) => _produtoDao.ConfirmarVenda(id);
+        public void CancelarVendaProduto(int id) => _produtoDao.CancelarVenda(id);
+        public async Task<List<Produto>> ProdutosEmNegociacao(ApplicationUser usuario) => await _produtoDao.ListaDeProdutosNegociacao(usuario);
+        public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
 
         //public Imagem GetImage(int id) => _produtoDao.GetImage(id);
         //public void SaveImagem(Imagem im) => _produtoDao.SaveImagem(im);
         //public async Task<Produto> ProdutoImagem(int ProdutoId) => await _produtoDao.ProdutoImagem(ProdutoId);
-
-        public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId)
-        {
-            return _produtoDao.FindProdutoByCategoriaId(categoriaId);
-        }
-        public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId)
-        {
-            return _produtoDao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);
-        }
-
-        public List<Produto> ListaDeProduto()
-        {
-            return _produtoDao.ListaDeProdutos();
-        }
-
-        public async Task<List<Produto>> ListaProdutosAsync() => await _produtoDao.ListaDeProdutosAsync();
-
-        public IQueryable<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal)
-        {
-            return _produtoDao.FindProdutoByFaixa(valorInicial, valorFinal);
-        }
-
-        public IQueryable<Produto> ProdutosQuery()
-        {
-            return _produtoDao.Produtos();
-        }
-
-        public async Task<Produto> ProdutoById(int? id)
-        {
-            return await _produtoDao.GetProdutoById(id);
-        }
-
-        public IQueryable<String> IQueryPesquisaCateg() => _produtoDao.IQueryPesquisaCat();
-
-        public void Comprar(int id, string nomeUsuario) => _produtoDao.ComprarProduto(id, nomeUsuario);
-
-        public void ConfirmarVendaProduto(int id) => _produtoDao.ConfirmarVenda(id);
-        public void CancelarVendaProduto(int id) => _produtoDao.CancelarVenda(id);
-
-        public async Task<List<Produto>> ProdutosEmNegociacao(ApplicationUser usuario) => await _produtoDao.ListaDeProdutosNegociacao(usuario);
-
-        public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
-    } 
+    }
 }
