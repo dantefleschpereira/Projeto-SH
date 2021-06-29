@@ -21,8 +21,6 @@ namespace SecondHandWeb
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
-
-       
+                });       
     }
 }

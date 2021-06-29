@@ -21,7 +21,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Loja</a>
                         </li>
-                        @if (User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="MeusProdutos" asp-action="MeusProdutos">Meus Produtos</a>
@@ -34,13 +34,13 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Administrador</a>
                             </li>
                         }
-                        @if (User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="CarrinhoCompra" asp-action="Index">Meus Pedidos</a>
                             </li>
                         }
-                        @if (User.IsInRole("User"))
+                        @if (User.Identity.IsAuthenticated)
                         {
                             @await Component.InvokeAsync("CarrinhoCompraResumo")
                        <li class="nav-item">

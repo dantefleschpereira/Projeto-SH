@@ -11,6 +11,7 @@ namespace PL
     public class CategoriaDao
     {
         private readonly SecondHandContext _context;
+
         public CategoriaDao(SecondHandContext context)
         {
             _context = context;

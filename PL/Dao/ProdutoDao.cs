@@ -176,7 +176,6 @@ namespace PL
         {
             var produto = await _context.Produtos.Include("Imagens")
                 .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(m => m.ProdutoId == id);
 
             return produto;
@@ -288,22 +287,20 @@ namespace PL
             return await itens.ToListAsync();
 
         }
-
-
-
-
-        /*
-        public Imagem GetImage(int id)
+                
+        public Imagem BuscarImage(int id)
         {
             Imagem im = _context.Imagem.Find(id);
             return im;
         }
 
+        
         public void SaveImagem(Imagem im)
         {
             _context.Imagem.Add(im);
             _context.SaveChanges();
         }
+        /*
 
         public async Task <Produto> ProdutoImagem(int ProdutoId)
         {

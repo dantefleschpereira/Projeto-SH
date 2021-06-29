@@ -14,18 +14,17 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "User, Administrador")]
+    [Authorize]
     public class ProdutosController : Controller
     {
-        private readonly SecondHandContext _context;
+        
         private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
 
-        public ProdutosController(SecondHandContext context,
-                                    UserManager<ApplicationUser> userManager,
+        public ProdutosController(UserManager<ApplicationUser> userManager,
                                     ProdutoFacade produtoFacade)
         {
-            _context = context;
+           
             _produtoFacade = produtoFacade;
             _userManager = userManager;
             
@@ -46,7 +45,7 @@ namespace SecondHandWeb.Controllers
 
             if (!string.IsNullOrEmpty(categoria))
             {
-                //produtos = _produtoFacade.BuscarProdutoPorPalavraCategoria(categoria);
+             
                produtos = produtos.Where(x => x.Categoria.Nome.Equals(categoria));
             }
             if (precoMin > -1 && precoMax > precoMin)
@@ -103,7 +102,7 @@ namespace SecondHandWeb.Controllers
        
         public ActionResult GetImage(int id)
         {
-            Imagem im = _context.Imagem.Find(id);
+            Imagem im = _produtoFacade.GetImagem(id);
             if (im != null)
             {
                 return File(im.ImageFile, im.ImageMimeType);

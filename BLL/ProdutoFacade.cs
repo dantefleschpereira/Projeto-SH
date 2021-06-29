@@ -39,8 +39,8 @@ namespace BLL
         public async Task<List<Produto>> ProdutosEmNegociacao(ApplicationUser usuario) => await _produtoDao.ListaDeProdutosNegociacao(usuario);
         public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
 
-        //public Imagem GetImage(int id) => _produtoDao.GetImage(id);
-        //public void SaveImagem(Imagem im) => _produtoDao.SaveImagem(im);
+        public Imagem GetImagem(int id) => _produtoDao.BuscarImage(id);
+        public void SalvarImagem(Imagem im) => _produtoDao.SaveImagem(im);
         //public async Task<Produto> ProdutoImagem(int ProdutoId) => await _produtoDao.ProdutoImagem(ProdutoId);
     }
 }

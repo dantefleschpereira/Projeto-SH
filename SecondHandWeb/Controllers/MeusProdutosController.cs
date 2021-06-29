@@ -11,14 +11,12 @@ using System.Threading.Tasks;
 
 namespace SecondHandWeb.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize]
     public class MeusProdutosController : Controller
     {
         private readonly CategoriaFacade _categoriaFacade;
         private readonly ProdutoFacade _produtoFacade;
         public readonly UserManager<ApplicationUser> _userManager;
-        private readonly SecondHandContext _context;
-
 
         public MeusProdutosController(UserManager<ApplicationUser> userManager,
                                         ProdutoFacade produtoFacade, CategoriaFacade categoriaFacade)
@@ -26,7 +24,7 @@ namespace SecondHandWeb.Controllers
             _produtoFacade = produtoFacade;
             _categoriaFacade = categoriaFacade;
             _userManager = userManager;
-            _context = new SecondHandContext();
+            
         }
 
         public async Task<IActionResult> Index()
@@ -136,7 +134,6 @@ namespace SecondHandWeb.Controllers
                 return RedirectToAction(nameof(MeusProdutos));
             }
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-            //ViewData["Status"] = new SelectList(_produtoFacade.ListaDeProduto(), "Status", "Status", produto.Status);
 
             
             return View(produto);
@@ -170,8 +167,8 @@ namespace SecondHandWeb.Controllers
         }
 
         public ActionResult GetImage(int id)
-        {
-            Imagem im = _context.Imagem.Find(id);
+        {            
+            Imagem im = _produtoFacade.GetImagem(id);
             if (im != null)
             {
                 return File(im.ImageFile, im.ImageMimeType);
@@ -202,15 +199,12 @@ namespace SecondHandWeb.Controllers
                         im.ImageFile = stream.ToArray();
 
                     }
-                    _context.Imagem.Add(im);
-                }
-
-                _context.SaveChanges();
+                   
+                    _produtoFacade.SalvarImagem(im);
+                }                
 
             }
-
-            var produto = await _context.Produtos.Include("Imagens")
-                         .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
+            var produto = await _produtoFacade.ProdutoById(ProdutoId);           
 
             return View("Details", produto);
         }
