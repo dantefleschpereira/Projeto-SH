@@ -328,19 +328,27 @@ namespace PL.Migrations
                     b.ToTable("Produtos");
                 });
 
-            modelBuilder.Entity("Entities.Models.ProjectRole", b =>
+            modelBuilder.Entity("Entities.Models.QuestionAnswer", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("QAId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("RoleName")
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("ProjectRoles");
+                    b.HasKey("QAId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("QuestionAnswers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -530,6 +538,17 @@ namespace PL.Migrations
                     b.Navigation("Usuario");
                 });
 
+            modelBuilder.Entity("Entities.Models.QuestionAnswer", b =>
+                {
+                    b.HasOne("Entities.Models.Produto", "Produto")
+                        .WithMany("QuestionAnswers")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -594,6 +613,8 @@ namespace PL.Migrations
             modelBuilder.Entity("Entities.Models.Produto", b =>
                 {
                     b.Navigation("Imagens");
+
+                    b.Navigation("QuestionAnswers");
                 });
 #pragma warning restore 612, 618
         }

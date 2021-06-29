@@ -300,6 +300,13 @@ namespace PL
             _context.Imagem.Add(im);
             _context.SaveChanges();
         }
+
+        public void addQuestion(QuestionAnswer qa)
+        {
+            _context.QuestionAnswers.Add(qa);
+            _context.SaveChanges();
+        }
+
         /*
 
         public async Task <Produto> ProdutoImagem(int ProdutoId)

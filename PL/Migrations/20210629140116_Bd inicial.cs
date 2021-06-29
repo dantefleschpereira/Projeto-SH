@@ -103,19 +103,6 @@ namespace PL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectRoles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -327,6 +314,27 @@ namespace PL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "QuestionAnswers",
+                columns: table => new
+                {
+                    QAId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProdutoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionAnswers", x => x.QAId);
+                    table.ForeignKey(
+                        name: "FK_QuestionAnswers_Produtos_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produtos",
+                        principalColumn: "ProdutoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -395,6 +403,11 @@ namespace PL.Migrations
                 name: "IX_Produtos_UsuarioId",
                 table: "Produtos",
                 column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestionAnswers_ProdutoId",
+                table: "QuestionAnswers",
+                column: "ProdutoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -427,7 +440,7 @@ namespace PL.Migrations
                 name: "PedidoDetalhes");
 
             migrationBuilder.DropTable(
-                name: "ProjectRoles");
+                name: "QuestionAnswers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
