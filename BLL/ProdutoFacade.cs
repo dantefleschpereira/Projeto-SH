@@ -17,7 +17,7 @@ namespace BLL
         }
 
         public async Task<List<Produto>> ListAll(ApplicationUser usuario) => await _produtoDao.ListAll(usuario);
-        public async Task<Produto> DetailsById(int? id) => await _produtoDao.DetailsById(id);
+        public async Task<Produto> DetailsById(int? id) => await _produtoDao.DetailsPorId(id);
         public async Task Create(Produto produto, ApplicationUser usuario) => await _produtoDao.Create(produto, usuario);
         public async Task<Produto> EditById(int? id) => await _produtoDao.EditById(id);
         public async Task<Produto> EditByIdAndObject(int id, Produto produto) => await _produtoDao.EditByIdAndObject(id, produto);

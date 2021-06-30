@@ -26,7 +26,6 @@ namespace Entities.Models
         public virtual Categoria Categoria { get; set; }
 
         public string Cidade { get; set; }
-
         
         
         public virtual ApplicationUser Usuario { get; set; }

@@ -1,103 +1,137 @@
 ﻿@model Entities.Models.Produto
-    
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<Entities.Models.ApplicationUser> SignInManager
+@inject UserManager<Entities.Models.ApplicationUser> UserManager
 
 
 
-    @{ ViewData["Title"] = "Comprar"; }
+@{
+    ViewData["Title"] = "Comprar";
+}
 
-    <h3>Detalhes do Produto</h3>
+<h3>Detalhes do Produto</h3>
 
-    <div>
+<div>
 
-        <hr />
-        <dl class="row">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        @* <dt class="col-sm-2">
+                 @Html.DisplayNameFor(model => model.Categoria)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Categoria.Nome)
+             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Nome)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Nome)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Descricao)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Descricao)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Preco)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Preco)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Status)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Categoria)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Categoria.Nome)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Cidade)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Cidade)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NomeVendedor)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NomeVendedor)
-            </dd>
+                 @Html.DisplayNameFor(model => model.Cidade)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Cidade)
+             </dd>
+             <dt class="col-sm-2">
+                 @Html.DisplayNameFor(model => model.Usuario)
+             </dt>
+             <dd class="col-sm-10">
+                 @Html.DisplayFor(model => model.Usuario.Nome)
+             </dd>*@
 
-        </dl>
-    </div>
-    <div class="row">
-        <h3>Imagens</h3>
-        <div class="col-md-4">
+    </dl>
+</div>
+<div>
+
+    <p><a class="btn btn-primary" asp-controller="MeusProdutos" asp-route-id="@Model.ProdutoId" asp-action="Edit">Editar</a></p>
+    <p><a class="btn btn-primary" asp-controller="MeusProdutos" asp-action="MeusProdutos">Voltar</a></p>
+
+</div>
+
+<div class="row">
+    <h3>Imagens</h3>
+    <div class="col-md-4">
 
 
-            @foreach (Entities.Models.Imagem im in Model.Imagens)
-            {
-
-                <div class="form-group">
-                    <img width="300"
-                         src=@Url.Action("GetImage", "MeusProdutos", new { id=im.ImagemId})
-                         alt=@im.ImageMimeType>
-                </div>}
-
-        </div>
-    </div>
-    <div class="row">
-        <h3>Perguntas e Respostas</h3>
-        @foreach (Entities.Models.QuestionAnswer qa in Model.QuestionAnswers)
+        @foreach (Entities.Models.Imagem im in Model.Imagens)
         {
-            <dl class="row">
-                <dt class="col-sm-2">
-                    @qa.User
-                </dt>
-                <dt class="col-sm-2">
-                    @qa.Text
-                </dt>
-            </dl>
-        }
+
+            <div class="form-group">
+                <img width="300"
+                     src=@Url.Action("GetImage", "MeusProdutos", new { id=im.ImagemId})
+                     alt=@im.ImageMimeType>
+            </div>}
 
     </div>
+</div>
 
-    <form asp-controller="Produtos" asp-action="AddQuestion">
-        <p>
-            <input type="hidden" name="ProdutoId" value="@Model.ProdutoId" />
+@using (Html.BeginForm("LoadFiles", "MeusProdutos",
+                        FormMethod.Post,
+                          new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" asp-for="ProdutoId" />
+    <dl>
+        <dt>
+            <label for="FileUpload_FormFile">Selecionar arquivos</label>
+        </dt>
+        <dd>
+            <input id="files" type="file"
+                   name="files" multiple />
+        </dd>
+    </dl>
 
-            Mensagem: <input type="text" name="qaString" />
+    <input type="submit" value="Enviar arquivos" class="btn btn-primary" />
 
-            <input type="submit" value="Enviar" />
-        </p>
-    </form>
-    <div>
-        <p><a class="btn btn-primary" asp-controller="Produtos" asp-action="Index">Voltar</a></p>
-    </div>
+    <div style="margin-top:15px">
+        <output name="result"></output>
+    </div>}
 
+
+<h3>Perguntas e Respostas</h3>
+@if (Model.QuestionAnswers != null) { 
+<div class="container"> 
+    
+    @foreach (Entities.Models.QuestionAnswer qa in Model.QuestionAnswers)
+    {
+        <div class="row">
+            <div class="col">
+                @qa.User
+            </div>
+            <div class="col">
+                @qa.Text
+            </div>
+        </div>
+    }
+
+</div>}
+
+<form asp-controller="Produtos" asp-action="AddQuestion">
+    <p>
+        <input type="hidden" name="ProdutoId" value="@Model.ProdutoId" />
+
+        Mensagem: <input type="text" name="qaString" />
+
+        <input type="submit" value="Enviar" />
+    </p>
+</form>

@@ -30,12 +30,12 @@ namespace PL
         }
 
 
-        public async Task<Produto> DetailsById(int? id)
+        public async Task<Produto> DetailsPorId(int? id)
         {
-            var produto = await _context.Produtos.Include("Imagens")
+            var produto = await _context.Produtos
+                .Include(i => i.Imagens)
                 .Include(p => p.Categoria)
-                .Include(p => p.Usuario)
-                .FirstOrDefaultAsync(m => m.ProdutoId == id);
+                .Include(q => q.QuestionAnswers).Where(m => m.ProdutoId == id).FirstOrDefaultAsync();
 
             return produto;
         }
