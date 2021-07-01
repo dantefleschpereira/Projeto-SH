@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PL;
-using PL.Componentes;
 using SecondHandWeb.Models;
 using System;
 

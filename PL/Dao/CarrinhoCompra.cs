@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PL.Componentes
+namespace PL
 {
     public class CarrinhoCompra
     {

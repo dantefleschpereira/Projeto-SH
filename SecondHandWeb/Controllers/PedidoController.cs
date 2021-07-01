@@ -2,7 +2,7 @@
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PL.Componentes;
+using PL;
 
 namespace SecondHandWeb.Controllers
 {

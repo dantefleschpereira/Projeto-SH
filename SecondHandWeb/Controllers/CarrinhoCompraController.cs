@@ -1,7 +1,7 @@
-﻿using BLL;
-using Entities.Interfaces;
+﻿using Entities.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PL;
 using PL.Componentes;
 
 namespace SecondHandWeb.Controllers
