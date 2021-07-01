@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210630215020_Bd inicial")]
+    [Migration("20210701155352_Bd inicial")]
     partial class Bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -94,16 +94,15 @@ namespace PL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("Entities.Models.CarrinhoItem", b =>
                 {
-                    b.Property<int>("CarrinhoCompraItemId")
+                    b.Property<int>("CarrinhoItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CarrinhoCompraId")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
@@ -111,11 +110,11 @@ namespace PL.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.HasKey("CarrinhoCompraItemId");
+                    b.HasKey("CarrinhoItemId");
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("CarrinhoCompraItens");
+                    b.ToTable("CarrinhoItens");
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
@@ -484,7 +483,7 @@ namespace PL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
+            modelBuilder.Entity("Entities.Models.CarrinhoItem", b =>
                 {
                     b.HasOne("Entities.Models.Produto", "Produto")
                         .WithMany()

@@ -245,20 +245,20 @@ namespace PL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CarrinhoCompraItens",
+                name: "CarrinhoItens",
                 columns: table => new
                 {
-                    CarrinhoCompraItemId = table.Column<int>(type: "int", nullable: false)
+                    CarrinhoItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProdutoId = table.Column<int>(type: "int", nullable: true),
                     Quantidade = table.Column<int>(type: "int", nullable: false),
-                    CarrinhoCompraId = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true)
+                    CarrinhoCompraId = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CarrinhoCompraItens", x => x.CarrinhoCompraItemId);
+                    table.PrimaryKey("PK_CarrinhoItens", x => x.CarrinhoItemId);
                     table.ForeignKey(
-                        name: "FK_CarrinhoCompraItens_Produtos_ProdutoId",
+                        name: "FK_CarrinhoItens_Produtos_ProdutoId",
                         column: x => x.ProdutoId,
                         principalTable: "Produtos",
                         principalColumn: "ProdutoId",
@@ -375,8 +375,8 @@ namespace PL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CarrinhoCompraItens_ProdutoId",
-                table: "CarrinhoCompraItens",
+                name: "IX_CarrinhoItens_ProdutoId",
+                table: "CarrinhoItens",
                 column: "ProdutoId");
 
             migrationBuilder.CreateIndex(
@@ -428,7 +428,7 @@ namespace PL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CarrinhoCompraItens");
+                name: "CarrinhoItens");
 
             migrationBuilder.DropTable(
                 name: "Grupo");

@@ -23,7 +23,7 @@ namespace PL.Componentes
 
        
         public string CarrinhoCompraId { get; set; }
-        public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+        public List<CarrinhoItem> CarrinhoCompraItens { get; set; }
 
         public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
@@ -55,7 +55,7 @@ namespace PL.Componentes
 
             if (carrinhoCompraItem == null)
             {
-                carrinhoCompraItem = new CarrinhoCompraItem
+                carrinhoCompraItem = new CarrinhoItem
                 {
                     CarrinhoCompraId = CarrinhoCompraId,
                     Produto = produto,
@@ -98,7 +98,7 @@ namespace PL.Componentes
             return quantidadeLocal;
         }
 
-        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
+        public List<CarrinhoItem> GetCarrinhoCompraItens()
         {
             return CarrinhoCompraItens ??
                    (CarrinhoCompraItens =

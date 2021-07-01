@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
-    [Table("CarrinhoCompraItens")]
-    public class CarrinhoCompraItem
+    [Table("CarrinhoItens")]
+    public class CarrinhoItem
     {
-        public int CarrinhoCompraItemId { get; set; }
+        public int CarrinhoItemId { get; set; }
         public Produto Produto { get; set; }
         public int Quantidade { get; set; }
-        [StringLength(150)]
         public string CarrinhoCompraId { get; set; }
     }
 }

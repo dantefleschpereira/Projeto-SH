@@ -22,7 +22,7 @@ namespace PL
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Imagem> Imagem { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+        public DbSet<CarrinhoItem> CarrinhoCompraItens { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoDetalhe> PedidoDetalhes { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
