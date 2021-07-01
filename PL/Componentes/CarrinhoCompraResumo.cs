@@ -4,9 +4,9 @@ namespace PL.Componentes
 {
     public class CarrinhoCompraResumo : ViewComponent
     {
-        private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly CarrinhoCompraDao _carrinhoCompra;
 
-        public CarrinhoCompraResumo(CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompraResumo(CarrinhoCompraDao carrinhoCompra)
         {
             _carrinhoCompra = carrinhoCompra;
         }

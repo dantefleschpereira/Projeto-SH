@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace PL
 {
-    public class CarrinhoCompra
+    public class CarrinhoCompraDao
     {
         private readonly SecondHandContext _context;
 
     
-        public CarrinhoCompra(SecondHandContext contexto)
+        public CarrinhoCompraDao(SecondHandContext contexto)
         {
             _context = contexto;
         }
@@ -25,23 +25,19 @@ namespace PL
         public string CarrinhoCompraId { get; set; }
         public List<CarrinhoItem> CarrinhoCompraItens { get; set; }
 
-        public static CarrinhoCompra GetCarrinho(IServiceProvider services)
+        public static CarrinhoCompraDao GetCarrinho(IServiceProvider services)
         {
-            //definir sessão
+            
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
-            //obter serviço do tipo do contexto 
             var context = services.GetService<SecondHandContext>();
 
-            //obter ou gerar o Id do carrinho
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
-            //atribuir o id do carrinho na sessão
             session.SetString("CarrinhoId", carrinhoId);
 
-            //retornar o carrinho com o contexto e o Id atribuido ou obtido
-            return new CarrinhoCompra(context)
+            return new CarrinhoCompraDao(context)
             {
                 CarrinhoCompraId = carrinhoId
             };

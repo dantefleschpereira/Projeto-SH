@@ -55,7 +55,7 @@ namespace SecondHandWeb
             services.AddRazorPages();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
+            services.AddScoped(cp => CarrinhoCompraDao.GetCarrinho(cp));
 
             services.Configure<IdentityOptions>(options =>
             {

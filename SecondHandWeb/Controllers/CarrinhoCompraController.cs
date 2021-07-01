@@ -10,9 +10,9 @@ namespace SecondHandWeb.Controllers
     public class CarrinhoCompraController : Controller
     {
         private readonly IProduto _produtoDao;
-        private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly CarrinhoCompraDao _carrinhoCompra;
 
-        public CarrinhoCompraController(IProduto produtoDao, CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompraController(IProduto produtoDao, CarrinhoCompraDao carrinhoCompra)
         {
             _produtoDao = produtoDao;
             _carrinhoCompra = carrinhoCompra;

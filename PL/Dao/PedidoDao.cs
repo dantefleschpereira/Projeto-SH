@@ -10,9 +10,9 @@ namespace PL
     public class PedidoDao
     {
         private readonly SecondHandContext _context;
-        private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly CarrinhoCompraDao _carrinhoCompra;
 
-        public PedidoDao(SecondHandContext context, CarrinhoCompra carrinhoCompra)
+        public PedidoDao(SecondHandContext context, CarrinhoCompraDao carrinhoCompra)
         {
             _context = context;
             _carrinhoCompra = carrinhoCompra;

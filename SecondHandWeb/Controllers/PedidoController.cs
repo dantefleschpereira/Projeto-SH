@@ -9,9 +9,9 @@ namespace SecondHandWeb.Controllers
     public class PedidoController : Controller
     {
         private readonly PedidoFacade _pedidoFacade;
-        private readonly CarrinhoCompra _carrinhoCompra;
+        private readonly CarrinhoCompraDao _carrinhoCompra;
 
-        public PedidoController(PedidoFacade pedidoFacade, CarrinhoCompra carrinhoCompra)
+        public PedidoController(PedidoFacade pedidoFacade, CarrinhoCompraDao carrinhoCompra)
         {
             _pedidoFacade = pedidoFacade;
             _carrinhoCompra = carrinhoCompra;
