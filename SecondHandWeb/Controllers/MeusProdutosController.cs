@@ -60,12 +60,12 @@ namespace SecondHandWeb.Controllers
             var usuario = await _userManager.GetUserAsync(User);
 
             ViewBag.Id = usuario.Id;
-            ViewBag.UserName = usuario.UserName;
+            ViewBag.UserName = usuario.Nome;
 
             QuestionAnswer novo = new QuestionAnswer()
             {
                 Text = qaString,
-                User = usuario.UserName,
+                User = usuario.Nome,
                 ProdutoId = ProdutoId
             };
 

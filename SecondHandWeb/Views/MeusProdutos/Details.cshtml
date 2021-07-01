@@ -115,14 +115,14 @@
 
         @foreach (Entities.Models.QuestionAnswer qa in Model.QuestionAnswers)
         {
-            <div class="row">
-                <div class="col">
-                    @qa.User
-                </div>
-                <div class="col">
-                    @qa.Text
-                </div>
+        <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+                <b>@qa.User:</b>
             </div>
+            <div class="col col-lg-2">
+                @qa.Text
+            </div>
+        </div>
         }
 
     </div>}
