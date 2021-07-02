@@ -8,12 +8,12 @@ namespace SecondHandWeb.Controllers
     [Authorize]
     public class CarrinhoCompraController : Controller
     {
-        private readonly IProduto _produtoDao;
+        private readonly IProduto _produto;
         private readonly CarrinhoCompra _carrinhoCompra;
 
-        public CarrinhoCompraController(IProduto produtoDao, CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompraController(IProduto produto, CarrinhoCompra carrinhoCompra)
         {
-            _produtoDao = produtoDao;
+            _produto = produto;
             _carrinhoCompra = carrinhoCompra;
         }
         public IActionResult Index()
@@ -33,7 +33,7 @@ namespace SecondHandWeb.Controllers
         [Authorize]
         public RedirectToActionResult AdicionarItemNoCarrinhoCompra(int produtoId)
         {
-            var produtoSelecionado = _produtoDao.GetProdutoById(produtoId);
+            var produtoSelecionado = _produto.GetProdutoById(produtoId);
                           
 
             if (produtoSelecionado != null)
@@ -46,7 +46,7 @@ namespace SecondHandWeb.Controllers
         [Authorize]
         public IActionResult RemoverItemDoCarrinhoCompra(int produtoId)
         {
-            var produtoSelecionado = _produtoDao.GetProdutoById(produtoId);
+            var produtoSelecionado = _produto.GetProdutoById(produtoId);
           
             if (produtoSelecionado != null)
             {
