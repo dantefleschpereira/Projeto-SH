@@ -21,8 +21,9 @@ namespace PL
 
         public void CriarPedido(Pedido pedido)
         {
-            pedido.PedidoEnviado = DateTime.Now;
+            //pedido.PedidoEnviado = DateTime.Now;
             //pedido.PedidoEntregueEm = DateTime.Now;
+            pedido.PedidoCompra = DateTime.Now;
 
             _context.Pedidos.Add(pedido);
             _context.SaveChanges();
@@ -89,18 +90,18 @@ namespace PL
 
             if (minDate.HasValue)
             {
-                resultado = resultado.Where(x => x.PedidoEnviado >= minDate.Value);
+                resultado = resultado.Where(x => x.PedidoCompra >= minDate.Value);
             }
 
             if (maxDate.HasValue)
             {
-                resultado = resultado.Where(x => x.PedidoEnviado <= maxDate.Value);
+                resultado = resultado.Where(x => x.PedidoCompra <= maxDate.Value);
             }
 
             return await resultado
                 .Include(l => l.PedidoItens)
                 .ThenInclude(l => l.Produto)
-                .OrderByDescending(x => x.PedidoEnviado)
+                .OrderByDescending(x => x.PedidoCompra)
                 .ToListAsync();
         }
     }

@@ -29,6 +29,7 @@ namespace BLL
         public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId) => _produtoDao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);      
         public List<Produto> ListaDeProduto() => _produtoDao.ListaDeProdutos();       
         public async Task<List<Produto>> ListaProdutosAsync() => await _produtoDao.ListaDeProdutosAsync();
+        public async Task<List<Produto>> BuscarListaTodosProdutosAsync() => await _produtoDao.ListaDeTodosProdutosAsync();
         public IQueryable<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal) => _produtoDao.FindProdutoByFaixa(valorInicial, valorFinal);        
         public IQueryable<Produto> ProdutosQuery() => _produtoDao.Produtos();       
         public async Task<Produto> ProdutoById(int? id) => await _produtoDao.GetProdutoById(id);

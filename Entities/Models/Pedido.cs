@@ -67,10 +67,10 @@ namespace Entities.Models
         public int TotalItensPedido { get; set; }
 
 
-        [Display(Name = "Data/Hora de Recebimento do produto")]
+        [Display(Name = "Data/Hora da compra do produto")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
-        public DateTime PedidoEnviado { get; set; }
+        public DateTime PedidoCompra { get; set; }
 
         [Display(Name = "Data/Hora da Compra do produto")]
         [DataType(DataType.DateTime)]

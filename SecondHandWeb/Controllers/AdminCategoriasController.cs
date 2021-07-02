@@ -27,22 +27,6 @@ namespace SecondHandWeb.Controllers
             return View(await _categoriaFacade.ListAll());
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var categoria = await _categoriaFacade.DetailsById(id);
-            if (categoria == null)
-            {
-                return NotFound();
-            }
-
-            return View(categoria);
-        }
-
         public IActionResult Create()
         {
             return View();

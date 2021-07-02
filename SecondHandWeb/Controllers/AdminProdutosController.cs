@@ -28,7 +28,7 @@ namespace SecondHandWeb.Controllers
         
         public async Task<IActionResult> Index()
         {
-            return View(await produtoFacade.ListaProdutosAsync());
+            return View(await produtoFacade.BuscarListaTodosProdutosAsync());
         }
         
         

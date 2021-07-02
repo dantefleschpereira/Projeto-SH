@@ -287,7 +287,19 @@ namespace PL
             return await itens.ToListAsync();
 
         }
-                
+
+        public async Task<List<Produto>> ListaDeTodosProdutosAsync()
+        {
+            var itens = (from p in _context.Produtos
+                         .Include(u => u.Usuario)
+                         .Include(c => c.Categoria)
+                         .Include(i => i.Imagens)                         
+                         select p);
+
+            return await itens.ToListAsync();
+
+        }
+
         public Imagem BuscarImage(int id)
         {
             Imagem im = _context.Imagem.Find(id);

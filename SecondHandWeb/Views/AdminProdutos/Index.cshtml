@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Entities.Models.Produto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Produtos";
 }
 
-<h1>Index</h1>
+<h2>Cadastro de Produtos</h2>
 
-<p>
-    <a asp-action="Create">Adicionar Produto</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -31,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Cidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Usuario)
+                @Html.DisplayNameFor(model => model.NomeVendedor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataVenda)
@@ -61,13 +58,12 @@
                 @Html.DisplayFor(modelItem => item.Cidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Usuario.Email)
+                @Html.DisplayFor(modelItem => item.NomeVendedor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataVenda)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProdutoId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ProdutoId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ProdutoId">Delete</a>
             </td>

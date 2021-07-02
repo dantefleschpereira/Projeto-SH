@@ -221,10 +221,10 @@ namespace PL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("PedidoEntregueEm")
+                    b.Property<DateTime>("PedidoCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PedidoEnviado")
+                    b.Property<DateTime?>("PedidoEntregueEm")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PedidoTotal")

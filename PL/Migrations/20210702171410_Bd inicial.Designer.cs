@@ -10,7 +10,7 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210702023919_Bd inicial")]
+    [Migration("20210702171410_Bd inicial")]
     partial class Bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,10 +223,10 @@ namespace PL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("PedidoEntregueEm")
+                    b.Property<DateTime>("PedidoCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PedidoEnviado")
+                    b.Property<DateTime?>("PedidoEntregueEm")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PedidoTotal")
