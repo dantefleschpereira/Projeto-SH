@@ -92,15 +92,16 @@ namespace PL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Entities.Models.CarrinhoItem", b =>
+            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
                 {
-                    b.Property<int>("CarrinhoItemId")
+                    b.Property<int>("CarrinhoCompraItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CarrinhoCompraId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int?>("ProdutoId")
                         .HasColumnType("int");
@@ -108,11 +109,11 @@ namespace PL.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
-                    b.HasKey("CarrinhoItemId");
+                    b.HasKey("CarrinhoCompraItemId");
 
                     b.HasIndex("ProdutoId");
 
-                    b.ToTable("CarrinhoItens");
+                    b.ToTable("CarrinhoCompraItens");
                 });
 
             modelBuilder.Entity("Entities.Models.Categoria", b =>
@@ -481,7 +482,7 @@ namespace PL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Entities.Models.CarrinhoItem", b =>
+            modelBuilder.Entity("Entities.Models.CarrinhoCompraItem", b =>
                 {
                     b.HasOne("Entities.Models.Produto", "Produto")
                         .WithMany()

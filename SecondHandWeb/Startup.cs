@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PL;
+using PL.Carrinho;
 using SecondHandWeb.Models;
 using System;
 
@@ -55,7 +56,7 @@ namespace SecondHandWeb
             services.AddRazorPages();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped(cp => CarrinhoCompraDao.GetCarrinho(cp));
+            services.AddScoped(cp => CarrinhoCompra.GetCarrinho(cp));
 
             services.Configure<IdentityOptions>(options =>
             {

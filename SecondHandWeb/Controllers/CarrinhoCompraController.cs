@@ -1,8 +1,7 @@
 ﻿using Entities.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PL;
-using PL.Componentes;
+using PL.Carrinho;
 
 namespace SecondHandWeb.Controllers
 {
@@ -10,9 +9,9 @@ namespace SecondHandWeb.Controllers
     public class CarrinhoCompraController : Controller
     {
         private readonly IProduto _produtoDao;
-        private readonly CarrinhoCompraDao _carrinhoCompra;
+        private readonly CarrinhoCompra _carrinhoCompra;
 
-        public CarrinhoCompraController(IProduto produtoDao, CarrinhoCompraDao carrinhoCompra)
+        public CarrinhoCompraController(IProduto produtoDao, CarrinhoCompra carrinhoCompra)
         {
             _produtoDao = produtoDao;
             _carrinhoCompra = carrinhoCompra;

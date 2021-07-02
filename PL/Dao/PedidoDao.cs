@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using PL.Carrinho;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace PL
     public class PedidoDao
     {
         private readonly SecondHandContext _context;
-        private readonly CarrinhoCompraDao _carrinhoCompra;
+        private readonly CarrinhoCompra _carrinhoCompra;
 
-        public PedidoDao(SecondHandContext context, CarrinhoCompraDao carrinhoCompra)
+        public PedidoDao(SecondHandContext context, CarrinhoCompra carrinhoCompra)
         {
             _context = context;
             _carrinhoCompra = carrinhoCompra;

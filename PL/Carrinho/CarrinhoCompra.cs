@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using PL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,35 +10,34 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PL
+namespace PL.Carrinho
 {
-    public class CarrinhoCompraDao
+    public class CarrinhoCompra
     {
+
+        public string CarrinhoCompraId { get; set; }
+        public List<CarrinhoCompraItem> CarrinhoCompraItens { get; set; }
+
         private readonly SecondHandContext _context;
 
     
-        public CarrinhoCompraDao(SecondHandContext contexto)
+        public CarrinhoCompra(SecondHandContext contexto)
         {
             _context = contexto;
         }
-
-       
-        public string CarrinhoCompraId { get; set; }
-        public List<CarrinhoItem> CarrinhoCompraItens { get; set; }
-
-        public static CarrinhoCompraDao GetCarrinho(IServiceProvider services)
+        
+        public static CarrinhoCompra GetCarrinho(IServiceProvider services)
         {
-            
             ISession session =
                 services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
+ 
             var context = services.GetService<SecondHandContext>();
 
             string carrinhoId = session.GetString("CarrinhoId") ?? Guid.NewGuid().ToString();
 
             session.SetString("CarrinhoId", carrinhoId);
 
-            return new CarrinhoCompraDao(context)
+            return new CarrinhoCompra(context)
             {
                 CarrinhoCompraId = carrinhoId
             };
@@ -51,7 +51,7 @@ namespace PL
 
             if (carrinhoCompraItem == null)
             {
-                carrinhoCompraItem = new CarrinhoItem
+                carrinhoCompraItem = new CarrinhoCompraItem
                 {
                     CarrinhoCompraId = CarrinhoCompraId,
                     Produto = produto,
@@ -65,6 +65,15 @@ namespace PL
                 carrinhoCompraItem.Quantidade++;
             }
            
+            _context.SaveChanges();
+        }
+        public void LimparCarrinho()
+        {
+            var carrinhoItens = _context.CarrinhoCompraItens
+                                 .Where(carrinho => carrinho.CarrinhoCompraId == CarrinhoCompraId);
+
+            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
+
             _context.SaveChanges();
         }
 
@@ -94,25 +103,6 @@ namespace PL
             return quantidadeLocal;
         }
 
-        public List<CarrinhoItem> GetCarrinhoCompraItens()
-        {
-            return CarrinhoCompraItens ??
-                   (CarrinhoCompraItens =
-                       _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
-                           .Include(s => s.Produto)
-                           .ToList());
-        }
-
-        public void LimparCarrinho()
-        {
-            var carrinhoItens = _context.CarrinhoCompraItens
-                                 .Where(carrinho => carrinho.CarrinhoCompraId == CarrinhoCompraId);
-
-            _context.CarrinhoCompraItens.RemoveRange(carrinhoItens);
-
-            _context.SaveChanges();
-        }
-
         public decimal GetCarrinhoCompraTotal()
         {
             var total = _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
@@ -120,6 +110,15 @@ namespace PL
 
             return total;
         }
+
+        public List<CarrinhoCompraItem> GetCarrinhoCompraItens()
+        {
+            return CarrinhoCompraItens ??
+                   (CarrinhoCompraItens =
+                       _context.CarrinhoCompraItens.Where(c => c.CarrinhoCompraId == CarrinhoCompraId)
+                           .Include(s => s.Produto)
+                           .ToList());
+        }        
     }
 }
 

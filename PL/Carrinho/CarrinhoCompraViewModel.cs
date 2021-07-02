@@ -1,8 +1,8 @@
-﻿namespace PL.Componentes
+﻿namespace PL.Carrinho
 {
     public class CarrinhoCompraViewModel
     {
-        public CarrinhoCompraDao CarrinhoCompra { get; set; }
+        public CarrinhoCompra CarrinhoCompra { get; set; }
         public decimal CarrinhoCompraTotal { get; set; }
     }
 }

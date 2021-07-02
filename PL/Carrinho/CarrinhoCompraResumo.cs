@@ -1,12 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Entities.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace PL.Componentes
+namespace PL.Carrinho
 {
     public class CarrinhoCompraResumo : ViewComponent
     {
-        private readonly CarrinhoCompraDao _carrinhoCompra;
+        private readonly CarrinhoCompra _carrinhoCompra;
 
-        public CarrinhoCompraResumo(CarrinhoCompraDao carrinhoCompra)
+        public CarrinhoCompraResumo(CarrinhoCompra carrinhoCompra)
         {
             _carrinhoCompra = carrinhoCompra;
         }

@@ -2,16 +2,16 @@
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PL;
+using PL.Carrinho;
 
 namespace SecondHandWeb.Controllers
 {
     public class PedidoController : Controller
     {
         private readonly PedidoFacade _pedidoFacade;
-        private readonly CarrinhoCompraDao _carrinhoCompra;
+        private readonly CarrinhoCompra _carrinhoCompra;
 
-        public PedidoController(PedidoFacade pedidoFacade, CarrinhoCompraDao carrinhoCompra)
+        public PedidoController(PedidoFacade pedidoFacade, CarrinhoCompra carrinhoCompra)
         {
             _pedidoFacade = pedidoFacade;
             _carrinhoCompra = carrinhoCompra;
