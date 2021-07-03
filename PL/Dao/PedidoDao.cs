@@ -99,8 +99,8 @@ namespace PL
             }
 
             return await resultado
-                .Include(l => l.PedidoItens)
-                .ThenInclude(l => l.Produto)
+                .Include(p => p.PedidoItens)
+                .ThenInclude(p => p.Produto)
                 .OrderByDescending(x => x.PedidoCompra)
                 .ToListAsync();
         }

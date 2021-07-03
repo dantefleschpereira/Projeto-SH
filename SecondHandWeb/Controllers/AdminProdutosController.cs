@@ -32,23 +32,6 @@ namespace SecondHandWeb.Controllers
         }
         
         
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await produtoFacade.DetailsById(id);
-
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            return View(produto);
-        }
-
-        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
