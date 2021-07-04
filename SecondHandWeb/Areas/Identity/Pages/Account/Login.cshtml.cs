@@ -44,11 +44,12 @@ namespace SecondHandWeb.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
+            [EmailAddress(ErrorMessage = "Por favor digite um email válido")]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [StringLength(30, ErrorMessage = "A {0} precisa ter pelo menos {2} e no máximo {1} caracteres. Requer um caractere em letras maiúsculas na senha. Requer um caractere não alfanumérico na senha.", MinimumLength = 6)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
 
