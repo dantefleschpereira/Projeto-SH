@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PL.Migrations
 {
-    public partial class Bdinicial : Migration
+    public partial class bdinicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

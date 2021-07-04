@@ -19,16 +19,9 @@ namespace BLL
         public async Task<List<Produto>> ListAll(ApplicationUser usuario) => await _produtoDao.ListAll(usuario);
         public async Task<Produto> DetailsById(int? id) => await _produtoDao.DetailsPorId(id);
         public async Task Create(Produto produto, ApplicationUser usuario) => await _produtoDao.Create(produto, usuario);
-        public async Task<Produto> EditById(int? id) => await _produtoDao.EditById(id);
-        public async Task<Produto> EditByIdAndObject(int id, Produto produto) => await _produtoDao.EditByIdAndObject(id, produto);
         public async Task DeleteById(int? id) => await _produtoDao.DeleteById(id);
         public bool ProdutoExists(int id) => _produtoDao.ProdutoExists(id);
         public IQueryable<Produto> BuscarProdutoPorPalavra(string palavra) => _produtoDao.FindProductByKeyword(palavra);
-        public IQueryable<Produto> BuscarProdutoPorPalavraCategoria(string palavra) => _produtoDao.FindProductByCatByKeyword(palavra);
-        public List<Produto> EncontrarProdutoPorCategoriaId(int categoriaId) => _produtoDao.FindProdutoByCategoriaId(categoriaId);        
-        public List<Produto> EncontrarProdutoPorPalavraChavePorCategoriaId(string palavra, int categoriaId) => _produtoDao.FindProductByKeywordAndCategoriaId(palavra, categoriaId);      
-        public List<Produto> ListaDeProduto() => _produtoDao.ListaDeProdutos();       
-        public async Task<List<Produto>> ListaProdutosAsync() => await _produtoDao.ListaDeProdutosAsync();
         public async Task<List<Produto>> BuscarListaTodosProdutosAsync() => await _produtoDao.ListaDeTodosProdutosAsync();
         public IQueryable<Produto> EncontrarProdutoPorFaixaDeValores(decimal valorInicial, decimal valorFinal) => _produtoDao.FindProdutoByFaixa(valorInicial, valorFinal);        
         public IQueryable<Produto> ProdutosQuery() => _produtoDao.Produtos();       
@@ -41,7 +34,6 @@ namespace BLL
         public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
         public Imagem GetImagem(int id) => _produtoDao.BuscarImage(id);
         public void SalvarImagem(Imagem im) => _produtoDao.SaveImagem(im);
-        //public async Task<Produto> ProdutoImagem(int ProdutoId) => await _produtoDao.ProdutoImagem(ProdutoId);
         public void addQuestion(QuestionAnswer qa) => _produtoDao.addQuestion(qa);
     }
 }

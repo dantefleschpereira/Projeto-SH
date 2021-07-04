@@ -38,17 +38,14 @@ namespace SecondHandWeb.Controllers
                 ModelState.AddModelError("", "Seu carrinho esta vazio");
             }
 
-            //Valor total do pedido
             foreach (var item in items)
             {
                 totalItensPedido += item.Quantidade;
                 precoTotalPedido += (item.Produto.Preco * item.Quantidade);
             }
 
-            //Total de itens do pedido
             pedido.TotalItensPedido = totalItensPedido;
 
-            //Total do pedido ao pedido
             pedido.PedidoTotal = precoTotalPedido;
 
             if (ModelState.IsValid)

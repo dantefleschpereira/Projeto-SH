@@ -21,8 +21,7 @@ namespace PL
 
         public void CriarPedido(Pedido pedido)
         {
-            //pedido.PedidoEnviado = DateTime.Now;
-            //pedido.PedidoEntregueEm = DateTime.Now;
+
             pedido.PedidoCompra = DateTime.Now;
 
             _context.Pedidos.Add(pedido);
@@ -71,7 +70,7 @@ namespace PL
 
             return pedido;
         }
-      
+
         public async Task DeleteById(int? id)
         {
             var pedido = await _context.Pedidos.FirstOrDefaultAsync(m => m.PedidoId == id);
@@ -99,10 +98,7 @@ namespace PL
             }
 
             return await resultado
-                .Include(p => p.PedidoItens)
-                .ThenInclude(p => p.Produto)
-                .OrderByDescending(x => x.PedidoCompra)
-                .ToListAsync();
+                .Include(p => p.PedidoItens).ThenInclude(p => p.Produto).OrderByDescending(x => x.PedidoCompra).ToListAsync();
         }
     }
 }

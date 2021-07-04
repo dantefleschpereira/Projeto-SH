@@ -100,63 +100,8 @@ namespace SecondHandWeb.Controllers
             ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
 
             return View(produto);
-        }
-
-      
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var produto = await _produtoFacade.EditById(id);
-            produto.Status = Status.DISPONIVEL;
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-
-            return View(produto);
-        }
-
-   
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdutoId,Nome,Descricao,Preco,Status,CategoriaId,Cidade,UsuarioId,DataVenda")] Produto produto)
-        {
-            if (id != produto.ProdutoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    await _produtoFacade.EditByIdAndObject(id, produto);
-                    
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_produtoFacade.ProdutoExists(produto.ProdutoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                
-                return RedirectToAction(nameof(MeusProdutos));
-            }
-            ViewData["CategoriaId"] = new SelectList(_categoriaFacade.Categorias(), "CategoriaId", "Nome", produto.CategoriaId);
-
-            
-            return View(produto);
-        }
+        }      
+        
      
         public async Task<IActionResult> Delete(int? id)
         {

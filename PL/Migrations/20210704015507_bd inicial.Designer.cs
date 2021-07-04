@@ -10,8 +10,8 @@ using PL;
 namespace PL.Migrations
 {
     [DbContext(typeof(SecondHandContext))]
-    [Migration("20210703172256_Bd inicial")]
-    partial class Bdinicial
+    [Migration("20210704015507_bd inicial")]
+    partial class bdinicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

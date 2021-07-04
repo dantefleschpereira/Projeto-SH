@@ -49,9 +49,10 @@ namespace SecondHandWeb.Areas.Identity.Pages.Account
 
             [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "Senha")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Lembrar-me")]
             public bool RememberMe { get; set; }
         }
 
@@ -99,7 +100,7 @@ namespace SecondHandWeb.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tentativa inválida para entrar.");
                     return Page();
                 }
             }

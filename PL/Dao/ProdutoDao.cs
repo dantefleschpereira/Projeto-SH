@@ -1,6 +1,5 @@
 ﻿using Entities.Interfaces;
 using Entities.Models;
-using Entities.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -48,23 +47,7 @@ namespace PL
             _context.Add(produto);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<Produto> EditById(int? id)
-        {
-            var produto = await _context.Produtos.FindAsync(id);
-            produto.Status = Status.DISPONIVEL;
-            return produto;
-        }
-
-        public async Task<Produto> EditByIdAndObject(int id, Produto produto)
-        {
-            produto.Status = Status.DISPONIVEL;
-            _context.Update(produto);
-            await _context.SaveChangesAsync();
-
-            return produto;
-        }
-
+        
         public async Task DeleteById(int? id)
         {
             var item = await _context.Produtos.FirstOrDefaultAsync(m => m.ProdutoId == id);
@@ -76,38 +59,7 @@ namespace PL
         {
             return _context.Produtos.Any(e => e.ProdutoId == id);
         }
-
-
-        // 2. Itens a venda de uma determinada categoria.
-        public List<Produto> FindProdutoByCategoriaId(int Id)
-        {
-            {
-                var categoriaId = Id;
-
-                var itens = (from p in _context.Produtos
-                                    .Include(c => c.Categoria)
-                             where p.CategoriaId == categoriaId
-                             && p.Status == Status.DISPONIVEL
-                             select p);
-
-                return itens.ToList();
-            }
-        }
-
-        // 2. Itens a venda dada uma palavra chave e uma categoria.
-        public List<Produto> FindProductByKeywordAndCategoriaId(string palavra, int categoriaId)
-        {
-            var itens = (from p in _context.Produtos.Include(c => c.Categoria)
-                         where p.Descricao.Contains(palavra) || p.Nome.Contains(palavra)
-                         where p.CategoriaId == categoriaId
-                         && p.Status == Status.DISPONIVEL
-                         select p);
-
-            return itens.ToList();
-        }
-
-
-        // 2. Itens a venda dentro de uma faixa de valores.
+        
         public IQueryable<Produto> FindProdutoByFaixa(decimal valorInicial, decimal valorFinal)
         {
             var itens = (from p in _context.Produtos
@@ -119,50 +71,6 @@ namespace PL
             return itens;
         }
 
-
-
-        // 3. Itens anunciados por um determinado vendedor, agrupados pelo status da venda.
-        public List<Produto> FindProdutoVendedorPorStatus(string usuarioId)
-        {
-            var id = usuarioId;
-
-            var itens = (from p in _context.Produtos.Include(u => u.Usuario)
-                         where p.Usuario.Id == id
-                         select p).OrderByDescending(s => s.Status);
-
-            return itens.ToList();
-
-        }
-
-
-        // 3. Número total de itens vendidos num período e o valor total destas vendas.
-        public List<Entities.ViewModels.RelProdutosVendidos> RelatorioVendasPeriodo(DateTime inicial, DateTime final)
-        {
-
-            var itens = from p in _context.Produtos.Include(u => u.Usuario)
-                        where p.Status == Status.VENDIDO
-                        where p.DataVenda >= inicial && p.DataVenda <= final
-                        group p by p.Status into grpPro
-                        select new RelProdutosVendidos
-                        {
-                            Quantidade = grpPro.Count(),
-                            Valor = grpPro.Sum(e => e.Preco)
-
-                        };
-            return itens.ToList();
-        }
-
-        public List<Produto> ListaDeProdutos()
-        {
-            var itens = (from p in _context.Produtos
-                         .Include(u => u.Usuario)
-                         .Include(c => c.Categoria)
-                         .Include(i => i.Imagens)
-
-                         select p);
-
-            return itens.ToList();
-        }
 
         public IQueryable<Produto> Produtos()
         {
@@ -275,18 +183,6 @@ namespace PL
             return await itens.ToListAsync();
         }
 
-        public async Task<List<Produto>> ListaDeProdutosAsync()
-        {
-            var itens = (from p in _context.Produtos
-                         .Include(u => u.Usuario)
-                         .Include(c => c.Categoria)
-                         .Include(i => i.Imagens)
-                         where p.Status == Status.DISPONIVEL
-                         select p);
-
-            return await itens.ToListAsync();
-
-        }
 
         public async Task<List<Produto>> ListaDeTodosProdutosAsync()
         {
@@ -319,15 +215,5 @@ namespace PL
             _context.SaveChanges();
         }
 
-        /*
-
-        public async Task <Produto> ProdutoImagem(int ProdutoId)
-        {
-            var produto = await  _context.Produtos.Include("Imagens")
-                         .FirstOrDefaultAsync(m => m.ProdutoId == ProdutoId);
-
-            return produto;
-        }
-        */
     }
 }
