@@ -21,7 +21,7 @@ INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUse
 VALUES (N'd627f772-b711-4cf4-8999-5c587c21a5d1', NULL, N'Hugo', N'hugo@psa.br', N'HUGO@PSA.BR', N'hugo@psa.br', N'HUGO@PSA.BR', 1, N'AQAAAAEAACcQAAAAEDhHsltbHxitkvIMom89Skc8ug2qNr3bYKQdhdXqnxRzH6rFh2LKZh2vX3cU07NPMg==', N'RCMXDOPQDLU6KFBADMAMSHA54JLOYDNR', N'9c430a98-27a7-498d-8927-86f50b307195', NULL, 0, 0, NULL, 1, 0)
 
 INSERT INTO [dbo].[AspNetUsers] ([Id], [CPF], [Nome], [UserName], [NormalizedUserName], [Email], [NormalizedEmail], [EmailConfirmed], [PasswordHash], [SecurityStamp], [ConcurrencyStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEnd], [LockoutEnabled], [AccessFailedCount]) 
-VALUES (N'67b24e7e-cfe2-448d-8e2d-8081b429fe1d', NULL, 'Admin', N'admin@psa.br', N'ADMIN@PSA.BR', N'admin@psa.br', N'ADMIN@PSA.BR', 1, N'AQAAAAEAACcQAAAAEGmCMAYaMET8urNb919UjpK/JYhmh2Ak6lby3pKj+tLGn+IEwYnDH3VyGM4aL/MIhg==', N'EOHWGEUYCH52ASK7JHUV4YGCTMUPUUI6', N'e45ce73e-7708-4967-afd0-11b19847cb15', NULL, 0, 0, NULL, 1, 0)
+VALUES (N'67b24e7e-cfe2-448d-8e2d-8081b429fe1d', NULL, 'Admin', N'admin@psa.br', N'ADMIN@PSA.BR', N'admin@psa.br', N'ADMIN@PSA.BR', 1, N'AQAAAAEAACcQAAAAECegZEVUh3dVQd3u/A25bTfe0y+iyrAbOFD1nsBK04ft20KQxLIeHKmJuQaGkdvEUg==', N'EOHWGEUYCH52ASK7JHUV4YGCTMUPUUI6', N'e45ce73e-7708-4967-afd0-11b19847cb15', NULL, 0, 0, NULL, 1, 0)
 
 
 
