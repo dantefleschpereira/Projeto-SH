@@ -34,6 +34,6 @@ namespace BLL
         public async Task<List<Produto>> BuscarHistoricoProdutos(string IdComprador) => await _produtoDao.HistoricoProdutos(IdComprador);
         public Imagem GetImagem(int id) => _produtoDao.BuscarImage(id);
         public void SalvarImagem(Imagem im) => _produtoDao.SaveImagem(im);
-        public void addQuestion(QuestionAnswer qa) => _produtoDao.addQuestion(qa);
+        public void AddQuestion(QuestionAnswer qa) => _produtoDao.AddQuestion(qa);
     }
 }

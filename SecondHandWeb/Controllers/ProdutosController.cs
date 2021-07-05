@@ -99,7 +99,7 @@ namespace SecondHandWeb.Controllers
                 ProdutoId = ProdutoId
             };
 
-            _produtoFacade.addQuestion(novo);
+            _produtoFacade.AddQuestion(novo);
 
             return RedirectToAction("Details", "Produtos", new { Id = ProdutoId });
         }

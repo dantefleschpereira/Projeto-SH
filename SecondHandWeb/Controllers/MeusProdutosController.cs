@@ -69,7 +69,7 @@ namespace SecondHandWeb.Controllers
                 ProdutoId = ProdutoId
             };
 
-            _produtoFacade.addQuestion(novo);
+            _produtoFacade.AddQuestion(novo);
 
             return RedirectToAction("Details", "MeusProdutos", new { Id = ProdutoId });
         }
@@ -119,7 +119,16 @@ namespace SecondHandWeb.Controllers
 
             return View(produto);
         }
-            
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _produtoFacade.DeleteById(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         public async Task<IActionResult> DadosUsuario()
         {

@@ -209,7 +209,7 @@ namespace PL
             _context.SaveChanges();
         }
 
-        public void addQuestion(QuestionAnswer qa)
+        public void AddQuestion(QuestionAnswer qa)
         {
             _context.QuestionAnswers.Add(qa);
             _context.SaveChanges();
